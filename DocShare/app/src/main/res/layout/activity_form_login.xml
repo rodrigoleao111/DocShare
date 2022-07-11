@@ -32,6 +32,7 @@
     <EditText
         android:id="@+id/editTextMail"
         style="@style/Edit_Text"
+        android:hint="E-mail"
         app:layout_constraintEnd_toEndOf="@id/containerComponents"
         app:layout_constraintStart_toStartOf="@id/containerComponents"
         app:layout_constraintTop_toTopOf="@id/containerComponents" />
@@ -39,6 +40,7 @@
     <EditText
         android:id="@+id/editTextPassword"
         style="@style/Edit_Text"
+        android:hint="Senha"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="@+id/containerComponents"
         app:layout_constraintEnd_toEndOf="@+id/containerComponents"
