@@ -2,7 +2,9 @@ package com.example.docshare;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class FormLogin extends AppCompatActivity {
 
@@ -12,5 +14,12 @@ public class FormLogin extends AppCompatActivity {
         setContentView(R.layout.activity_form_login);
 
         getSupportActionBar().hide();   // Esconder barra de ação
+
+
+    }
+
+    public void goToCadastro(View view){
+        Intent goToFormCadastroActivity = new Intent(getApplicationContext(), FormCadastro.class);
+        startActivity(goToFormCadastroActivity);
     }
 }
