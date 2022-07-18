@@ -37,7 +37,7 @@ public class FormCadastro extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Coletar informações inseridas
-                String email = nome_user.getText().toString();
+                String email = email_user.getText().toString();
                 String senha = senha_user.getText().toString();
                 String confirma_senha = confirmar_senha_user.getText().toString();
 
