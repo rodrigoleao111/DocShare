@@ -71,14 +71,14 @@ public class FormCadastro extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     /***
-     *
-     * @param email
-     * @param senha
+     * Realizar comunicação com Firebase para autenticar novo usuário e salvar informações no DB
+     * Utiliza as ferramentas: Google Authentication
+     * @param email inserido pelo usuário
+     * @param senha inserido pelo usuário
+     * @param dados_usuario informações a serem adicionadas ao DB
      */
     private void CadastrarUsuario(String email, String senha, Map<String, Object> dados_usuario){
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -106,6 +106,11 @@ public class FormCadastro extends AppCompatActivity {
         });
     }
 
+    /***
+     * Salvar informações cadastrais no banco de dados
+     * Utiliza as ferramentas: Google Firestone
+     * @param cadastro informações(K, V)
+     */
     private void SalvarDadosCadastrais(Map<String, Object> cadastro){
         FirebaseFirestore db_cadastros = FirebaseFirestore.getInstance();
 
