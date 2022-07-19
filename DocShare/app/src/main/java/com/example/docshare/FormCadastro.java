@@ -42,10 +42,6 @@ public class FormCadastro extends AppCompatActivity {
         getSupportActionBar().hide();
         IniciarComponentes();
 
-        /***
-         * Botão Finalizar Cadastro: Cadastrar novo usuário no app
-         * Métodos chamados:
-         */
         bt_cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +51,7 @@ public class FormCadastro extends AppCompatActivity {
                 String senha = senha_user.getText().toString();
                 String confirma_senha = confirmar_senha_user.getText().toString();
 
+                // Informações do documento usuário
                 Map<String,Object> dados_usuario = new HashMap<>();
                 dados_usuario.put("nome", nome_user.getText().toString());
                 dados_usuario.put("cpf", cpf_user.getText().toString());
@@ -73,6 +70,7 @@ public class FormCadastro extends AppCompatActivity {
             }
         });
     }
+
 
     /***
      * Realizar comunicação com Firebase para autenticar novo usuário e salvar informações no DB
@@ -107,6 +105,7 @@ public class FormCadastro extends AppCompatActivity {
         });
     }
 
+
     /***
      * Salvar informações cadastrais no banco de dados
      * Utiliza as ferramentas: Google Firestone
@@ -132,9 +131,7 @@ public class FormCadastro extends AppCompatActivity {
         });
     }
 
-    /***
-     * Iniciar componentes de cadastro
-     */
+
     private void IniciarComponentes(){
         email_user = findViewById(R.id.edit_cadastro_email);
         senha_user = findViewById(R.id.edit_cadastro_senha);
@@ -160,6 +157,7 @@ public class FormCadastro extends AppCompatActivity {
 
         return validacao;
     }
+
 
     private void goToFormLogin(){
         Intent intent = new Intent(getApplicationContext(), FormLogin.class);
