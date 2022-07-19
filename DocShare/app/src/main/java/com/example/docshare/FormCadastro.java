@@ -3,6 +3,7 @@ package com.example.docshare;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -121,6 +122,7 @@ public class FormCadastro extends AppCompatActivity {
             @Override
             public void onSuccess(Void unused) {
                 Log.d("db", "Sucesso ao salvar os dados");
+                goToFormLogin();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -157,5 +159,11 @@ public class FormCadastro extends AppCompatActivity {
             validacao = true;
 
         return validacao;
+    }
+
+    private void goToFormLogin(){
+        Intent intent = new Intent(getApplicationContext(), FormLogin.class);
+        startActivity(intent);
+        finish();
     }
 }
