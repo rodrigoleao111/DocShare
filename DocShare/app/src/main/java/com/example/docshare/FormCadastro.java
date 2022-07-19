@@ -4,18 +4,26 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class FormCadastro extends AppCompatActivity {
 
@@ -23,6 +31,7 @@ public class FormCadastro extends AppCompatActivity {
     private EditText nome_user, cpf_user, rg_user, telefone_user, cargo_user, setor_user;
     private Button bt_cadastrar;
     String[] mensagens = {"Erro: Preencha todos os campos", "Cadastro realizado", "Erro: Campos de senha diferentes"};
+    String usuarioID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,18 +54,19 @@ public class FormCadastro extends AppCompatActivity {
                 String senha = senha_user.getText().toString();
                 String confirma_senha = confirmar_senha_user.getText().toString();
 
-                String nome = nome_user.getText().toString();
-                String cpf = cpf_user.getText().toString();
-                String rg = rg_user.getText().toString();
-                String telefone = telefone_user.getText().toString();
-                String cargo = cargo_user.getText().toString();
-                String setor = setor_user.getText().toString();
+                Map<String,Object> dados_usuario = new HashMap<>();
+                dados_usuario.put("nome", nome_user.getText().toString());
+                dados_usuario.put("cpf", cpf_user.getText().toString());
+                dados_usuario.put("rg", rg_user.getText().toString());
+                dados_usuario.put("telefone", telefone_user.getText().toString());
+                dados_usuario.put("cargo", cargo_user.getText().toString());
+                dados_usuario.put("setor", setor_user.getText().toString());
 
                 if(email.isEmpty() || senha.isEmpty() || confirma_senha.isEmpty()){
                     Toast.makeText(getApplicationContext(), mensagens[0], Toast.LENGTH_LONG).show();
                 } else {
                     if(senha.equals(confirma_senha)){
-                        CadastrarUsuario(email, senha);
+                        CadastrarUsuario(email, senha, dados_usuario);
                     } else Toast.makeText(getApplicationContext(), mensagens[2], Toast.LENGTH_LONG).show();
                 }
             }
@@ -70,11 +80,12 @@ public class FormCadastro extends AppCompatActivity {
      * @param email
      * @param senha
      */
-    private void CadastrarUsuario(String email, String senha){
+    private void CadastrarUsuario(String email, String senha, Map<String, Object> dados_usuario){
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    SalvarDadosCadastrais(dados_usuario);
                     Toast.makeText(getApplicationContext(), mensagens[1], Toast.LENGTH_LONG).show();
                 } else {
                     String erro;
@@ -91,6 +102,25 @@ public class FormCadastro extends AppCompatActivity {
                     }
                     Toast.makeText(getApplicationContext(), erro, Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+    }
+
+    private void SalvarDadosCadastrais(Map<String, Object> cadastro){
+        FirebaseFirestore db_cadastros = FirebaseFirestore.getInstance();
+
+        usuarioID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        DocumentReference documentReference = db_cadastros.collection("Usuarios").document(usuarioID);
+        documentReference.set(cadastro).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.d("db", "Sucesso ao salvar os dados");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("db_error", "Erro ao salvar os dados: " + e.toString());
             }
         });
     }
