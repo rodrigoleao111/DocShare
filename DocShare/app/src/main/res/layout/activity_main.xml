@@ -55,39 +55,40 @@
         android:id="@+id/containerComponentMain"
         style="@style/ContainerLogin"
         android:layout_width="372dp"
-        android:layout_height="281dp"
+        android:layout_height="280dp"
         android:background="@drawable/container_components"
         android:elevation="8dp"
         android:visibility="visible"
+        android:layout_centerInParent="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/image_bt_nova_os"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+        app:layout_constraintEnd_toStartOf="@+id/image_historico"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/containerComponentMain"
         app:srcCompat="@drawable/bt_nova_os" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/image_configuracoes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintStart_toEndOf="@+id/image_historico"
         app:layout_constraintTop_toBottomOf="@+id/containerComponentMain"
         app:srcCompat="@drawable/bt_configuracoes" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/image_historico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"

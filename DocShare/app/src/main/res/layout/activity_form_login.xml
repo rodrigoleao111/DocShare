@@ -11,15 +11,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_gradient"
+    android:background="@color/background"
     tools:context=".FormLogin">
 
     <ImageView
         android:id="@+id/logo_share"
         android:layout_width="169dp"
         android:layout_height="154dp"
-        android:layout_margin="30dp"
-        android:src="@drawable/logo_app"
+        android:src="@drawable/splash1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
