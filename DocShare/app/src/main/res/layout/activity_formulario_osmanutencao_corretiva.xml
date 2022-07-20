@@ -34,7 +34,7 @@
             android:id="@+id/txt1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Histórico de Atividades"
+            android:text="Informações do colaborador"
             android:layout_marginTop="40dp"
             android:layout_marginLeft="22dp"
             android:textColor="@color/soft_black"
