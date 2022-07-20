@@ -131,6 +131,7 @@
         android:background="@drawable/edit_text"
         android:elevation="10dp"
         android:hint="CPF"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
         app:layout_constraintStart_toStartOf="@+id/rectangle_5"
         app:layout_constraintTop_toBottomOf="@+id/edit_cadastro_nome" />
@@ -141,6 +142,7 @@
         android:background="@drawable/edit_text"
         android:elevation="10dp"
         android:hint="RG"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
         app:layout_constraintStart_toStartOf="@+id/rectangle_5"
         app:layout_constraintTop_toBottomOf="@+id/edit_cadastro_cpf" />
@@ -152,6 +154,7 @@
         android:drawableRight="@drawable/ic_baseline_local_phone_24"
         android:elevation="10dp"
         android:hint="Telefone"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
         app:layout_constraintStart_toStartOf="@+id/rectangle_5"
         app:layout_constraintTop_toBottomOf="@+id/edit_cadastro_RG" />
