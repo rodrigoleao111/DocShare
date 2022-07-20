@@ -46,6 +46,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        bt_nova_os_manutencao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToFormOsActivity = new Intent(getApplicationContext(), FormularioOSManutencaoCorretiva.class);
+                startActivity(goToFormOsActivity);
+            }
+        });
+
 
     }
 

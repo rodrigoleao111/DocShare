@@ -1,14 +1,20 @@
 package com.example.docshare;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,6 +37,11 @@ public class FormCadastro extends AppCompatActivity {
     private EditText email_user, senha_user, confirmar_senha_user;
     private EditText nome_user, cpf_user, rg_user, telefone_user, cargo_user, setor_user;
     private Button bt_cadastrar;
+    private ImageView foto_perfil;
+
+    private FirebaseFirestore db_cadastros = FirebaseFirestore.getInstance();
+
+
     String[] mensagens = {"Erro: Preencha todos os campos", "Cadastro realizado", "Erro: Campos de senha diferentes"};
     String usuarioID;
 
@@ -42,6 +53,15 @@ public class FormCadastro extends AppCompatActivity {
         getSupportActionBar().hide();
         IniciarComponentes();
 
+        // Adicionar foto de perfil
+        foto_perfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mGetContent.launch("image/*");
+            }
+        });
+
+        // Botão Finalizar Cadastro
         bt_cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +89,20 @@ public class FormCadastro extends AppCompatActivity {
                 }
             }
         });
+
+
     }
+
+
+
+    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+        @Override
+        public void onActivityResult(Uri result) {
+            if(result != null){
+                foto_perfil.setImageURI(result);
+            }
+        }
+    });
 
 
     /***
@@ -112,11 +145,10 @@ public class FormCadastro extends AppCompatActivity {
      * @param cadastro informações(K, V)
      */
     private void SalvarDadosCadastrais(Map<String, Object> cadastro){
-        FirebaseFirestore db_cadastros = FirebaseFirestore.getInstance();
-
         usuarioID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         DocumentReference documentReference = db_cadastros.collection("Usuarios").document(usuarioID);
+
         documentReference.set(cadastro).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
@@ -145,6 +177,8 @@ public class FormCadastro extends AppCompatActivity {
         setor_user = findViewById(R.id.edit_setor);
 
         bt_cadastrar = findViewById(R.id.button_cadastrar);
+
+        foto_perfil = findViewById(R.id.profile_picture);
     }
 
 
