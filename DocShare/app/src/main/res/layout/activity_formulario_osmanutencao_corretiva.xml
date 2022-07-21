@@ -67,7 +67,7 @@
             android:text="Nome"
             android:textColor="@color/soft_black"
             android:textSize="14dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginLeft="22dp"
             app:layout_constraintStart_toStartOf="@+id/containerHist1"
             app:layout_constraintTop_toTopOf="@+id/containerHist1" />
@@ -242,10 +242,133 @@
             app:layout_constraintStart_toStartOf="@+id/containerHist1"
             app:layout_constraintTop_toBottomOf="@+id/hintEmail" />
 
+        <TextView
+            android:id="@+id/txt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Equipamento | Ativo"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="22dp"
+            android:textColor="@color/soft_black"
+            android:elevation="5dp"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/containerHist2"
+            app:layout_constraintTop_toBottomOf="@+id/containerHist1" />
 
+        <View
+            android:id="@+id/containerHist2"
+            style="@style/ContainerLogin"
+            android:layout_height="310dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/container_components"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt2" />
 
+        <TextView
+            android:id="@+id/hintLocacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:text="Locação"
+            android:textColor="@color/soft_black"
+            android:textSize="14dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="22dp"
+            app:layout_constraintStart_toStartOf="@+id/containerHist2"
+            app:layout_constraintTop_toTopOf="@+id/containerHist2" />
 
+        <EditText
+            android:id="@+id/edtFormOSLocacao"
+            style="@style/Edit_Text"
+            android:background="@drawable/edit_text"
+            android:layout_marginTop="0dp"
+            android:elevation="10dp"
+            android:minHeight="48dp"
+            android:padding="7dp"
+            app:layout_constraintEnd_toEndOf="@+id/containerHist2"
+            app:layout_constraintStart_toStartOf="@+id/containerHist2"
+            app:layout_constraintTop_toBottomOf="@+id/hintLocacao" />
 
+        <TextView
+            android:id="@+id/hintEquipamento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:text="Equipamento"
+            android:textColor="@color/soft_black"
+            android:textSize="14dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="22dp"
+            app:layout_constraintStart_toStartOf="@+id/containerHist2"
+            app:layout_constraintTop_toBottomOf="@+id/edtFormOSLocacao" />
+
+        <EditText
+            android:id="@+id/edtFormOSEquipamento"
+            style="@style/Edit_Text"
+            android:background="@drawable/edit_text"
+            android:elevation="10dp"
+            android:minHeight="48dp"
+            android:layout_marginTop="0dp"
+            android:padding="7dp"
+            app:layout_constraintEnd_toEndOf="@+id/containerHist2"
+            app:layout_constraintStart_toStartOf="@+id/containerHist2"
+            app:layout_constraintTop_toBottomOf="@+id/hintEquipamento" />
+
+        <TextView
+            android:id="@+id/hintModelo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:text="Modelo"
+            android:textColor="@color/soft_black"
+            android:textSize="14dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="22dp"
+            app:layout_constraintStart_toStartOf="@+id/containerHist2"
+            app:layout_constraintTop_toBottomOf="@+id/edtFormOSEquipamento" />
+
+        <EditText
+            android:id="@+id/edtFormOSModelo"
+            style="@style/Edit_Text"
+            android:background="@drawable/edit_text"
+            android:elevation="10dp"
+            android:minHeight="48dp"
+            android:layout_marginTop="0dp"
+            android:padding="7dp"
+            app:layout_constraintEnd_toEndOf="@+id/containerHist2"
+            app:layout_constraintStart_toStartOf="@+id/containerHist2"
+            app:layout_constraintTop_toBottomOf="@+id/hintModelo" />
+
+        <TextView
+            android:id="@+id/hintIDEquipamento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:text="Código de identificação do "
+            android:textColor="@color/soft_black"
+            android:textSize="14dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="22dp"
+            app:layout_constraintStart_toStartOf="@+id/containerHist2"
+            app:layout_constraintTop_toBottomOf="@+id/edtFormOSModelo" />
+
+        <EditText
+            android:id="@+id/edtFormOSIDEquipamento"
+            style="@style/Edit_Text"
+            android:background="@drawable/edit_text"
+            android:elevation="10dp"
+            android:minHeight="48dp"
+            android:layout_marginTop="0dp"
+            android:padding="7dp"
+            app:layout_constraintEnd_toEndOf="@+id/containerHist2"
+            app:layout_constraintStart_toStartOf="@+id/containerHist2"
+            app:layout_constraintTop_toBottomOf="@+id/hintIDEquipamento" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
