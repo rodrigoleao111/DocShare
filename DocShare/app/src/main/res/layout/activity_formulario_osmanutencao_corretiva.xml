@@ -51,8 +51,6 @@
             android:layout_height="380dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:background="@drawable/container_components"
             android:elevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -262,8 +260,6 @@
             android:layout_height="310dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:background="@drawable/container_components"
             android:elevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -283,9 +279,11 @@
             app:layout_constraintStart_toStartOf="@+id/containerHist2"
             app:layout_constraintTop_toTopOf="@+id/containerHist2" />
 
-        <EditText
+        <Spinner
             android:id="@+id/edtFormOSLocacao"
             style="@style/Edit_Text"
+            android:entries="@array/formOSLocacao"
+            android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24"
             android:background="@drawable/edit_text"
             android:layout_marginTop="0dp"
             android:elevation="10dp"
@@ -350,7 +348,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="10dp"
-            android:text="Código de identificação do "
+            android:text="Código de identificação do item"
             android:textColor="@color/soft_black"
             android:textSize="14dp"
             android:layout_marginTop="5dp"
@@ -369,6 +367,19 @@
             app:layout_constraintEnd_toEndOf="@+id/containerHist2"
             app:layout_constraintStart_toStartOf="@+id/containerHist2"
             app:layout_constraintTop_toBottomOf="@+id/hintIDEquipamento" />
+
+        <Button
+            android:id="@+id/bt_visualizarOS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="50dp"
+            android:backgroundTint="@color/button_blue"
+            android:textSize="20dp"
+            android:text="   Visualizar OS   "
+            app:layout_constraintEnd_toEndOf="@+id/containerHist2"
+            app:layout_constraintStart_toStartOf="@+id/containerHist2"
+            app:layout_constraintTop_toBottomOf="@+id/containerHist2"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -4,7 +4,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -15,8 +18,11 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
 
-    // Edt referente aos dados do usuário
-    private EditText edtNome, edtRG, edtCPF, edtSetor, edtCargo, edtTelefone, edtEmail;
+    Bundle formularioOS = new Bundle();
+    private Button bt_visualizarOS;
+    private EditText edtNome, edtRG, edtCPF, edtSetor, edtCargo, edtTelefone, edtEmail;  // Edt referente as informaçoes do colaborador
+    private EditText edtEquipamento, edtModelo, edtEquipID;                              // Edt referente ao Equipamento | Ativo
+    private Spinner formLocacao;
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
     String userID;
 
@@ -53,9 +59,33 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
                 }
             }
         });
+
+        bt_visualizarOS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ColetarInformacoes();
+            }
+        });
     }
 
+    
+    private void ColetarInformacoes() {
+        formularioOS.putString("nome", edtNome.toString());
+        formularioOS.putString("rg", edtRG.toString());
+        formularioOS.putString("cpf", edtCPF.toString());
+        formularioOS.putString("setor", edtSetor.toString());
+        formularioOS.putString("cargo", edtCargo.toString());
+        formularioOS.putString("email", edtEmail.toString());
+
+        formularioOS.putString("locacao", formLocacao.toString());
+        formularioOS.putString("equipamento", edtEquipamento.toString());
+        formularioOS.putString("modelo", edtModelo.toString());
+        formularioOS.putString("equipID", edtEquipID.toString());
+    }
+
+
     private void IniciarComponentes() {
+        // Dados usuário
         edtNome = findViewById(R.id.userName);
         edtRG = findViewById(R.id.userRG);
         edtCPF = findViewById(R.id.userCPF);
@@ -64,5 +94,12 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
         edtTelefone = findViewById(R.id.userTelefone);
         edtEmail = findViewById(R.id.userEmail);
 
+        // Formulário
+        formLocacao = findViewById(R.id.edtFormOSLocacao);
+        edtEquipamento = findViewById(R.id.edtFormOSEquipamento);
+        edtModelo =findViewById(R.id.edtFormOSModelo);
+        edtEquipID = findViewById(R.id.edtFormOSIDEquipamento);
+
+        bt_visualizarOS = findViewById(R.id.bt_visualizarOS);
     }
 }

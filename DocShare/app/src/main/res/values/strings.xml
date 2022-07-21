@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">DocShare</string>
     <string name="esqueci_senha">Esqueci minha senha</string>
+    <string-array name="formOSLocacao">
+        <item>Un. Recife I</item>
+        <item>Un. Recife II</item>
+        <item>Un. Camaragibe</item>
+    </string-array>
 </resources>
