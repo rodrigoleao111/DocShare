@@ -10,13 +10,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Date;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +33,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-public class FormularioOSManutencaoCorretiva extends AppCompatActivity implements Formulario {
+public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
 
     Bundle formularioOS = new Bundle();
     private Button bt_visualizarOS;
@@ -76,6 +83,30 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity implement
                 GerarPDF(ColetarInformacoes());
             }
         });
+    }
+
+    private void GerarPDF(Bundle coletarInformacoes) {
+        PdfDocument pdfRelatorio = new PdfDocument();
+        Paint myPaint = new Paint();
+
+        PdfDocument.PageInfo infoRelatorio = new PdfDocument.PageInfo.Builder(400, 600, 1).create();
+        PdfDocument.Page pagRelatorio = pdfRelatorio.startPage(infoRelatorio);
+
+        Canvas canvas = pagRelatorio.getCanvas();
+        canvas.drawText("OS Manutenção", 40, 50, myPaint);
+        pdfRelatorio.finishPage(pagRelatorio);
+
+        String nomeArquivo = "OSManutenção_" + coletarInformacoes.getString("formID") + ".pdf";
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), nomeArquivo);
+
+        try {
+            pdfRelatorio.writeTo(new FileOutputStream(file));
+            Toast.makeText(getApplicationContext(), "arquivo gerado", Toast.LENGTH_SHORT).show();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        pdfRelatorio.close();
     }
 
 
