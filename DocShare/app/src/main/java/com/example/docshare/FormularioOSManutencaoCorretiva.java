@@ -2,6 +2,8 @@ package com.example.docshare;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
+import android.content.Intent;
 import android.content.pm.PackageManager;
 
 import androidx.annotation.NonNull;
@@ -13,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -102,11 +105,26 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
         try {
             pdfRelatorio.writeTo(new FileOutputStream(file));
             Toast.makeText(getApplicationContext(), "arquivo gerado", Toast.LENGTH_SHORT).show();
+            //String pathUri = "content://com.example.docshare.fileprovider/Downloads/" + nomeArquivo;
+            String pathUri = Environment.getExternalStorageDirectory().getPath() + File.separator + nomeArquivo;
+            CompartilharRelatorio(pathUri);
         } catch (IOException e){
             e.printStackTrace();
         }
 
         pdfRelatorio.close();
+    }
+
+    private void CompartilharRelatorio(String pathUri) {
+        File file = new File(pathUri);
+        if(file.exists()){
+            Intent intentShare = new Intent(Intent.ACTION_SEND);
+            intentShare.setType("application/pdf");
+            intentShare.putExtra(Intent.EXTRA_STREAM, Uri.parse(pathUri));
+            startActivity(Intent.createChooser(intentShare, "Share file"));
+        } else {
+            Toast.makeText(getApplicationContext(), "Arquivo não encontrado", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -153,4 +171,6 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
 
         bt_visualizarOS = findViewById(R.id.bt_visualizarOS);
     }
+
+
 }

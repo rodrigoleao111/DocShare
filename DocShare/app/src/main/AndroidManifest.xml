@@ -19,6 +19,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DocShare"
         tools:targetApi="31">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.docshare.fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+        </provider>
+
         <activity
             android:name=".FormularioOSManutencaoCorretiva"
             android:exported="false" />
