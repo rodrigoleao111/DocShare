@@ -28,8 +28,6 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class FormularioOSManutencaoCorretiva extends AppCompatActivity implements Formulario {
 
-    private static final int PERMISSION_REQUEST_CODE = 200;
-
     Bundle formularioOS = new Bundle();
     private Button bt_visualizarOS;
     private EditText edtNome, edtRG, edtCPF, edtSetor, edtCargo, edtTelefone, edtEmail;  // Edt referente as informaçoes do colaborador
@@ -75,50 +73,13 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity implement
         bt_visualizarOS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ColetarInformacoes();
-                if (checkPermission()) {
-                    Toast.makeText(getApplicationContext(), "Permission Granted", Toast.LENGTH_SHORT).show();
-                } else {
-                    requestPermission();
-                }
-                GerarPDF(formularioOS);
+                GerarPDF(ColetarInformacoes());
             }
         });
     }
 
-    // Checagem de permissão para ler e escrever no armazenamento externo
-    private boolean checkPermission() {
-        int permission1 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
-        int permission2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
-        return permission1 == PackageManager.PERMISSION_GRANTED && permission2 == PackageManager.PERMISSION_GRANTED;
-    }
 
-    // Solicitar permissão
-    private void requestPermission() {
-        ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
-    }
-
-    // Voltar aqui. Acho que só faz emitir o toast. Se for isso, não preciso sobrescrever esse método.
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0) {
-                boolean writeStorage = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                boolean readStorage = grantResults[1] == PackageManager.PERMISSION_GRANTED;
-
-                if (writeStorage && readStorage) {
-                    Toast.makeText(this, "Permission Granted..", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, "Permission Denined.", Toast.LENGTH_SHORT).show();
-                    finish();
-                }
-            }
-        }
-    }
-
-
-    private void ColetarInformacoes() {
+    private Bundle ColetarInformacoes() {
 
         Date formID = new Date();
         // Colocar validação para caso o item esteja em vazio
@@ -134,10 +95,12 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity implement
         formularioOS.putString("cargo", edtCargo.toString());
         formularioOS.putString("email", edtEmail.toString());
 
-        formularioOS.putString("locacao", formLocacao.toString());
+        formularioOS.putString("locacao", formLocacao.getSelectedItem().toString());
         formularioOS.putString("equipamento", edtEquipamento.toString());
         formularioOS.putString("modelo", edtModelo.toString());
         formularioOS.putString("equipID", edtEquipID.toString());
+
+        return formularioOS;
     }
 
 

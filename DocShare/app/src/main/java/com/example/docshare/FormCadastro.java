@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,7 +36,8 @@ import java.util.Map;
 public class FormCadastro extends AppCompatActivity {
 
     private EditText email_user, senha_user, confirmar_senha_user;
-    private EditText nome_user, cpf_user, rg_user, telefone_user, cargo_user, setor_user;
+    private EditText nome_user, cpf_user, rg_user, telefone_user;
+    private Spinner cargo_user, setor_user;
     private Button bt_cadastrar;
     private ImageView foto_perfil;
 
@@ -77,8 +79,8 @@ public class FormCadastro extends AppCompatActivity {
                 dados_usuario.put("cpf", cpf_user.getText().toString());
                 dados_usuario.put("rg", rg_user.getText().toString());
                 dados_usuario.put("telefone", telefone_user.getText().toString());
-                dados_usuario.put("cargo", cargo_user.getText().toString());
-                dados_usuario.put("setor", setor_user.getText().toString());
+                dados_usuario.put("cargo", cargo_user.getSelectedItem().toString());
+                dados_usuario.put("setor", setor_user.getSelectedItem().toString());
 
                 if(email.isEmpty() || senha.isEmpty() || confirma_senha.isEmpty()){
                     Toast.makeText(getApplicationContext(), mensagens[0], Toast.LENGTH_LONG).show();

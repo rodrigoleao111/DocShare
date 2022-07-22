@@ -1,9 +1,16 @@
 package com.example.docshare;
 
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +28,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final int PERMISSION_REQUEST_CODE = 200;
 
     private ImageView bt_nova_os_manutencao, bt_historico_de_atividades, bt_configuracoes;
     private TextView boas_vindas;
@@ -49,8 +58,13 @@ public class MainActivity extends AppCompatActivity {
         bt_nova_os_manutencao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToFormOsActivity = new Intent(getApplicationContext(), FormularioOSManutencaoCorretiva.class);
-                startActivity(goToFormOsActivity);
+                if (checkPermission()) {
+                    Intent goToFormOsActivity = new Intent(getApplicationContext(), FormularioOSManutencaoCorretiva.class);
+                    startActivity(goToFormOsActivity);
+                } else {
+                    requestPermission();
+                }
+
             }
         });
 
@@ -84,5 +98,36 @@ public class MainActivity extends AppCompatActivity {
 
         boas_vindas = findViewById(R.id.txt_boas_vindas);
 
+    }
+
+    // Checagem de permissão para ler e escrever no armazenamento externo
+    private boolean checkPermission() {
+        int permission1 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
+        int permission2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
+        return permission1 == PackageManager.PERMISSION_GRANTED && permission2 == PackageManager.PERMISSION_GRANTED;
+    }
+
+    // Solicitar permissão
+    private void requestPermission() {
+        ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+    }
+
+    // Voltar aqui. Acho que só faz emitir o toast. Se for isso, não preciso sobrescrever esse método.
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0) {
+                boolean writeStorage = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                boolean readStorage = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+
+                if (writeStorage && readStorage) {
+                    Toast.makeText(this, "Permission Granted.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Permission Denined.", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
+        }
     }
 }

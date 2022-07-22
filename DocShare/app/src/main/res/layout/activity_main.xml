@@ -58,10 +58,8 @@
         android:layout_height="280dp"
         android:background="@drawable/container_components"
         android:elevation="8dp"
-        android:visibility="visible"
-        android:layout_centerInParent="true"
+        app:flow_horizontalAlign="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt" />
 
