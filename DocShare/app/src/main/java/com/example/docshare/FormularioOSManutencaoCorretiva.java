@@ -65,6 +65,7 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DocumentReference documentReference = db_dados_usuario.collection("Usuarios").document(userID);
 
+        // Recuperação de dados pessoais
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
@@ -80,6 +81,7 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
             }
         });
 
+        // Botão finalizar
         bt_visualizarOS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +90,7 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
         });
     }
 
+    // GERAR ARQUIVO EM PDF
     private void GerarPDF(Bundle coletarInformacoes) {
         PdfDocument pdfRelatorio = new PdfDocument();
         Paint myPaint = new Paint();
@@ -106,8 +109,8 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
             pdfRelatorio.writeTo(new FileOutputStream(file));
             Toast.makeText(getApplicationContext(), "arquivo gerado", Toast.LENGTH_SHORT).show();
             //String pathUri = "content://com.example.docshare.fileprovider/Downloads/" + nomeArquivo;
-            String pathUri = Environment.getExternalStorageDirectory().getPath() + File.separator + nomeArquivo;
-            CompartilharRelatorio(pathUri);
+
+            CompartilharRelatorio(file, nomeArquivo);
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -115,8 +118,9 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
         pdfRelatorio.close();
     }
 
-    private void CompartilharRelatorio(String pathUri) {
-        File file = new File(pathUri);
+    // MÉTODO COMPARTILHAR ARQUIVO
+    private void CompartilharRelatorio(File file, String nomeArquivo) {
+        String pathUri = Environment.getExternalStorageDirectory().getPath() + File.separator + nomeArquivo;
         if(file.exists()){
             Intent intentShare = new Intent(Intent.ACTION_SEND);
             intentShare.setType("application/pdf");
@@ -124,10 +128,11 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
             startActivity(Intent.createChooser(intentShare, "Share file"));
         } else {
             Toast.makeText(getApplicationContext(), "Arquivo não encontrado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), pathUri, Toast.LENGTH_SHORT).show();
         }
     }
 
-
+    // MÉTODO PARA COLETAR AS INFORMAÇÕES INSERIDAS PELO USUÁRIO
     private Bundle ColetarInformacoes() {
 
         Date formID = new Date();
@@ -152,7 +157,7 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
         return formularioOS;
     }
 
-
+    // INICIALIZAR COMPONENTES DA CLASSE
     private void IniciarComponentes() {
         // Dados usuário
         edtNome = findViewById(R.id.userName);
