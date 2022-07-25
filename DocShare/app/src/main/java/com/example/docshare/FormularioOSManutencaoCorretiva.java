@@ -51,7 +51,7 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
 
     }
 
-    // PREENCHIMENTO COM OS DADOS DO USUÁRIO
+    // PREENCHIMENTO AUTOMÁTICO COM OS DADOS DO USUÁRIO
     @Override
     protected void onStart() {
         super.onStart();
@@ -75,13 +75,58 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
             }
         });
 
-        // Botão finalizar
+        // BOTÃO FINALIZAR FORMULÁRIO
         bt_visualizarOS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 GerarPDF(ColetarInformacoes());
             }
         });
+    }
+
+    // INICIALIZAR COMPONENTES DA CLASSE
+    private void IniciarComponentes() {
+        // Dados usuário
+        edtNome = findViewById(R.id.userName);
+        edtRG = findViewById(R.id.userRG);
+        edtCPF = findViewById(R.id.userCPF);
+        edtSetor = findViewById(R.id.userSetor);
+        edtCargo = findViewById(R.id.userCargo);
+        edtTelefone = findViewById(R.id.userTelefone);
+        edtEmail = findViewById(R.id.userEmail);
+
+        // Formulário
+        formLocacao = findViewById(R.id.edtFormOSLocacao);
+        edtEquipamento = findViewById(R.id.edtFormOSEquipamento);
+        edtModelo =findViewById(R.id.edtFormOSModelo);
+        edtEquipID = findViewById(R.id.edtFormOSIDEquipamento);
+
+        bt_visualizarOS = findViewById(R.id.bt_visualizarOS);
+    }
+
+    // MÉTODO PARA COLETAR AS INFORMAÇÕES INSERIDAS PELO USUÁRIO
+    private Bundle ColetarInformacoes() {
+
+        Date formID = new Date();
+        // Colocar validação para caso o item esteja em vazio
+
+        formularioOS.putInt("formType", 0);     // Tipo do formulário
+
+        formularioOS.putString("formID", String.valueOf(formID.getTime()));
+
+        formularioOS.putString("nome", edtNome.toString());
+        formularioOS.putString("rg", edtRG.toString());
+        formularioOS.putString("cpf", edtCPF.toString());
+        formularioOS.putString("setor", edtSetor.toString());
+        formularioOS.putString("cargo", edtCargo.toString());
+        formularioOS.putString("email", edtEmail.toString());
+
+        formularioOS.putString("locacao", formLocacao.getSelectedItem().toString());
+        formularioOS.putString("equipamento", edtEquipamento.toString());
+        formularioOS.putString("modelo", edtModelo.toString());
+        formularioOS.putString("equipID", edtEquipID.toString());
+
+        return formularioOS;
     }
 
     // GERAR ARQUIVO EM PDF
@@ -127,51 +172,4 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Arquivo não encontrado", Toast.LENGTH_SHORT).show();
         }
     }
-
-    // MÉTODO PARA COLETAR AS INFORMAÇÕES INSERIDAS PELO USUÁRIO
-    private Bundle ColetarInformacoes() {
-
-        Date formID = new Date();
-        // Colocar validação para caso o item esteja em vazio
-
-        formularioOS.putInt("formType", 0);     // Tipo do formulário
-
-        formularioOS.putString("formID", String.valueOf(formID.getTime()));
-
-        formularioOS.putString("nome", edtNome.toString());
-        formularioOS.putString("rg", edtRG.toString());
-        formularioOS.putString("cpf", edtCPF.toString());
-        formularioOS.putString("setor", edtSetor.toString());
-        formularioOS.putString("cargo", edtCargo.toString());
-        formularioOS.putString("email", edtEmail.toString());
-
-        formularioOS.putString("locacao", formLocacao.getSelectedItem().toString());
-        formularioOS.putString("equipamento", edtEquipamento.toString());
-        formularioOS.putString("modelo", edtModelo.toString());
-        formularioOS.putString("equipID", edtEquipID.toString());
-
-        return formularioOS;
-    }
-
-    // INICIALIZAR COMPONENTES DA CLASSE
-    private void IniciarComponentes() {
-        // Dados usuário
-        edtNome = findViewById(R.id.userName);
-        edtRG = findViewById(R.id.userRG);
-        edtCPF = findViewById(R.id.userCPF);
-        edtSetor = findViewById(R.id.userSetor);
-        edtCargo = findViewById(R.id.userCargo);
-        edtTelefone = findViewById(R.id.userTelefone);
-        edtEmail = findViewById(R.id.userEmail);
-
-        // Formulário
-        formLocacao = findViewById(R.id.edtFormOSLocacao);
-        edtEquipamento = findViewById(R.id.edtFormOSEquipamento);
-        edtModelo =findViewById(R.id.edtFormOSModelo);
-        edtEquipID = findViewById(R.id.edtFormOSIDEquipamento);
-
-        bt_visualizarOS = findViewById(R.id.bt_visualizarOS);
-    }
-
-
 }
