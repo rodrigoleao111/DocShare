@@ -108,8 +108,6 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
         try {
             pdfRelatorio.writeTo(new FileOutputStream(file));
             Toast.makeText(getApplicationContext(), "arquivo gerado", Toast.LENGTH_SHORT).show();
-            //String pathUri = "content://com.example.docshare.fileprovider/Downloads/" + nomeArquivo;
-
             CompartilharRelatorio(file, nomeArquivo);
         } catch (IOException e){
             e.printStackTrace();
@@ -119,8 +117,10 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
     }
 
     // MÉTODO COMPARTILHAR ARQUIVO
+    // Provavelmente, o erro de formato de arquivo está relacionado com a uri que estamos enviando.
     private void CompartilharRelatorio(File file, String nomeArquivo) {
-        String pathUri = Environment.getExternalStorageDirectory().getPath() + File.separator + nomeArquivo;
+        // Fiz uma gambiarra colocando o "download/" mas mesmo assim o erro continua
+        String pathUri = Environment.getExternalStorageDirectory().getPath() + "download/" + File.separator + nomeArquivo;
         if(file.exists()){
             Intent intentShare = new Intent(Intent.ACTION_SEND);
             intentShare.setType("application/pdf");
@@ -128,7 +128,6 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
             startActivity(Intent.createChooser(intentShare, "Share file"));
         } else {
             Toast.makeText(getApplicationContext(), "Arquivo não encontrado", Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplicationContext(), pathUri, Toast.LENGTH_SHORT).show();
         }
     }
 
