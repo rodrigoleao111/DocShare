@@ -2,5 +2,5 @@
 <paths>
     <external-path
         name="all_paths"
-        path="Download/" />
+        path="." />
 </paths>

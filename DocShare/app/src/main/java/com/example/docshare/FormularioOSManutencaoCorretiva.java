@@ -1,16 +1,10 @@
 package com.example.docshare;
 
-import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-
 import android.content.Intent;
-import android.content.pm.PackageManager;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -102,13 +96,13 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
         canvas.drawText("OS Manutenção", 40, 50, myPaint);
         pdfRelatorio.finishPage(pagRelatorio);
 
-        String nomeArquivo = "OSManutenção_" + coletarInformacoes.getString("formID") + ".pdf";
+        String nomeArquivo = "OSManutencao_" + coletarInformacoes.getString("formID") + ".pdf";
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), nomeArquivo);
 
         try {
             pdfRelatorio.writeTo(new FileOutputStream(file));
             Toast.makeText(getApplicationContext(), "arquivo gerado", Toast.LENGTH_SHORT).show();
-            CompartilharRelatorio(file, nomeArquivo);
+            CompartilharRelatorio(file);
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -117,12 +111,17 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
     }
 
     // MÉTODO COMPARTILHAR ARQUIVO
-    private void CompartilharRelatorio(File file, String nomeArquivo) {
-        String pathUri = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + File.separator + nomeArquivo;
+    private void CompartilharRelatorio(File file) {
+
+        Uri pathUri = FileProvider.getUriForFile(
+                getApplicationContext(),
+                "com.example.docshare.provider",
+                file);
+
         if(file.exists()){
             Intent intentShare = new Intent(Intent.ACTION_SEND);
             intentShare.setType("application/pdf");
-            intentShare.putExtra(Intent.EXTRA_STREAM, Uri.parse(pathUri));
+            intentShare.putExtra(Intent.EXTRA_STREAM, Uri.parse(pathUri.toString()));
             startActivity(Intent.createChooser(intentShare, "Share file"));
         } else {
             Toast.makeText(getApplicationContext(), "Arquivo não encontrado", Toast.LENGTH_SHORT).show();

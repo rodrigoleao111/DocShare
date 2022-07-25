@@ -22,7 +22,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.docshare.fileprovider"
+            android:authorities="com.example.docshare.provider"
             android:grantUriPermissions="true"
             android:exported="false">
             <meta-data
