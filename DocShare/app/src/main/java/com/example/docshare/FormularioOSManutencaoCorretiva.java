@@ -117,10 +117,8 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
     }
 
     // MÉTODO COMPARTILHAR ARQUIVO
-    // Provavelmente, o erro de formato de arquivo está relacionado com a uri que estamos enviando.
     private void CompartilharRelatorio(File file, String nomeArquivo) {
-        // Fiz uma gambiarra colocando o "download/" mas mesmo assim o erro continua
-        String pathUri = Environment.getExternalStorageDirectory().getPath() + "download/" + File.separator + nomeArquivo;
+        String pathUri = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + File.separator + nomeArquivo;
         if(file.exists()){
             Intent intentShare = new Intent(Intent.ACTION_SEND);
             intentShare.setType("application/pdf");
