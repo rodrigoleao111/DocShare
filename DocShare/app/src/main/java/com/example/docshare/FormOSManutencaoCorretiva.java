@@ -23,6 +23,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 
+import com.example.docshare.formulario.Form;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -30,7 +31,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
+public class FormOSManutencaoCorretiva extends Form {
 
     Bundle formularioOS = new Bundle();
     private Button bt_visualizarOS;
@@ -47,7 +48,6 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
 
         getSupportActionBar().hide();
         IniciarComponentes();
-
 
     }
 
@@ -129,47 +129,4 @@ public class FormularioOSManutencaoCorretiva extends AppCompatActivity {
         return formularioOS;
     }
 
-    // GERAR ARQUIVO EM PDF
-    private void GerarPDF(Bundle coletarInformacoes) {
-        PdfDocument pdfRelatorio = new PdfDocument();
-        Paint myPaint = new Paint();
-
-        PdfDocument.PageInfo infoRelatorio = new PdfDocument.PageInfo.Builder(400, 600, 1).create();
-        PdfDocument.Page pagRelatorio = pdfRelatorio.startPage(infoRelatorio);
-
-        Canvas canvas = pagRelatorio.getCanvas();
-        canvas.drawText("OS Manutenção", 40, 50, myPaint);
-        pdfRelatorio.finishPage(pagRelatorio);
-
-        String nomeArquivo = "OSManutencao_" + coletarInformacoes.getString("formID") + ".pdf";
-        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), nomeArquivo);
-
-        try {
-            pdfRelatorio.writeTo(new FileOutputStream(file));
-            Toast.makeText(getApplicationContext(), "arquivo gerado", Toast.LENGTH_SHORT).show();
-            CompartilharRelatorio(file);
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-
-        pdfRelatorio.close();
-    }
-
-    // MÉTODO COMPARTILHAR ARQUIVO
-    private void CompartilharRelatorio(File file) {
-
-        Uri pathUri = FileProvider.getUriForFile(
-                getApplicationContext(),
-                "com.example.docshare.provider",
-                file);
-
-        if(file.exists()){
-            Intent intentShare = new Intent(Intent.ACTION_SEND);
-            intentShare.setType("application/pdf");
-            intentShare.putExtra(Intent.EXTRA_STREAM, Uri.parse(pathUri.toString()));
-            startActivity(Intent.createChooser(intentShare, "Share file"));
-        } else {
-            Toast.makeText(getApplicationContext(), "Arquivo não encontrado", Toast.LENGTH_SHORT).show();
-        }
-    }
 }

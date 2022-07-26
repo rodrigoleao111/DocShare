@@ -32,7 +32,7 @@
         </provider>
 
         <activity
-            android:name=".FormularioOSManutencaoCorretiva"
+            android:name=".FormOSManutencaoCorretiva"
             android:exported="false" />
         <activity
             android:name=".FormLogin"
