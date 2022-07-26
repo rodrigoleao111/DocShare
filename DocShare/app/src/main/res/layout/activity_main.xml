@@ -65,36 +65,36 @@
 
     <ImageView
         android:id="@+id/image_bt_nova_os"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="105dp"
+        android:layout_height="105dp"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/image_historico"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/containerComponentMain"
-        app:srcCompat="@drawable/bt_nova_os" />
+        app:srcCompat="@drawable/bt_nova_os_novo" />
 
     <ImageView
         android:id="@+id/image_configuracoes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="105dp"
+        android:layout_height="105dp"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_historico"
         app:layout_constraintTop_toBottomOf="@+id/containerComponentMain"
-        app:srcCompat="@drawable/bt_configuracoes" />
+        app:srcCompat="@drawable/bt_configuracoes_novo" />
 
     <ImageView
         android:id="@+id/image_historico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="105dp"
+        android:layout_height="105dp"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/containerComponentMain"
         app:layout_constraintStart_toStartOf="@+id/containerComponentMain"
         app:layout_constraintTop_toBottomOf="@+id/containerComponentMain"
-        app:srcCompat="@drawable/historico_de_atividades_button" />
+        app:srcCompat="@drawable/bt_historico_novo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
