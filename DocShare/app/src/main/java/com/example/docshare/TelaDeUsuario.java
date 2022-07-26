@@ -24,7 +24,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-public class MainActivity extends AppCompatActivity {
+public class TelaDeUsuario extends AppCompatActivity {
 
     private static final int PERMISSION_REQUEST_CODE = 200;
 

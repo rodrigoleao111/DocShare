@@ -110,7 +110,7 @@ public class FormOSManutencaoCorretiva extends Form {
         Date formID = new Date();
         // Colocar validação para caso o item esteja em vazio
 
-        formularioOS.putInt("formType", 0);     // Tipo do formulário
+        formularioOS.putInt("formType", 1);     // Tipo do formulário
 
         formularioOS.putString("formID", String.valueOf(formID.getTime()));
 

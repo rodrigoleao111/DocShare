@@ -107,7 +107,7 @@ public class FormLogin extends AppCompatActivity {
     }
 
     private void goToMainActivity(){
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(), TelaDeUsuario.class);
         startActivity(intent);
         finish();
     }

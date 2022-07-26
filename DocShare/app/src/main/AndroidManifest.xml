@@ -41,7 +41,7 @@
             android:name=".FormCadastro"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".TelaDeUsuario"
             android:exported="false" />
         <activity
             android:name=".SplashScreen"
