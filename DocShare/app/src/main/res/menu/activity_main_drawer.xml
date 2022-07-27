@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/paginainical"
+            android:icon="@drawable/ic_home_24"
+            android:title="Início"/>
+        <item
+            android:id="@+id/historicoOS"
+            android:icon="@drawable/ic_historico_24"
+            android:title="Histórico de atividades"/>
+        <item
+            android:id="@+id/infoApp"
+            android:icon="@drawable/ic_info_24"
+            android:title="Info" />
+
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/botaosair"
+            android:icon="@drawable/ic_sair_24"
+            android:title="Sair" />
+    </group>
+</menu>

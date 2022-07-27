@@ -10,8 +10,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        android:background="@color/azulGelo"
+
         tools:context=".FormCadastro">
+
 
 
         <TextView
@@ -25,8 +27,8 @@
             android:gravity="center_horizontal|top"
             android:text="Cadastro de usuário"
             android:textColor="@color/soft_black"
-            android:textStyle="bold"
             android:textSize="32sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -34,9 +36,9 @@
         <View
             android:id="@+id/rectangle_4"
             style="@style/ContainerLogin"
-            android:layout_margin="20dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:layout_margin="20dp"
             android:background="@drawable/container_components"
             android:elevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +62,7 @@
             style="@style/Edit_Text"
             android:layout_marginTop="10dp"
             android:background="@drawable/edit_text"
-            android:drawableLeft="@drawable/ic_baseline_vpn_key_24"
+            android:drawableLeft="@drawable/ic_key_24"
             android:drawableRight="@drawable/ic_eye"
             android:elevation="10dp"
             android:hint=" Senha"
@@ -74,7 +76,7 @@
             android:id="@+id/edit_confirmar_senha"
             style="@style/Edit_Text"
             android:background="@drawable/edit_text"
-            android:drawableLeft="@drawable/ic_baseline_vpn_key_24"
+            android:drawableLeft="@drawable/ic_key_24"
             android:drawableRight="@drawable/ic_eye"
             android:elevation="10dp"
             android:hint=" Confirme sua senha"
@@ -119,9 +121,9 @@
             android:id="@+id/edit_cadastro_nome"
             style="@style/Edit_Text"
             android:background="@drawable/edit_text"
-            android:maxLines="1"
             android:elevation="10dp"
-            android:hint="Nome completo"
+            android:hint="Nome completo:"
+            android:maxLines="1"
             app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
             app:layout_constraintStart_toStartOf="@+id/rectangle_5"
             app:layout_constraintTop_toTopOf="@+id/rectangle_5" />
@@ -131,9 +133,9 @@
             style="@style/Edit_Text"
             android:background="@drawable/edit_text"
             android:elevation="10dp"
-            android:hint="CPF"
-            android:maxLength="11"
+            android:hint="CPF:"
             android:inputType="number"
+            android:maxLength="11"
             app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
             app:layout_constraintStart_toStartOf="@+id/rectangle_5"
             app:layout_constraintTop_toBottomOf="@+id/edit_cadastro_nome" />
@@ -143,9 +145,9 @@
             style="@style/Edit_Text"
             android:background="@drawable/edit_text"
             android:elevation="10dp"
-            android:maxLength="7"
-            android:hint="RG"
+            android:hint="RG:"
             android:inputType="number"
+            android:maxLength="7"
             app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
             app:layout_constraintStart_toStartOf="@+id/rectangle_5"
             app:layout_constraintTop_toBottomOf="@+id/edit_cadastro_cpf" />
@@ -155,9 +157,9 @@
             style="@style/Edit_Text"
             android:background="@drawable/edit_text"
             android:elevation="10dp"
-            android:maxLength="14"
-            android:hint="Telefone"
+            android:hint="Telefone:"
             android:inputType="number"
+            android:maxLength="14"
             app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
             app:layout_constraintStart_toStartOf="@+id/rectangle_5"
             app:layout_constraintTop_toBottomOf="@+id/edit_cadastro_RG" />
@@ -165,10 +167,10 @@
         <Spinner
             android:id="@+id/edit_cargo"
             style="@style/Edit_Text"
-            android:entries="@array/cargos"
             android:background="@drawable/edit_text"
             android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24"
             android:elevation="10dp"
+            android:entries="@array/cargos"
             android:hint="Cargo"
             app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
             app:layout_constraintStart_toStartOf="@+id/rectangle_5"
@@ -177,10 +179,10 @@
         <Spinner
             android:id="@+id/edit_setor"
             style="@style/Edit_Text"
-            android:entries="@array/setores"
             android:background="@drawable/edit_text"
             android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24"
             android:elevation="10dp"
+            android:entries="@array/setores"
             android:hint="Setor"
             app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
             app:layout_constraintStart_toStartOf="@+id/rectangle_5"
@@ -209,14 +211,15 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/info_pessoais"
-            app:srcCompat="@drawable/ic_person" />
+            app:srcCompat="@drawable/ic_novafoto_foreground"
+            tools:srcCompat="@drawable/ic_novafoto_foreground" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:flow_horizontalAlign="center"
             android:text="Imagem de perfil"
+            app:flow_horizontalAlign="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_picture" />

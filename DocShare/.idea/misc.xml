@@ -3,8 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Dayvid Cunha/Documents/Poli - UPE/2022.1/PET mobile - fase 2/app/DocShare/DocShare/app/src/main/res/drawable/gradient.xml" value="0.2265" />
+        <entry key="..\:/Dayvid Cunha/Documents/Poli - UPE/2022.1/PET mobile - fase 2/app/DocShare/DocShare/app/src/main/res/drawable/ic_email.xml" value="0.2265" />
+        <entry key="..\:/Dayvid Cunha/Documents/Poli - UPE/2022.1/PET mobile - fase 2/app/DocShare/DocShare/app/src/main/res/drawable/ic_novaFotoTeste_foreground.xml" value="0.2265" />
+        <entry key="..\:/Dayvid Cunha/Documents/Poli - UPE/2022.1/PET mobile - fase 2/app/DocShare/DocShare/app/src/main/res/layout/activity_fabactivity.xml" value="0.264" />
         <entry key="..\:/Dayvid Cunha/Documents/Poli - UPE/2022.1/PET mobile - fase 2/app/DocShare/DocShare/app/src/main/res/layout/activity_form_cadastro.xml" value="0.27447916666666666" />
+        <entry key="..\:/Dayvid Cunha/Documents/Poli - UPE/2022.1/PET mobile - fase 2/app/DocShare/DocShare/app/src/main/res/layout/activity_form_login.xml" value="0.264" />
+        <entry key="..\:/Dayvid Cunha/Documents/Poli - UPE/2022.1/PET mobile - fase 2/app/DocShare/DocShare/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Dayvid Cunha/Documents/Poli - UPE/2022.1/PET mobile - fase 2/app/DocShare/DocShare/app/src/main/res/layout/activity_main_activity2_sidebar.xml" value="0.27447916666666666" />
         <entry key="..\:/Dayvid Cunha/Documents/Poli - UPE/2022.1/PET mobile - fase 2/app/DocShare/DocShare/app/src/main/res/layout/activity_splash_screen.xml" value="0.264" />
+        <entry key="..\:/Dayvid Cunha/Documents/Poli - UPE/2022.1/PET mobile - fase 2/app/DocShare/DocShare/app/src/main/res/layout/app_bar_main_activity2_sidebar.xml" value="0.27447916666666666" />
+        <entry key="..\:/Dayvid Cunha/Documents/Poli - UPE/2022.1/PET mobile - fase 2/app/DocShare/DocShare/app/src/main/res/layout/content_main_activity2_sidebar.xml" value="0.27447916666666666" />
+        <entry key="..\:/Dayvid Cunha/Documents/Poli - UPE/2022.1/PET mobile - fase 2/app/DocShare/DocShare/app/src/main/res/layout/fragment_home.xml" value="0.27447916666666666" />
+        <entry key="..\:/Dayvid Cunha/Documents/Poli - UPE/2022.1/PET mobile - fase 2/app/DocShare/DocShare/app/src/main/res/layout/nav_header_main_activity2_sidebar.xml" value="0.4" />
+        <entry key="..\:/Dayvid Cunha/Documents/Poli - UPE/2022.1/PET mobile - fase 2/app/DocShare/DocShare/app/src/main/res/menu/activity_main_drawer.xml" value="0.27447916666666666" />
+        <entry key="..\:/Dayvid Cunha/Documents/Poli - UPE/2022.1/PET mobile - fase 2/app/DocShare/DocShare/app/src/main/res/menu/main_activity2_sidebar.xml" value="0.27447916666666666" />
+        <entry key="..\:/Dayvid Cunha/Documents/Poli - UPE/2022.1/PET mobile - fase 2/app/DocShare/DocShare/app/src/main/res/mipmap-anydpi-v26/ic_novaFotoTeste.xml" value="0.1" />
         <entry key="..\:/UPE/In_Forma_PET_UPE/DocShare/app/src/main/res/drawable/background_gradient.xml" value="0.387" />
         <entry key="..\:/UPE/In_Forma_PET_UPE/DocShare/app/src/main/res/drawable/container_components.xml" value="0.387" />
         <entry key="..\:/UPE/In_Forma_PET_UPE/DocShare/app/src/main/res/drawable/edit_text.xml" value="0.387" />

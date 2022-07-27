@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView bt_nova_os_manutencao, bt_historico_de_atividades, bt_configuracoes;
     private TextView boas_vindas;
+    private Button bt_sair;
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
     String userID, ola;
 
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         getSupportActionBar().hide();
         IniciarComponentes();
