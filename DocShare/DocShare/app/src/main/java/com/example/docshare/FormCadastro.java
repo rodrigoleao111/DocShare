@@ -95,7 +95,11 @@ public class FormCadastro extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        goToFormLogin();
+        super.onBackPressed();
+    }
 
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
         @Override
