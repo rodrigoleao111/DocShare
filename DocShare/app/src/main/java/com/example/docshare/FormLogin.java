@@ -49,21 +49,6 @@ public class FormLogin extends AppCompatActivity {
 
 
     }
-    int contador = 0;
-    @Override
-    public void onBackPressed() {
-        contador++;
-        switch (contador){
-            case 1:Toast.makeText(getApplicationContext(), "Aperte mais uma vez para sair", Toast.LENGTH_SHORT).show();
-            break;
-
-            case 2:super.onBackPressed();
-            break;
-        }
-
-        }
-
-
 
     /***
      * Mudança para Activity FormCadastro
