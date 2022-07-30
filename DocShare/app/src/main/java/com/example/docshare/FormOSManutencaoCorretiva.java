@@ -116,17 +116,18 @@ public class FormOSManutencaoCorretiva extends Form {
 
         formularioOS.putString("formID", String.valueOf(formID.getTime()));
 
-        formularioOS.putString("nome", edtNome.toString());
-        formularioOS.putString("rg", edtRG.toString());
-        formularioOS.putString("cpf", edtCPF.toString());
-        formularioOS.putString("setor", edtSetor.toString());
-        formularioOS.putString("cargo", edtCargo.toString());
-        formularioOS.putString("email", edtEmail.toString());
+        formularioOS.putString("nome", edtNome.getText().toString());
+        formularioOS.putString("rg", edtRG.getText().toString());
+        formularioOS.putString("cpf", edtCPF.getText().toString());
+        formularioOS.putString("setor", edtSetor.getText().toString());
+        formularioOS.putString("cargo", edtCargo.getText().toString());
+        formularioOS.putString("telefone", edtTelefone.getText().toString());
+        formularioOS.putString("email", edtEmail.getText().toString());
 
         formularioOS.putString("locacao", formLocacao.getSelectedItem().toString());
-        formularioOS.putString("equipamento", edtEquipamento.toString());
-        formularioOS.putString("modelo", edtModelo.toString());
-        formularioOS.putString("equipID", edtEquipID.toString());
+        formularioOS.putString("equipamento", edtEquipamento.getText().toString());
+        formularioOS.putString("modelo", edtModelo.getText().toString());
+        formularioOS.putString("equipID", edtEquipID.getText().toString());
 
         return formularioOS;
     }
