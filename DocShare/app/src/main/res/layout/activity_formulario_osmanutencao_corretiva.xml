@@ -257,14 +257,15 @@
         <View
             android:id="@+id/containerHist2"
             style="@style/ContainerLogin"
-            android:layout_height="310dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="-20dp"
             android:background="@drawable/container_components"
             android:elevation="10dp"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toBottomOf="@+id/edtFormOSIDEquipamento"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt2" />
+            app:layout_constraintTop_toBottomOf="@id/txt2" />
 
         <TextView
             android:id="@+id/hintLocacao"
@@ -368,18 +369,174 @@
             app:layout_constraintStart_toStartOf="@+id/containerHist2"
             app:layout_constraintTop_toBottomOf="@+id/hintIDEquipamento" />
 
+        <TextView
+            android:id="@+id/txt3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Informações de manutenção"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="22dp"
+            android:textColor="@color/soft_black"
+            android:elevation="5dp"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/containerHist3"
+            app:layout_constraintTop_toBottomOf="@+id/containerHist2" />
+
+        <View
+            android:id="@+id/containerHist3"
+            style="@style/ContainerLogin"
+            android:layout_height="0dp"
+            android:layout_marginBottom="-50dp"
+            android:background="@drawable/container_components"
+            android:elevation="10dp"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toBottomOf="@+id/edtFormOSObservacoes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt3" />
+
+        <TextView
+            android:id="@+id/hintDiagnostico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:text="Diagnóstico / Causa do problema"
+            android:textColor="@color/soft_black"
+            android:textSize="14dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="22dp"
+            app:layout_constraintStart_toStartOf="@+id/containerHist3"
+            app:layout_constraintTop_toBottomOf="@+id/txt3" />
+
+        <EditText
+            android:id="@+id/edtFormOSDiagnostico"
+            style="@style/Edit_Text"
+            android:background="@drawable/edit_text"
+            android:inputType="textMultiLine"
+            android:lines="10"
+            android:minLines="1"
+            android:elevation="10dp"
+            android:minHeight="48dp"
+            android:layout_marginTop="0dp"
+            android:padding="7dp"
+            app:layout_constraintEnd_toEndOf="@+id/containerHist3"
+            app:layout_constraintStart_toStartOf="@+id/containerHist3"
+            app:layout_constraintTop_toBottomOf="@+id/hintDiagnostico" />
+
+        <TextView
+            android:id="@+id/hintSolucao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:text="Solução"
+            android:textColor="@color/soft_black"
+            android:textSize="14dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="22dp"
+            app:layout_constraintStart_toStartOf="@+id/containerHist3"
+            app:layout_constraintTop_toBottomOf="@+id/edtFormOSDiagnostico" />
+
+        <EditText
+            android:id="@+id/edtFormOSSolucao"
+            style="@style/Edit_Text"
+            android:background="@drawable/edit_text"
+            android:elevation="10dp"
+            android:minHeight="48dp"
+            android:layout_marginTop="0dp"
+            android:padding="7dp"
+            android:inputType="textMultiLine"
+            android:lines="10"
+            android:minLines="1"
+            app:layout_constraintEnd_toEndOf="@+id/containerHist3"
+            app:layout_constraintStart_toStartOf="@+id/containerHist3"
+            app:layout_constraintTop_toBottomOf="@+id/hintSolucao" />
+
+        <TextView
+            android:id="@+id/hintTroca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:text="Peças trocadas"
+            android:textColor="@color/soft_black"
+            android:textSize="14dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="22dp"
+            app:layout_constraintStart_toStartOf="@+id/containerHist3"
+            app:layout_constraintTop_toBottomOf="@+id/edtFormOSSolucao" />
+
+        <EditText
+            android:id="@+id/edtFormOSTroca"
+            style="@style/Edit_Text"
+            android:background="@drawable/edit_text"
+            android:elevation="10dp"
+            android:minHeight="48dp"
+            android:layout_marginTop="0dp"
+            android:padding="7dp"
+            android:inputType="textMultiLine"
+            android:lines="10"
+            android:minLines="1"
+            app:layout_constraintEnd_toEndOf="@+id/containerHist3"
+            app:layout_constraintStart_toStartOf="@+id/containerHist3"
+            app:layout_constraintTop_toBottomOf="@+id/hintTroca" />
+
+        <TextView
+            android:id="@+id/hintObservacoes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:text="Observações"
+            android:textColor="@color/soft_black"
+            android:textSize="14dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="22dp"
+            app:layout_constraintStart_toStartOf="@+id/containerHist3"
+            app:layout_constraintTop_toBottomOf="@+id/edtFormOSTroca" />
+
+
+        <EditText
+            android:id="@+id/edtFormOSObservacoes"
+            style="@style/Edit_Text"
+            android:layout_width="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/edit_text"
+            android:elevation="10dp"
+            android:inputType="textMultiLine"
+            android:lines="10"
+            android:minHeight="48dp"
+            android:minLines="1"
+            android:padding="7dp"
+            app:layout_constraintEnd_toStartOf="@+id/imageView5"
+            app:layout_constraintStart_toStartOf="@+id/containerHist3"
+            app:layout_constraintTop_toBottomOf="@+id/hintObservacoes" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:elevation="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/edtFormOSTroca"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@+id/edtFormOSTroca"
+            app:srcCompat="@drawable/add_image" />
+        />
+
         <Button
             android:id="@+id/bt_visualizarOS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="50dp"
+            android:layout_margin="20dp"
             android:backgroundTint="@color/button_blue"
-            android:textSize="20dp"
             android:text="   Visualizar OS   "
-            app:layout_constraintEnd_toEndOf="@+id/containerHist2"
-            app:layout_constraintStart_toStartOf="@+id/containerHist2"
-            app:layout_constraintTop_toBottomOf="@+id/containerHist2"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/containerHist3"
+            app:layout_constraintStart_toStartOf="@+id/containerHist3"
+            app:layout_constraintTop_toBottomOf="@+id/containerHist3" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
