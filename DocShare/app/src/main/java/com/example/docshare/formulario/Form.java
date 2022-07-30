@@ -15,6 +15,7 @@ import androidx.core.content.FileProvider;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 
 public class Form extends AppCompatActivity {
 
@@ -83,5 +84,12 @@ public class Form extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Arquivo não encontrado", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public Bundle ColetarInformacoes() {
+        Bundle formularioOS = new Bundle();
+        return formularioOS;
+    }
+
+    public void IniciarComponentes(){}
 
 }

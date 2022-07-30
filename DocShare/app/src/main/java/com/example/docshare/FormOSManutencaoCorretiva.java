@@ -33,7 +33,6 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class FormOSManutencaoCorretiva extends Form {
 
-    Bundle formularioOS = new Bundle();
     private Button bt_visualizarOS;
     private EditText edtNome, edtRG, edtCPF, edtSetor, edtCargo, edtTelefone, edtEmail;  // Edt referente as informaçoes do colaborador
     private EditText edtEquipamento, edtModelo, edtEquipID;                              // Edt referente ao Equipamento | Ativo
@@ -85,7 +84,8 @@ public class FormOSManutencaoCorretiva extends Form {
     }
 
     // INICIALIZAR COMPONENTES DA CLASSE
-    private void IniciarComponentes() {
+    @Override
+    public void IniciarComponentes() {
         // Dados usuário
         edtNome = findViewById(R.id.userName);
         edtRG = findViewById(R.id.userRG);
@@ -105,7 +105,9 @@ public class FormOSManutencaoCorretiva extends Form {
     }
 
     // MÉTODO PARA COLETAR AS INFORMAÇÕES INSERIDAS PELO USUÁRIO
-    private Bundle ColetarInformacoes() {
+    @Override
+    public Bundle ColetarInformacoes() {
+        Bundle formularioOS = new Bundle();
 
         Date formID = new Date();
         // Colocar validação para caso o item esteja em vazio

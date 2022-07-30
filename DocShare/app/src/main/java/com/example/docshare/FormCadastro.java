@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.docshare.formulario.Form;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,7 +34,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FormCadastro extends AppCompatActivity {
+public class FormCadastro extends Form {
 
     private EditText email_user, senha_user, confirmar_senha_user;
     private EditText nome_user, cpf_user, rg_user, telefone_user;
@@ -170,7 +171,8 @@ public class FormCadastro extends AppCompatActivity {
     }
 
 
-    private void IniciarComponentes(){
+    @Override
+    public void IniciarComponentes(){
         email_user = findViewById(R.id.edit_cadastro_email);
         senha_user = findViewById(R.id.edit_cadastro_senha);
         confirmar_senha_user = findViewById(R.id.edit_confirmar_senha);
