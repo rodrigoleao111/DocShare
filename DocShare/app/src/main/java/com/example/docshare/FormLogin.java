@@ -1,8 +1,10 @@
 package com.example.docshare;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -50,19 +52,34 @@ public class FormLogin extends Form {
 
 
     }
-    int contador = 0;
+
     @Override
     public void onBackPressed() {
-        contador++;
-        switch (contador){
-            case 1:Toast.makeText(getApplicationContext(), "Aperte mais uma vez para sair", Toast.LENGTH_SHORT).show();
-            break;
+        abrirDialog();
+    }
 
-            case 2:super.onBackPressed();
-            break;
-        }
+    public void abrirDialog (){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Confirmação");
+        dialog.setMessage("Deseja sair do aplicativo?");
+        dialog.setCancelable(false);
 
-        }
+        dialog.setPositiveButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {}
+        });
+
+        dialog.setNegativeButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                FormLogin.super.onBackPressed();
+            }
+        });
+        dialog.create();
+        dialog.show();
+    }
+
+
 
 
 
