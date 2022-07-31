@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <string-array name="cargos">
+        <item>Selecione seu cargo:</item>
+        <item>Operador Técnico</item>
+        <item>Engenheiro Elétrico</item>
+        <item>Agente de Campo</item>
+        <item>Supervisor de Manutenção</item>
+    </string-array>
+    <string-array name="formOSLocacao">
+        <item>Selecione uma locação:</item>
+        <item>Un. Recife I</item>
+        <item>Un. Recife II</item>
+        <item>Un. Camaragibe</item>
+    </string-array>
+    <string-array name="setores">
+        <item>Selecione seu setor:</item>
+        <item>Engenharia</item>
+        <item>Manutenção</item>
+        <item>Qualidade</item>
+    </string-array>
+    <color name="azulClarinho">#CDE2FD</color>
+    <color name="azulClaro">#C3DEF3</color>
+    <color name="azulGelo">#A5B3D0</color>
+    <color name="azulao">#1A2E61</color>
+    <color name="background">#A5B3D0</color>
+    <color name="black">#FF000000</color>
+    <color name="button_blue">#294584</color>
+    <color name="container_color">#F8F8F8</color>
+    <color name="edit_text_color">#D9D9D9</color>
+    <color name="purple_200">#6A30CA</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="soft_black">#2D2E2C</color>
+    <color name="teal_200">#5ECED4</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="type_light_gray">#C0C0C0</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">DocShare</string>
+    <string name="default_web_client_id" translatable="false">215838475940-224sp99grne2c1p3rnu7patr901t2jl2.apps.googleusercontent.com</string>
+    <string name="esqueci_senha">Esqueci minha senha</string>
+    <string name="gcm_defaultSenderId" translatable="false">215838475940</string>
+    <string name="google_api_key" translatable="false">AIzaSyBdsib27rEK4U797VPuCIciwzRskuDJRrA</string>
+    <string name="google_app_id" translatable="false">1:215838475940:android:7faf661f30362267004831</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBdsib27rEK4U797VPuCIciwzRskuDJRrA</string>
+    <string name="google_storage_bucket" translatable="false">docshare-db561.appspot.com</string>
+    <string name="project_id" translatable="false">docshare-db561</string>
+    <style name="ContainerLogin">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">250dp</item>
+        <item name="background">@drawable/container_components</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:shadowColor">@color/soft_black</item>
+    </style>
+    <style name="Edit_Text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="background">@drawable/edit_text</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_marginRight">40dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:maxLength">25</item>
+    </style>
+    <style name="Theme.DocShare" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/button_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        
+        <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
+        
+    </style>
+</resources>

@@ -1,0 +1,256 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.docshare"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="32" />
+9-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:6:5-67
+11-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:6:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:7:5-79
+12-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:7:22-76
+13    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+13-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:8:5-80
+13-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:8:22-78
+14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:9:5-79
+14-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:9:22-77
+15
+16    <application
+16-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:11:5-55:19
+17        android:allowBackup="true"
+17-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:13:9-35
+18        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+18-->[androidx.core:core:1.7.0] C:\Users\dayvi\.gradle\caches\transforms-3\c395e7e1015ee83acecf070a1d54b71a\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+19        android:dataExtractionRules="@xml/data_extraction_rules"
+19-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:14:9-65
+20        android:debuggable="true"
+21        android:fullBackupContent="@xml/backup_rules"
+21-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:15:9-54
+22        android:icon="@mipmap/ic_launcher"
+22-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:16:9-43
+23        android:label="@string/app_name"
+23-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:17:9-41
+24        android:requestLegacyExternalStorage="true"
+24-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:12:9-52
+25        android:roundIcon="@mipmap/ic_launcher_round"
+25-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:18:9-54
+26        android:supportsRtl="true"
+26-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:19:9-35
+27        android:testOnly="true"
+28        android:theme="@style/Theme.DocShare"
+28-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:20:9-46
+29        android:windowSoftInputMode="adjustPan|adjustResize" >
+29-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:21:9-61
+30        <provider
+30-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:24:9-32:20
+31            android:name="androidx.core.content.FileProvider"
+31-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:25:13-62
+32            android:authorities="com.example.docshare.provider"
+32-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:26:13-64
+33            android:exported="false"
+33-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:28:13-37
+34            android:grantUriPermissions="true" >
+34-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:27:13-47
+35            <meta-data
+35-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:29:13-31:53
+36                android:name="android.support.FILE_PROVIDER_PATHS"
+36-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:30:17-67
+37                android:resource="@xml/file_path" />
+37-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:31:17-50
+38        </provider>
+39
+40        <activity
+40-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:34:9-36:40
+41            android:name="com.example.docshare.FormOSManutencaoCorretiva"
+41-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:35:13-54
+42            android:exported="false" />
+42-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:36:13-37
+43        <activity
+43-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:37:9-39:40
+44            android:name="com.example.docshare.FormLogin"
+44-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:38:13-38
+45            android:exported="false" />
+45-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:39:13-37
+46        <activity
+46-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:40:9-42:40
+47            android:name="com.example.docshare.FormCadastro"
+47-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:41:13-41
+48            android:exported="false" />
+48-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:42:13-37
+49        <activity
+49-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:43:9-45:40
+50            android:name="com.example.docshare.TelaDeUsuario"
+50-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:44:13-42
+51            android:exported="false" />
+51-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:45:13-37
+52        <activity
+52-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:46:9-54:20
+53            android:name="com.example.docshare.SplashScreen"
+53-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:47:13-41
+54            android:exported="true" >
+54-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:48:13-36
+55            <intent-filter>
+55-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:49:13-53:29
+56                <action android:name="android.intent.action.MAIN" />
+56-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:50:17-69
+56-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:50:25-66
+57
+58                <category android:name="android.intent.category.LAUNCHER" />
+58-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:52:17-77
+58-->F:\Dayvid Cunha\Documents\Poli - UPE\2022.1\PET mobile - fase 2\app\DocShare\DocShare\app\src\main\AndroidManifest.xml:52:27-74
+59            </intent-filter>
+60        </activity>
+61        <activity
+61-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:27:9-44:20
+62            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+62-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:28:13-80
+63            android:excludeFromRecents="true"
+63-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:29:13-46
+64            android:exported="true"
+64-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:30:13-36
+65            android:launchMode="singleTask"
+65-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:31:13-44
+66            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+66-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:32:13-72
+67            <intent-filter>
+67-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:33:13-43:29
+68                <action android:name="android.intent.action.VIEW" />
+68-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:34:17-69
+68-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:34:25-66
+69
+70                <category android:name="android.intent.category.DEFAULT" />
+70-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:36:17-76
+70-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:36:27-73
+71                <category android:name="android.intent.category.BROWSABLE" />
+71-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:37:17-78
+71-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:37:27-75
+72
+73                <data
+73-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:39:17-42:51
+74                    android:host="firebase.auth"
+74-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:40:21-49
+75                    android:path="/"
+75-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:41:21-37
+76                    android:scheme="genericidp" />
+76-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:42:21-48
+77            </intent-filter>
+78        </activity>
+79        <activity
+79-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:45:9-62:20
+80            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+80-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:46:13-79
+81            android:excludeFromRecents="true"
+81-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:47:13-46
+82            android:exported="true"
+82-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:48:13-36
+83            android:launchMode="singleTask"
+83-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:49:13-44
+84            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+84-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:50:13-72
+85            <intent-filter>
+85-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:51:13-61:29
+86                <action android:name="android.intent.action.VIEW" />
+86-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:34:17-69
+86-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:34:25-66
+87
+88                <category android:name="android.intent.category.DEFAULT" />
+88-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:36:17-76
+88-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:36:27-73
+89                <category android:name="android.intent.category.BROWSABLE" />
+89-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:37:17-78
+89-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:37:27-75
+90
+91                <data
+91-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:39:17-42:51
+92                    android:host="firebase.auth"
+92-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:40:21-49
+93                    android:path="/"
+93-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:41:21-37
+94                    android:scheme="recaptcha" />
+94-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:42:21-48
+95            </intent-filter>
+96        </activity>
+97
+98        <service
+98-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:64:9-70:19
+99            android:name="com.google.firebase.components.ComponentDiscoveryService"
+99-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:65:13-84
+100            android:directBootAware="true"
+100-->[com.google.firebase:firebase-common:20.1.1] C:\Users\dayvi\.gradle\caches\transforms-3\506696c26b4b3d384c45df172a53cf0f\transformed\firebase-common-20.1.1\AndroidManifest.xml:35:13-43
+101            android:exported="false" >
+101-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:66:13-37
+102            <meta-data
+102-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:67:13-69:85
+103                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+103-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:68:17-109
+104                android:value="com.google.firebase.components.ComponentRegistrar" />
+104-->[com.google.firebase:firebase-auth:21.0.6] C:\Users\dayvi\.gradle\caches\transforms-3\090866fa051f1b4a66d720a4a0ddf70f\transformed\firebase-auth-21.0.6\AndroidManifest.xml:69:17-82
+105            <meta-data
+105-->[com.google.firebase:firebase-firestore:24.2.0] C:\Users\dayvi\.gradle\caches\transforms-3\5b914ee95c0c861771e0e850e6813c3e\transformed\firebase-firestore-24.2.0\AndroidManifest.xml:20:13-22:85
+106                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+106-->[com.google.firebase:firebase-firestore:24.2.0] C:\Users\dayvi\.gradle\caches\transforms-3\5b914ee95c0c861771e0e850e6813c3e\transformed\firebase-firestore-24.2.0\AndroidManifest.xml:21:17-111
+107                android:value="com.google.firebase.components.ComponentRegistrar" />
+107-->[com.google.firebase:firebase-firestore:24.2.0] C:\Users\dayvi\.gradle\caches\transforms-3\5b914ee95c0c861771e0e850e6813c3e\transformed\firebase-firestore-24.2.0\AndroidManifest.xml:22:17-82
+108        </service>
+109
+110        <provider
+110-->[com.google.firebase:firebase-common:20.1.1] C:\Users\dayvi\.gradle\caches\transforms-3\506696c26b4b3d384c45df172a53cf0f\transformed\firebase-common-20.1.1\AndroidManifest.xml:26:9-31:39
+111            android:name="com.google.firebase.provider.FirebaseInitProvider"
+111-->[com.google.firebase:firebase-common:20.1.1] C:\Users\dayvi\.gradle\caches\transforms-3\506696c26b4b3d384c45df172a53cf0f\transformed\firebase-common-20.1.1\AndroidManifest.xml:27:13-77
+112            android:authorities="com.example.docshare.firebaseinitprovider"
+112-->[com.google.firebase:firebase-common:20.1.1] C:\Users\dayvi\.gradle\caches\transforms-3\506696c26b4b3d384c45df172a53cf0f\transformed\firebase-common-20.1.1\AndroidManifest.xml:28:13-72
+113            android:directBootAware="true"
+113-->[com.google.firebase:firebase-common:20.1.1] C:\Users\dayvi\.gradle\caches\transforms-3\506696c26b4b3d384c45df172a53cf0f\transformed\firebase-common-20.1.1\AndroidManifest.xml:29:13-43
+114            android:exported="false"
+114-->[com.google.firebase:firebase-common:20.1.1] C:\Users\dayvi\.gradle\caches\transforms-3\506696c26b4b3d384c45df172a53cf0f\transformed\firebase-common-20.1.1\AndroidManifest.xml:30:13-37
+115            android:initOrder="100" />
+115-->[com.google.firebase:firebase-common:20.1.1] C:\Users\dayvi\.gradle\caches\transforms-3\506696c26b4b3d384c45df172a53cf0f\transformed\firebase-common-20.1.1\AndroidManifest.xml:31:13-36
+116
+117        <activity
+117-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\dayvi\.gradle\caches\transforms-3\2e555aa60c2973d1a450e632503526ba\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+118            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+118-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\dayvi\.gradle\caches\transforms-3\2e555aa60c2973d1a450e632503526ba\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+119            android:exported="false"
+119-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\dayvi\.gradle\caches\transforms-3\2e555aa60c2973d1a450e632503526ba\transformed\play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+120            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+120-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\dayvi\.gradle\caches\transforms-3\2e555aa60c2973d1a450e632503526ba\transformed\play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+121
+122        <meta-data
+122-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\dayvi\.gradle\caches\transforms-3\49c827b69fa8a7f7c64c8edf0f9f028b\transformed\play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+123            android:name="com.google.android.gms.version"
+123-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\dayvi\.gradle\caches\transforms-3\49c827b69fa8a7f7c64c8edf0f9f028b\transformed\play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+124            android:value="@integer/google_play_services_version" />
+124-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\dayvi\.gradle\caches\transforms-3\49c827b69fa8a7f7c64c8edf0f9f028b\transformed\play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+125
+126        <provider
+126-->[androidx.emoji2:emoji2:1.0.0] C:\Users\dayvi\.gradle\caches\transforms-3\f7fe229e2db298ac11bf7563144c1d40\transformed\emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+127            android:name="androidx.startup.InitializationProvider"
+127-->[androidx.emoji2:emoji2:1.0.0] C:\Users\dayvi\.gradle\caches\transforms-3\f7fe229e2db298ac11bf7563144c1d40\transformed\emoji2-1.0.0\AndroidManifest.xml:27:13-67
+128            android:authorities="com.example.docshare.androidx-startup"
+128-->[androidx.emoji2:emoji2:1.0.0] C:\Users\dayvi\.gradle\caches\transforms-3\f7fe229e2db298ac11bf7563144c1d40\transformed\emoji2-1.0.0\AndroidManifest.xml:28:13-68
+129            android:exported="false" >
+129-->[androidx.emoji2:emoji2:1.0.0] C:\Users\dayvi\.gradle\caches\transforms-3\f7fe229e2db298ac11bf7563144c1d40\transformed\emoji2-1.0.0\AndroidManifest.xml:29:13-37
+130            <meta-data
+130-->[androidx.emoji2:emoji2:1.0.0] C:\Users\dayvi\.gradle\caches\transforms-3\f7fe229e2db298ac11bf7563144c1d40\transformed\emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+131                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+131-->[androidx.emoji2:emoji2:1.0.0] C:\Users\dayvi\.gradle\caches\transforms-3\f7fe229e2db298ac11bf7563144c1d40\transformed\emoji2-1.0.0\AndroidManifest.xml:32:17-75
+132                android:value="androidx.startup" />
+132-->[androidx.emoji2:emoji2:1.0.0] C:\Users\dayvi\.gradle\caches\transforms-3\f7fe229e2db298ac11bf7563144c1d40\transformed\emoji2-1.0.0\AndroidManifest.xml:33:17-49
+133            <meta-data
+133-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\dayvi\.gradle\caches\transforms-3\488f7c30a09a80966b1d0da3b7ccf544\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+134                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+134-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\dayvi\.gradle\caches\transforms-3\488f7c30a09a80966b1d0da3b7ccf544\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
+135                android:value="androidx.startup" />
+135-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\dayvi\.gradle\caches\transforms-3\488f7c30a09a80966b1d0da3b7ccf544\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+136        </provider>
+137    </application>
+138
+139</manifest>
