@@ -15,6 +15,7 @@ import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -36,6 +37,8 @@ public class FormOSManutencaoCorretiva extends Form {
     private Button bt_visualizarOS;
     private EditText edtNome, edtRG, edtCPF, edtSetor, edtCargo, edtTelefone, edtEmail;  // Edt referente as informaçoes do colaborador
     private EditText edtEquipamento, edtModelo, edtEquipID;                              // Edt referente ao Equipamento | Ativo
+    private EditText edtDiagnostico, edtSolucao, edtPecasTrocadas, edtObservacoes;
+    //private ImageView foto;
     private Spinner formLocacao;
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
     String userID;
@@ -101,6 +104,13 @@ public class FormOSManutencaoCorretiva extends Form {
         edtModelo =findViewById(R.id.edtFormOSModelo);
         edtEquipID = findViewById(R.id.edtFormOSIDEquipamento);
 
+        edtDiagnostico = findViewById(R.id.edtFormOSDiagnostico);
+        edtSolucao = findViewById(R.id.edtFormOSSolucao);
+        edtPecasTrocadas = findViewById(R.id.edtFormOSTroca);
+        edtObservacoes = findViewById(R.id.edtFormOSObservacoes);
+
+        //foto.findViewById(R.id.addFoto);
+
         bt_visualizarOS = findViewById(R.id.bt_visualizarOS);
     }
 
@@ -128,6 +138,11 @@ public class FormOSManutencaoCorretiva extends Form {
         formularioOS.putString("equipamento", edtEquipamento.getText().toString());
         formularioOS.putString("modelo", edtModelo.getText().toString());
         formularioOS.putString("equipID", edtEquipID.getText().toString());
+
+        formularioOS.putString("diagnostico", edtDiagnostico.getText().toString());
+        formularioOS.putString("solucao", edtSolucao.getText().toString());
+        formularioOS.putString("troca", edtPecasTrocadas.getText().toString());
+        formularioOS.putString("obs", edtObservacoes.getText().toString());
 
         return formularioOS;
     }

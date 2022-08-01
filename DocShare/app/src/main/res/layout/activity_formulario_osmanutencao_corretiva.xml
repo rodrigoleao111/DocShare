@@ -507,12 +507,12 @@
             android:minHeight="48dp"
             android:minLines="1"
             android:padding="7dp"
-            app:layout_constraintEnd_toStartOf="@+id/imageView5"
+            app:layout_constraintEnd_toStartOf="@+id/addFoto"
             app:layout_constraintStart_toStartOf="@+id/containerHist3"
             app:layout_constraintTop_toBottomOf="@+id/hintObservacoes" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/addFoto"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
