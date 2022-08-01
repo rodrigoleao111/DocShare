@@ -81,7 +81,10 @@ public class FormOSManutencaoCorretiva extends Form {
         bt_visualizarOS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GerarPDF(ColetarInformacoes());
+            //    GerarPDF(ColetarInformacoes());
+                Intent goToVizualizationActivity = new Intent(getApplicationContext(), VizualizarForm.class);
+                goToVizualizationActivity.putExtras(ColetarInformacoes());
+                startActivity(goToVizualizationActivity);
             }
         });
     }
