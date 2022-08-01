@@ -355,7 +355,7 @@
             app:layout_constraintTop_toTopOf="@+id/vwInfoManutencao" />
         <TextView
             android:id="@+id/txtDiag"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
@@ -370,76 +370,76 @@
             android:id="@+id/vwSolucao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:elevation="10dp"
             android:text="Solução:"
             android:textColor="@color/soft_black"
             android:textSize="14dp"
             app:layout_constraintStart_toStartOf="@+id/containerView1"
-            app:layout_constraintTop_toTopOf="@+id/vwDiag" />
+            app:layout_constraintTop_toBottomOf="@+id/txtDiag" />
         <TextView
             android:id="@+id/txtSolucao"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:elevation="10dp"
             android:text="xxxxxxxxxxxxx"
             android:textColor="@color/soft_black"
             android:textSize="14dp"
             app:layout_constraintStart_toEndOf="@+id/vwSolucao"
-            app:layout_constraintTop_toTopOf="@+id/vwDiag" />
+            app:layout_constraintTop_toBottomOf="@+id/txtDiag" />
 
         <TextView
             android:id="@+id/vwTroca"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:elevation="10dp"
             android:text="Peças trocadas:"
             android:textColor="@color/soft_black"
             android:textSize="14dp"
             app:layout_constraintStart_toStartOf="@+id/containerView1"
-            app:layout_constraintTop_toTopOf="@+id/vwSolucao" />
+            app:layout_constraintTop_toBottomOf="@+id/txtSolucao" />
         <TextView
             android:id="@+id/txtTroca"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:elevation="10dp"
             android:text="xxxxxxxxxxxxx"
             android:textColor="@color/soft_black"
             android:textSize="14dp"
             app:layout_constraintStart_toEndOf="@+id/vwTroca"
-            app:layout_constraintTop_toTopOf="@+id/vwSolucao" />
+            app:layout_constraintTop_toBottomOf="@+id/txtSolucao" />
 
         <TextView
             android:id="@+id/vwOBS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:elevation="10dp"
             android:text="Observações:"
             android:textColor="@color/soft_black"
             android:textSize="14dp"
             app:layout_constraintStart_toStartOf="@+id/containerView1"
-            app:layout_constraintTop_toTopOf="@+id/vwTroca" />
+            app:layout_constraintTop_toBottomOf="@+id/txtTroca" />
         <TextView
             android:id="@+id/txtOBS"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:elevation="10dp"
             android:text="xxxxxxxxxxxxx"
             android:textColor="@color/soft_black"
             android:textSize="14dp"
             app:layout_constraintStart_toEndOf="@+id/vwOBS"
-            app:layout_constraintTop_toTopOf="@+id/vwTroca" />
+            app:layout_constraintTop_toBottomOf="@+id/txtTroca" />
 
         <Button
             android:id="@+id/btVoltar"

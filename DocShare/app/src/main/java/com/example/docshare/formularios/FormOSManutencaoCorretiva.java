@@ -1,30 +1,20 @@
-package com.example.docshare;
+package com.example.docshare.formularios;
 
 import android.content.Intent;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.pdf.PdfDocument;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Date;
 
-import com.example.docshare.formulario.Form;
+import com.example.docshare.R;
+import com.example.docshare.VizualizarForm;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -32,7 +22,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-public class FormOSManutencaoCorretiva extends Form {
+public class FormOSManutencaoCorretiva extends AppCompatActivity {
 
     private Button bt_visualizarOS;
     private EditText edtNome, edtRG, edtCPF, edtSetor, edtCargo, edtTelefone, edtEmail;  // Edt referente as informaçoes do colaborador
@@ -77,11 +67,10 @@ public class FormOSManutencaoCorretiva extends Form {
             }
         });
 
-        // BOTÃO FINALIZAR FORMULÁRIO
+        // BOTÃO VIZUALIZAR FORMULÁRIO
         bt_visualizarOS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //    GerarPDF(ColetarInformacoes());
                 Intent goToVizualizationActivity = new Intent(getApplicationContext(), VizualizarForm.class);
                 goToVizualizationActivity.putExtras(ColetarInformacoes());
                 startActivity(goToVizualizationActivity);
@@ -90,7 +79,6 @@ public class FormOSManutencaoCorretiva extends Form {
     }
 
     // INICIALIZAR COMPONENTES DA CLASSE
-    @Override
     public void IniciarComponentes() {
         // Dados usuário
         edtNome = findViewById(R.id.userName);
@@ -118,7 +106,6 @@ public class FormOSManutencaoCorretiva extends Form {
     }
 
     // MÉTODO PARA COLETAR AS INFORMAÇÕES INSERIDAS PELO USUÁRIO
-    @Override
     public Bundle ColetarInformacoes() {
         Bundle formularioOS = new Bundle();
 

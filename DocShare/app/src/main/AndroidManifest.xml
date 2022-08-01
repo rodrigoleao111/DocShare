@@ -35,13 +35,13 @@
         </provider>
 
         <activity
-            android:name=".FormOSManutencaoCorretiva"
+            android:name=".formularios.FormOSManutencaoCorretiva"
             android:exported="false" />
         <activity
             android:name=".FormLogin"
             android:exported="false" />
         <activity
-            android:name=".FormCadastro"
+            android:name=".formularios.FormCadastro"
             android:exported="false" />
         <activity
             android:name=".TelaDeUsuario"

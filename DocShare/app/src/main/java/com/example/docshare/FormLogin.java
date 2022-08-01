@@ -14,14 +14,14 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.docshare.formulario.Form;
+import com.example.docshare.formularios.FormCadastro;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class FormLogin extends Form {
+public class FormLogin extends AppCompatActivity {
 
     private EditText edt_email, edt_senha;
     private Button bt_entrar;
@@ -94,7 +94,6 @@ public class FormLogin extends Form {
         finish();
     }
 
-    @Override
     public void IniciarComponentes(){
         edt_email = findViewById(R.id.edit_email);
         edt_senha = findViewById(R.id.editTextPassword);

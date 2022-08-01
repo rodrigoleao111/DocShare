@@ -1,11 +1,9 @@
-package com.example.docshare;
+package com.example.docshare.formularios;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -18,7 +16,9 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.docshare.formulario.Form;
+import com.example.docshare.FormLogin;
+import com.example.docshare.R;
+import com.example.docshare.metodos.FileGenerator;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,7 +34,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FormCadastro extends Form {
+public class FormCadastro extends FileGenerator {
 
     private EditText email_user, senha_user, confirmar_senha_user;
     private EditText nome_user, cpf_user, rg_user, telefone_user;

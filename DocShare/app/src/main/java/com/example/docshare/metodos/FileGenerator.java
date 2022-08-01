@@ -1,4 +1,4 @@
-package com.example.docshare.formulario;
+package com.example.docshare.metodos;
 
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -10,18 +10,18 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Date;
 
-public class Form extends AppCompatActivity {
+public class FileGenerator extends AppCompatActivity {
+
+    // Construtor vazio
+    public FileGenerator(){}
+
 
     /***
      * Criar arquivo PDF com as informações inseridas pelo usuário
