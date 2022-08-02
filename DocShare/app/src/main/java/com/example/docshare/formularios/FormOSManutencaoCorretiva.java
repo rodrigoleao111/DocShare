@@ -2,14 +2,20 @@ package com.example.docshare.formularios;
 
 import android.content.Intent;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.Date;
 
@@ -27,9 +33,12 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity {
     private Button bt_visualizarOS;
     private EditText edtNome, edtRG, edtCPF, edtSetor, edtCargo, edtTelefone, edtEmail;  // Edt referente as informaçoes do colaborador
     private EditText edtEquipamento, edtModelo, edtEquipID;                              // Edt referente ao Equipamento | Ativo
-    private EditText edtDiagnostico, edtSolucao, edtPecasTrocadas, edtObservacoes;
-    //private ImageView foto;
+    private EditText edtDiagnostico, edtSolucao, edtPecasTrocadas, edtObservacoes;       // Edt referente a manutenção
+    private EditText edtDescricao;
+    private ImageView addFoto, preview;
     private Spinner formLocacao;
+    private View vwConteiner;
+    private TextView hitDescricao;
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
     String userID;
 
@@ -40,6 +49,14 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity {
 
         getSupportActionBar().hide();
         IniciarComponentes();
+
+        // Adicionar foto de perfil
+        addFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mGetContent.launch("image/*");
+            }
+        });
 
     }
 
@@ -100,10 +117,28 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity {
         edtPecasTrocadas = findViewById(R.id.edtFormOSTroca);
         edtObservacoes = findViewById(R.id.edtFormOSObservacoes);
 
-        //foto.findViewById(R.id.addFoto);
+        addFoto = findViewById(R.id.addFoto);
+        preview = findViewById(R.id.preview);
+
+        edtDescricao = findViewById(R.id.edtFormOSDescricao);
+        vwConteiner = findViewById(R.id.containerHist4);
+        hitDescricao = findViewById(R.id.hintDescricao);
 
         bt_visualizarOS = findViewById(R.id.bt_visualizarOS);
     }
+
+    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+        @Override
+        public void onActivityResult(Uri result) {
+            if(result != null){
+                preview.setImageURI(result);
+                preview.setVisibility(View.VISIBLE);
+                edtDescricao.setVisibility(View.VISIBLE);
+                hitDescricao.setVisibility(View.VISIBLE);
+                vwConteiner.setVisibility(View.VISIBLE);
+            }
+        }
+    });
 
     // MÉTODO PARA COLETAR AS INFORMAÇÕES INSERIDAS PELO USUÁRIO
     public Bundle ColetarInformacoes() {

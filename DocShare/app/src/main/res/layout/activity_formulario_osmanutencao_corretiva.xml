@@ -521,7 +521,69 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintTop_toBottomOf="@+id/edtFormOSTroca"
             app:srcCompat="@drawable/add_image" />
-        />
+
+
+        <View
+            android:id="@+id/containerHist4"
+            style="@style/ContainerLogin"
+            android:layout_height="0dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="-20dp"
+            android:background="@drawable/container_components"
+            android:elevation="10dp"
+            android:visibility="invisible"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/containerHist3"
+            app:layout_constraintBottom_toBottomOf="@+id/edtFormOSDescricao"/>
+
+        <TextView
+            android:id="@+id/hintDescricao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:elevation="10dp"
+            android:text="Descrição da imagem"
+            android:textColor="@color/soft_black"
+            android:textSize="14dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/containerHist4"
+            app:layout_constraintTop_toTopOf="@+id/containerHist4" />
+
+
+        <EditText
+            android:id="@+id/edtFormOSDescricao"
+            style="@style/Edit_Text"
+            android:layout_width="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/edit_text"
+            android:elevation="10dp"
+            android:inputType="textMultiLine"
+            android:lines="10"
+            android:minHeight="48dp"
+            android:minLines="1"
+            android:padding="7dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/preview"
+            app:layout_constraintStart_toStartOf="@+id/containerHist4"
+            app:layout_constraintTop_toBottomOf="@+id/hintDescricao" />
+
+        <ImageView
+            android:id="@+id/preview"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:elevation="12dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/containerHist4"
+            app:layout_constraintEnd_toEndOf="@+id/containerHist4"
+            app:layout_constraintTop_toTopOf="@+id/containerHist4"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <Button
             android:id="@+id/bt_visualizarOS"
@@ -532,10 +594,9 @@
             android:text="   Visualizar OS   "
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/containerHist3"
-            app:layout_constraintStart_toStartOf="@+id/containerHist3"
-            app:layout_constraintTop_toBottomOf="@+id/containerHist3" />
-
+            app:layout_constraintEnd_toEndOf="@+id/containerHist4"
+            app:layout_constraintStart_toStartOf="@+id/containerHist4"
+            app:layout_constraintTop_toBottomOf="@+id/containerHist4" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

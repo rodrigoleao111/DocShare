@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.docshare.formularios.FormOSManutencaoCorretiva;
@@ -71,6 +72,7 @@ public class VizualizarForm extends FileGenerator {
         dadosDoForm[12] = findViewById(R.id.txtSolucao);
         dadosDoForm[13] = findViewById(R.id.txtTroca);
         dadosDoForm[14] = findViewById(R.id.txtOBS);
+
 
         btVoltar = findViewById(R.id.btVoltar);
         btCompartilhar = findViewById(R.id.btSaveShare);
