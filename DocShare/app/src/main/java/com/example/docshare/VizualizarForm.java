@@ -61,10 +61,12 @@ public class VizualizarForm extends FileGenerator {
             }
         }
 
-        preview.setImageBitmap(bitmap);
-        preview.setVisibility(View.VISIBLE);
-        descricao.setVisibility(View.VISIBLE);
-        txtImage.setVisibility(View.VISIBLE);
+        if(bitmap != null) {
+            preview.setImageBitmap(bitmap);
+            preview.setVisibility(View.VISIBLE);
+            descricao.setVisibility(View.VISIBLE);
+            txtImage.setVisibility(View.VISIBLE);
+        }
 
 
     }
