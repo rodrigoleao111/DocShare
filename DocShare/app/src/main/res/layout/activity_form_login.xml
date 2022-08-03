@@ -16,7 +16,7 @@
         <View
             android:id="@+id/containerComponents"
             style="@style/ContainerLogin"
-            android:layout_width="372dp"
+            android:layout_width="match_parent"
             android:layout_height="281dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/container_components"

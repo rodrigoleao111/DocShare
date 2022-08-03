@@ -8,6 +8,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -39,6 +40,7 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity {
     private Spinner formLocacao;
     private View vwConteiner;
     private TextView hitDescricao;
+    Bitmap bitmap;
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
     String userID;
 
@@ -90,6 +92,8 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity {
             public void onClick(View v) {
                 Intent goToVizualizationActivity = new Intent(getApplicationContext(), VizualizarForm.class);
                 goToVizualizationActivity.putExtras(ColetarInformacoes());
+                if(bitmap != null)
+                    goToVizualizationActivity.putExtra("BitmapImage", bitmap);
                 startActivity(goToVizualizationActivity);
             }
         });
@@ -127,11 +131,14 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity {
         bt_visualizarOS = findViewById(R.id.bt_visualizarOS);
     }
 
+    // ALTERAR VISIBILIDADE DO BLOCO DA IMAGEM
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
         @Override
         public void onActivityResult(Uri result) {
             if(result != null){
                 preview.setImageURI(result);
+                preview.buildDrawingCache();
+                bitmap = preview.getDrawingCache();
                 preview.setVisibility(View.VISIBLE);
                 edtDescricao.setVisibility(View.VISIBLE);
                 hitDescricao.setVisibility(View.VISIBLE);
@@ -148,26 +155,19 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity {
         // Colocar validação para caso o item esteja em vazio
 
         formularioOS.putInt("formType", 1);     // Tipo do formulário
-
         formularioOS.putString("formID", String.valueOf(formID.getTime()));
 
-        formularioOS.putString("nome", edtNome.getText().toString());
-        formularioOS.putString("rg", edtRG.getText().toString());
-        formularioOS.putString("cpf", edtCPF.getText().toString());
-        formularioOS.putString("setor", edtSetor.getText().toString());
-        formularioOS.putString("cargo", edtCargo.getText().toString());
-        formularioOS.putString("telefone", edtTelefone.getText().toString());
-        formularioOS.putString("email", edtEmail.getText().toString());
+        String[] chaves = {"nome", "rg", "cpf", "setor", "cargo", "telefone", "email", "equipamento",
+                "modelo", "equipID", "diagnostico", "solucao", "troca", "obs", "descricaoImg"};
+
+        EditText[] dadosDoForm = {edtNome, edtRG, edtCPF, edtSetor, edtCargo, edtTelefone, edtEmail,
+                edtEquipamento, edtModelo, edtEquipID, edtDiagnostico, edtSolucao, edtPecasTrocadas, edtObservacoes, edtDescricao};
+
+        for(int i = 0; i < chaves.length; i++) {
+            formularioOS.putString(chaves[i], dadosDoForm[i].getText().toString());
+        }
 
         formularioOS.putString("locacao", formLocacao.getSelectedItem().toString());
-        formularioOS.putString("equipamento", edtEquipamento.getText().toString());
-        formularioOS.putString("modelo", edtModelo.getText().toString());
-        formularioOS.putString("equipID", edtEquipID.getText().toString());
-
-        formularioOS.putString("diagnostico", edtDiagnostico.getText().toString());
-        formularioOS.putString("solucao", edtSolucao.getText().toString());
-        formularioOS.putString("troca", edtPecasTrocadas.getText().toString());
-        formularioOS.putString("obs", edtObservacoes.getText().toString());
 
         return formularioOS;
     }
