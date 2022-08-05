@@ -19,14 +19,18 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:debuggable="true"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/share"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/share"
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.DocShare"
         android:windowSoftInputMode="adjustPan|adjustResize" >
+        <activity
+            android:name="com.example.docshare.VizualizarForm"
+            android:exported="false" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.docshare.provider"
@@ -38,13 +42,13 @@
         </provider>
 
         <activity
-            android:name="com.example.docshare.FormOSManutencaoCorretiva"
+            android:name="com.example.docshare.formularios.FormOSManutencaoCorretiva"
             android:exported="false" />
         <activity
             android:name="com.example.docshare.FormLogin"
             android:exported="false" />
         <activity
-            android:name="com.example.docshare.FormCadastro"
+            android:name="com.example.docshare.formularios.FormCadastro"
             android:exported="false" />
         <activity
             android:name="com.example.docshare.TelaDeUsuario"

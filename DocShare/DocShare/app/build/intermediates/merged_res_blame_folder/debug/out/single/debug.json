@@ -4,14 +4,6 @@
         "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable\\background_gradient.xml"
     },
     {
-        "merged": "com.example.docshare.app-merged_res-30:/drawable_doc.png.flat",
-        "source": "com.example.docshare.app-main-32:/drawable/doc.png"
-    },
-    {
-        "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable-v24_bt_configuracoes.png.flat",
-        "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable-v24\\bt_configuracoes.png"
-    },
-    {
         "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable-v24_splash1.png.flat",
         "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable-v24\\splash1.png"
     },
@@ -40,8 +32,8 @@
         "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable\\ic_baseline_local_phone_24.xml"
     },
     {
-        "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable-v24_bt_nova_os.png.flat",
-        "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable-v24\\bt_nova_os.png"
+        "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable_ic_email_24.xml.flat",
+        "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable\\ic_email_24.xml"
     },
     {
         "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable_container_components.xml.flat",
@@ -76,20 +68,40 @@
         "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\mipmap-xxxhdpi\\ic_launcher.webp"
     },
     {
+        "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable_share.png.flat",
+        "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable\\share.png"
+    },
+    {
         "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable_bt_configuracoes_novo.png.flat",
         "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable\\bt_configuracoes_novo.png"
     },
     {
-        "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable_ic_lock_24.xml.flat",
+        "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable\\ic_lock_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable_doc.png.flat",
+        "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable\\doc.png"
+    },
+    {
+        "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable_ic_baseline_arrow_back_24.xml.flat",
+        "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable\\ic_baseline_arrow_back_24.xml"
     },
     {
         "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable_bt_nova_os_novo.png.flat",
         "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable\\bt_nova_os_novo.png"
     },
     {
+        "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\layout\\activity_main.xml"
+    },
+    {
         "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable_bt_solicitacao_de_compra.png.flat",
         "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable\\bt_solicitacao_de_compra.png"
+    },
+    {
+        "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable_ic_baseline_save_alt_24.xml.flat",
+        "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable\\ic_baseline_save_alt_24.xml"
     },
     {
         "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable_bt_novo_relatorio.png.flat",
@@ -120,12 +132,12 @@
         "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "com.example.docshare.app-merged_res-30:/drawable_ic_lock_24.xml.flat",
-        "source": "com.example.docshare.app-main-32:/drawable/ic_lock_24.xml"
-    },
-    {
         "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\mipmap-hdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable_ic_baseline_share_24.xml.flat",
+        "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable\\ic_baseline_share_24.xml"
     },
     {
         "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable_informa_logo.png.flat",
@@ -136,20 +148,8 @@
         "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable\\ic_baseline_keyboard_arrow_down_24.xml"
     },
     {
-        "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable_configuracoes_button.png.flat",
-        "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable\\configuracoes_button.png"
-    },
-    {
-        "merged": "com.example.docshare.app-merged_res-30:/drawable_informalogo.png.flat",
-        "source": "com.example.docshare.app-main-32:/drawable/informalogo.png"
-    },
-    {
         "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\layout_activity_formulario_osmanutencao_corretiva.xml.flat",
         "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\layout\\activity_formulario_osmanutencao_corretiva.xml"
-    },
-    {
-        "merged": "com.example.docshare.app-merged_res-30:/drawable_ic_email_24.xml.flat",
-        "source": "com.example.docshare.app-main-32:/drawable/ic_email_24.xml"
     },
     {
         "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable-v24_splash2.png.flat",
@@ -160,8 +160,16 @@
         "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
+        "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\layout_activity_vizualizar_form.xml.flat",
+        "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\layout\\activity_vizualizar_form.xml"
+    },
+    {
         "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable_historico_de_atividades_button.png.flat",
         "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable\\historico_de_atividades_button.png"
+    },
+    {
+        "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable_informalogo.png.flat",
+        "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable\\informalogo.png"
     },
     {
         "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
@@ -176,12 +184,16 @@
         "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\layout\\activity_splash_screen.xml"
     },
     {
+        "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
         "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable_ic_person.xml.flat",
         "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable\\ic_person.xml"
     },
     {
-        "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+        "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable-v24_add_image.png.flat",
+        "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\drawable-v24\\add_image.png"
     },
     {
         "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\drawable_ic_baseline_vpn_key_24.xml.flat",
@@ -202,9 +214,5 @@
     {
         "merged": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-merged_res-30:\\layout_activity_form_cadastro.xml.flat",
         "source": "C:\\Users\\dayvi\\.gradle\\daemon\\7.3.3\\com.example.docshare.app-main-32:\\layout\\activity_form_cadastro.xml"
-    },
-    {
-        "merged": "com.example.docshare.app-merged_res-30:/layout_activity_splash_screen.xml.flat",
-        "source": "com.example.docshare.app-main-32:/layout/activity_splash_screen.xml"
     }
 ]
