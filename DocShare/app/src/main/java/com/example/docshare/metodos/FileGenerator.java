@@ -18,6 +18,8 @@ import androidx.core.content.FileProvider;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class FileGenerator extends AppCompatActivity {
 
@@ -27,7 +29,8 @@ public class FileGenerator extends AppCompatActivity {
 
     /***
      * Criar arquivo PDF com as informações inseridas pelo usuário
-     * @param coletarInformacoes : bundle com as informações inseridas na activity
+     * @param coletarInformacoes : bundle com as informações de texto inseridas pelo usuário
+     * @param bitmap : imagem original anexada pelo usuário
      */
     public void GerarPDF(Bundle coletarInformacoes, Bitmap bitmap) {
 
@@ -51,6 +54,7 @@ public class FileGenerator extends AppCompatActivity {
 
          */
 
+        // Chaves e informações
         String[] infoColaborador = {"Nome", "RG", "CPF", "Setor", "Cargo", "Telefone", "E-mail"};
         String[] infoEquipamento = {"Locação", "Equipamento", "Modelo", "ID"};
         String[] infoManutencao = {"Diagnóstico", "Solução", "Peças trocadas", "Observações"};
@@ -58,6 +62,9 @@ public class FileGenerator extends AppCompatActivity {
         String[] chavesEquipamento = {"locacao", "equipamento", "modelo", "equipID"};
         String[] chavesManutencao = {"diagnostico", "solucao", "troca", "obs"};
 
+
+
+        // Inicialização do pdf
         PdfDocument pdfRelatorio = new PdfDocument();
         Paint myPaint = new Paint();
 
@@ -80,6 +87,13 @@ public class FileGenerator extends AppCompatActivity {
         myPaint.setColor(Color.rgb(112, 119, 119));
         y += 10;
         canvas.drawText("Manutenção corretiva", center, y, myPaint);
+
+        // Data de preenchimento
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        y += 10;
+        myPaint.setTextSize(5.0f);
+        canvas.drawText(formatter.format(date), center, y, myPaint);
 
         // Informações do usuário
         myPaint.setTextAlign(Paint.Align.LEFT);
@@ -163,23 +177,8 @@ public class FileGenerator extends AppCompatActivity {
         }
 
         pdfRelatorio.close();
+
     }
-
-    /*
-    public void ColetarImagem() {
-
-        ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
-            @Override
-            public void onActivityResult(Uri result) {
-                if (result != null) {
-                    foto_perfil.setImageURI(result);
-                }
-            }
-        });
-
-        mGetContent.launch("image/*");
-    }
-    */
 
 
     public void CompartilharRelatorio(File file) {
@@ -199,11 +198,5 @@ public class FileGenerator extends AppCompatActivity {
         }
     }
 
-    public Bundle ColetarInformacoes() {
-        Bundle formularioOS = new Bundle();
-        return formularioOS;
-    }
-
-    public void IniciarComponentes(){}
 
 }

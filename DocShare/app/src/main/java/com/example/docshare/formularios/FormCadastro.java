@@ -171,7 +171,6 @@ public class FormCadastro extends FileGenerator {
     }
 
 
-    @Override
     public void IniciarComponentes(){
         email_user = findViewById(R.id.edit_cadastro_email);
         senha_user = findViewById(R.id.edit_cadastro_senha);
