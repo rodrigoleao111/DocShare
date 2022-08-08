@@ -1,4 +1,4 @@
-package com.example.docshare;
+package com.example.docshare.usuario;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.docshare.R;
 import com.example.docshare.formularios.FormOSManutencaoCorretiva;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;

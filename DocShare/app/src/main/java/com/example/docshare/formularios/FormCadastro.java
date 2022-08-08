@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.docshare.FormLogin;
+import com.example.docshare.usuario.FormLogin;
 import com.example.docshare.R;
 import com.example.docshare.metodos.FileGenerator;
 import com.google.android.gms.tasks.OnCompleteListener;

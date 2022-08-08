@@ -1,9 +1,11 @@
 package com.example.docshare.metodos;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,7 +29,7 @@ public class FileGenerator extends AppCompatActivity {
      * Criar arquivo PDF com as informações inseridas pelo usuário
      * @param coletarInformacoes : bundle com as informações inseridas na activity
      */
-    public void GerarPDF(Bundle coletarInformacoes) {
+    public void GerarPDF(Bundle coletarInformacoes, Bitmap bitmap) {
 
         /*
 
@@ -60,7 +62,9 @@ public class FileGenerator extends AppCompatActivity {
         Paint myPaint = new Paint();
 
         // Informações da página
-        PdfDocument.PageInfo infoRelatorio = new PdfDocument.PageInfo.Builder(400, 600, 1).create();
+        int pageWidth = 400, pageHeight = 600;  // Pixels
+        int y = 0, marginLeft = 10, center = pageWidth/2;
+        PdfDocument.PageInfo infoRelatorio = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 1).create();
         PdfDocument.Page pagRelatorio = pdfRelatorio.startPage(infoRelatorio);
         Canvas canvas = pagRelatorio.getCanvas();
 
@@ -68,75 +72,82 @@ public class FileGenerator extends AppCompatActivity {
         // Título
         myPaint.setTextAlign(Paint.Align.CENTER);
         myPaint.setTextSize(12.0f);
-        canvas.drawText("Ordem de Serviço - " + coletarInformacoes.getString("formID"), infoRelatorio.getPageWidth() / 2, 30, myPaint);
+        y += 30;
+        canvas.drawText("Ordem de Serviço - " + coletarInformacoes.getString("formID"), center, y, myPaint);
 
         // Subtítulo
         myPaint.setTextSize(8.0f);
         myPaint.setColor(Color.rgb(112, 119, 119));
-        canvas.drawText("Manutenção corretiva", infoRelatorio.getPageWidth() / 2, 40, myPaint);
+        y += 10;
+        canvas.drawText("Manutenção corretiva", center, y, myPaint);
 
         // Informações do usuário
         myPaint.setTextAlign(Paint.Align.LEFT);
         myPaint.setTextSize(6.0f);
-        canvas.drawText("Informações do colaborador", 10, 70, myPaint);
+        y += 30;
+        canvas.drawText("Informações do colaborador", marginLeft, y, myPaint);
 
         myPaint.setTextAlign(Paint.Align.LEFT);
         myPaint.setTextSize(8.0f);
         myPaint.setColor(Color.BLACK);
 
-        int startXPosition = 10, endXPosition = infoRelatorio.getPageWidth() - 10, startYPosition = 100;
+        int marginRigth = pageWidth - 10;
+        y += 20;
         for (int i = 0; i < infoColaborador.length; i++) {
-            canvas.drawText(infoColaborador[i], startXPosition, startYPosition, myPaint);
-            canvas.drawText(coletarInformacoes.getString(chavesColaborador[i]), startXPosition + 80, startYPosition, myPaint);
-            canvas.drawLine(startXPosition, startYPosition + 3, endXPosition, startYPosition + 3, myPaint);
-            startYPosition += 10;
+            canvas.drawText(infoColaborador[i], marginLeft, y, myPaint);
+            canvas.drawText(coletarInformacoes.getString(chavesColaborador[i]), marginLeft + 80, y, myPaint);
+            canvas.drawLine(marginLeft, y + 3, marginRigth, y + 3, myPaint);
+            y += 10;
         }
 
-        startYPosition += 30;
+        y += 30;
 
         // Informações do equipamento
         myPaint.setColor(Color.rgb(112, 119, 119));
         myPaint.setTextAlign(Paint.Align.LEFT);
         myPaint.setTextSize(6.0f);
-        canvas.drawText("Equipamento | Ativo", 10, startYPosition, myPaint);
+        canvas.drawText("Equipamento | Ativo", 10, y, myPaint);
 
         myPaint.setTextAlign(Paint.Align.LEFT);
         myPaint.setTextSize(8.0f);
         myPaint.setColor(Color.BLACK);
 
-        startYPosition += 20;
+        y += 20;
 
         for (int i = 0; i < infoEquipamento.length; i++) {
-            canvas.drawText(infoEquipamento[i], startXPosition, startYPosition, myPaint);
-            canvas.drawText(coletarInformacoes.getString(chavesEquipamento[i]), startXPosition + 80, startYPosition, myPaint);
-            canvas.drawLine(startXPosition, startYPosition + 3, endXPosition, startYPosition + 3, myPaint);
-            startYPosition += 10;
+            canvas.drawText(infoEquipamento[i], marginLeft, y, myPaint);
+            canvas.drawText(coletarInformacoes.getString(chavesEquipamento[i]), marginLeft + 80, y, myPaint);
+            canvas.drawLine(marginLeft, y + 3, marginRigth, y + 3, myPaint);
+            y += 10;
         }
 
-        startYPosition += 30;
+        y += 30;
 
         // Informações de Manutenção
         myPaint.setColor(Color.rgb(112, 119, 119));
         myPaint.setTextAlign(Paint.Align.LEFT);
         myPaint.setTextSize(6.0f);
-        canvas.drawText("Informações de Manutenção", 10, startYPosition, myPaint);
+        canvas.drawText("Informações de Manutenção", 10, y, myPaint);
 
         myPaint.setTextAlign(Paint.Align.LEFT);
         myPaint.setTextSize(8.0f);
         myPaint.setColor(Color.BLACK);
 
-        startYPosition += 20;
+        y += 20;
 
         for (int i = 0; i < infoManutencao.length; i++) {
-            canvas.drawText(infoManutencao[i], startXPosition, startYPosition, myPaint);
-            canvas.drawText(coletarInformacoes.getString(chavesManutencao[i]), startXPosition + 80, startYPosition, myPaint);
-            canvas.drawLine(startXPosition, startYPosition + 3, endXPosition, startYPosition + 3, myPaint);
-            startYPosition += 10;
+            canvas.drawText(infoManutencao[i], marginLeft, y, myPaint);
+            canvas.drawText(coletarInformacoes.getString(chavesManutencao[i]), marginLeft + 80, y, myPaint);
+            canvas.drawLine(marginLeft, y + 3, marginRigth, y + 3, myPaint);
+            y += 10;
         }
 
+        y += 30;
 
-
-        canvas.drawLine(80, 92, 80, 190, myPaint);
+        if(bitmap != null){
+            Rect rect = new Rect( marginLeft, y, marginRigth, y+bitmap.getHeight());
+            canvas.drawBitmap(bitmap, null, rect, myPaint);
+        }
 
         pdfRelatorio.finishPage(pagRelatorio);
 
