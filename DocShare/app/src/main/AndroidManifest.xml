@@ -38,13 +38,13 @@
             android:name=".formularios.FormOSManutencaoCorretiva"
             android:exported="false" />
         <activity
-            android:name=".FormLogin"
+            android:name=".usuario.FormLogin"
             android:exported="false" />
         <activity
             android:name=".formularios.FormCadastro"
             android:exported="false" />
         <activity
-            android:name=".TelaDeUsuario"
+            android:name=".usuario.TelaDeUsuario"
             android:exported="false" />
         <activity
             android:name=".SplashScreen"

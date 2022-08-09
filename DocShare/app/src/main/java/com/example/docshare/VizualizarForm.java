@@ -32,6 +32,7 @@ public class VizualizarForm extends FileGenerator {
         InicializarComponentes();
         AtribuirValores(dadosOS, bitmap);
 
+        // BOTÃO VOLTAR
         btVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,15 +42,21 @@ public class VizualizarForm extends FileGenerator {
             }
         });
 
+        // BOTÃO COMPARTILHAR
         btCompartilhar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GerarPDF(dadosOS);
+                GerarPDF(dadosOS, bitmap);
             }
         });
     }
 
-
+    /***
+     * Impressão de dados na tela
+     * Atribui os valores que foram inseridos pelo usuário na Activity Formulário
+     * @param dadosOS - Dados de texto inseridos pelo usuário
+     * @param bitmap - Imagem anexada pelo usuário
+     */
     private void AtribuirValores(Bundle dadosOS, Bitmap bitmap) {
         TextView[] dadosDoForm = {nome, rg, cpf, setor, cargo, telefone, email, locacao, equipamento, modelo, equipID, diagnostico, solucao, troca, obs, descricao};
         for(int i = 0; i < dadosDoForm.length; i++){
@@ -67,8 +74,6 @@ public class VizualizarForm extends FileGenerator {
             descricao.setVisibility(View.VISIBLE);
             txtImage.setVisibility(View.VISIBLE);
         }
-
-
     }
 
     private void InicializarComponentes() {

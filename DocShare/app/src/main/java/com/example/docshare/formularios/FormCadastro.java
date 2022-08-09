@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.docshare.FormLogin;
+import com.example.docshare.usuario.FormLogin;
 import com.example.docshare.R;
 import com.example.docshare.metodos.FileGenerator;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -171,7 +171,6 @@ public class FormCadastro extends FileGenerator {
     }
 
 
-    @Override
     public void IniciarComponentes(){
         email_user = findViewById(R.id.edit_cadastro_email);
         senha_user = findViewById(R.id.edit_cadastro_senha);
