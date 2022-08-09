@@ -62,7 +62,7 @@
             android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/bt_entrar"
             app:layout_constraintEnd_toEndOf="@+id/containerComponents"
-            app:layout_constraintHorizontal_bias="0.916"
+            app:layout_constraintHorizontal_bias="0.874"
             app:layout_constraintStart_toStartOf="@+id/containerComponents"
             app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
             app:layout_constraintVertical_bias="0.0" />
@@ -86,8 +86,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:progressTint="@color/azulao"
 
+            android:indeterminateTint="@color/azulao"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -121,6 +121,7 @@
             android:layout_width="78dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
             android:elevation="10dp"
             android:onClick="goToCadastro"
             android:text="@string/cadastro"
@@ -129,7 +130,6 @@
             app:layout_constraintBottom_toBottomOf="@+id/containerComponents"
             app:layout_constraintEnd_toEndOf="@+id/containerComponents"
             app:layout_constraintTop_toBottomOf="@+id/bt_entrar"
-            app:layout_constraintVertical_bias="0.461"
             tools:ignore="TouchTargetSizeCheck" />
 
 

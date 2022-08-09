@@ -38,8 +38,6 @@ public class FormLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_login);
-        
-            // progressBar.setVisibility(View.INVISIBLE);
 
         getSupportActionBar().hide();   // Esconder barra de ação
         IniciarComponentes();
@@ -50,7 +48,7 @@ public class FormLogin extends AppCompatActivity {
                 String email = edt_email.getText().toString();
                 String senha = edt_senha.getText().toString();
 
-               // progressBar.setVisibility(View.VISIBLE);
+               progressBar.setVisibility(View.VISIBLE);
 
                 if(email.isEmpty() || senha.isEmpty())
                     Toast.makeText(getApplicationContext(), mensagens[0], Toast.LENGTH_LONG).show();
@@ -110,6 +108,7 @@ public class FormLogin extends AppCompatActivity {
         bt_entrar = findViewById(R.id.bt_entrar);
         progressBar = findViewById(R.id.progress_bar);
         edt_cadastre = findViewById(R.id.textViewCadastre);
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     private void AutenticarUsuario(String email, String senha){
