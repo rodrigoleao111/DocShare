@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.docshare.R;
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class FormLogin extends AppCompatActivity {
 
     private EditText edt_email, edt_senha;
+    private TextView edt_cadastre;
     private Button bt_entrar;
     private ProgressBar progressBar;
     private String mensagens[] = {"Insira seu email e senha"};
@@ -100,6 +102,7 @@ public class FormLogin extends AppCompatActivity {
         edt_senha = findViewById(R.id.editTextPassword);
         bt_entrar = findViewById(R.id.bt_entrar);
         progressBar = findViewById(R.id.progress_bar);
+        edt_cadastre = findViewById(R.id.textViewCadastre);
     }
 
     private void AutenticarUsuario(String email, String senha){
