@@ -31,10 +31,14 @@ public class FormLogin extends AppCompatActivity {
     private ProgressBar progressBar;
     private String mensagens[] = {"Insira seu email e senha"};
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_login);
+
+            // progressBar.setVisibility(View.INVISIBLE);
 
         getSupportActionBar().hide();   // Esconder barra de ação
         IniciarComponentes();
@@ -44,6 +48,8 @@ public class FormLogin extends AppCompatActivity {
             public void onClick(View v) {
                 String email = edt_email.getText().toString();
                 String senha = edt_senha.getText().toString();
+
+               // progressBar.setVisibility(View.VISIBLE);
 
                 if(email.isEmpty() || senha.isEmpty())
                     Toast.makeText(getApplicationContext(), mensagens[0], Toast.LENGTH_LONG).show();
@@ -67,16 +73,16 @@ public class FormLogin extends AppCompatActivity {
         dialog.setMessage("Deseja sair do aplicativo?");
         dialog.setCancelable(false);
 
-        dialog.setPositiveButton("Não", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {}
-        });
-
-        dialog.setNegativeButton("Sim", new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 FormLogin.super.onBackPressed();
             }
+        });
+
+        dialog.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {}
         });
         dialog.create();
         dialog.show();
@@ -110,7 +116,6 @@ public class FormLogin extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    progressBar.setVisibility(View.VISIBLE);
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
