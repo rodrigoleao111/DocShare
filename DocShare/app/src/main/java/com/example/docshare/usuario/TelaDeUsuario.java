@@ -54,6 +54,7 @@ public class TelaDeUsuario extends AppCompatActivity {
             }
         });
 
+        // Seguir para FormOS
         bt_nova_os_manutencao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,8 +67,6 @@ public class TelaDeUsuario extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     @Override
@@ -111,7 +110,7 @@ public class TelaDeUsuario extends AppCompatActivity {
         ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
     }
 
-    // Voltar aqui. Acho que só faz emitir o toast. Se for isso, não preciso sobrescrever esse método.
+    // Alterar condição da permissão
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

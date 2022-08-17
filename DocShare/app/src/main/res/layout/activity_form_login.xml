@@ -18,10 +18,10 @@
             style="@style/ContainerLogin"
             android:layout_width="match_parent"
             android:layout_height="310dp"
-            android:layout_marginTop="32dp"
             android:background="@drawable/container_components"
             android:elevation="10dp"
             android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/imageView5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -68,15 +68,15 @@
 
         <Button
             android:id="@+id/bt_entrar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
+            android:layout_width="170dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="25dp"
             android:backgroundTint="@color/button_blue"
             android:elevation="11dp"
             android:stateListAnimator="@null"
             android:text="Entrar"
+            app:flow_verticalAlign="center"
             app:layout_constraintEnd_toEndOf="@+id/containerComponents"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="@+id/containerComponents"
             app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
@@ -130,6 +130,15 @@
             app:layout_constraintStart_toStartOf="@+id/containerComponents"
             app:layout_constraintTop_toBottomOf="@+id/bt_entrar"
             tools:ignore="TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="216dp"
+            android:layout_height="108dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/informalogo" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
