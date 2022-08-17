@@ -13,13 +13,6 @@
         android:background="@color/azulGelo"
         tools:context=".usuario.FormLogin">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.56" />
-
         <View
             android:id="@+id/containerComponents"
             style="@style/ContainerLogin"
@@ -66,13 +59,12 @@
             android:layout_marginTop="8dp"
             android:elevation="10dp"
             android:text="@string/esqueci_senha"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/bt_entrar"
             app:layout_constraintEnd_toEndOf="@+id/containerComponents"
-            app:layout_constraintHorizontal_bias="0.874"
             app:layout_constraintStart_toStartOf="@+id/containerComponents"
             app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
-            app:layout_constraintVertical_bias="0.0" />
+            />
 
         <Button
             android:id="@+id/bt_entrar"
@@ -114,12 +106,12 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+
             android:elevation="10dp"
             android:text="Não possui acesso?"
             app:layout_constraintBottom_toBottomOf="@+id/containerComponents"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintHorizontal_bias="0.988"
+            app:layout_constraintEnd_toStartOf="@+id/textViewCadastre"
+            app:layout_constraintHorizontal_bias="0.916"
             app:layout_constraintStart_toStartOf="@+id/containerComponents"
             app:layout_constraintTop_toBottomOf="@+id/bt_entrar" />
 
@@ -127,16 +119,15 @@
             android:id="@+id/textViewCadastre"
             android:layout_width="78dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:elevation="10dp"
             android:onClick="goToCadastro"
             android:text="@string/cadastro"
-            android:textColor="@color/azulao"
+            android:textColor="@color/button_blue"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/containerComponents"
             app:layout_constraintEnd_toEndOf="@+id/containerComponents"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.713"
+            app:layout_constraintStart_toStartOf="@+id/containerComponents"
             app:layout_constraintTop_toBottomOf="@+id/bt_entrar"
             tools:ignore="TouchTargetSizeCheck" />
 
