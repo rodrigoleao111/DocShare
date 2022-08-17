@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.docshare.R;
+import com.example.docshare.SideBarActivity;
 import com.example.docshare.formularios.FormCadastro;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
