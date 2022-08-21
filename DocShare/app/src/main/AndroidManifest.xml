@@ -21,6 +21,12 @@
         android:theme="@style/Theme.DocShare"
         android:windowSoftInputMode="adjustPan|adjustResize"
         tools:targetApi="31">
+        <activity
+            android:name=".CropImage"
+            android:exported="false" />
+        <activity
+            android:name=".VizualizarForm"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -32,10 +38,6 @@
                 android:resource="@xml/file_path" />
         </provider>
 
-
-        <activity
-            android:name=".VizualizarForm"
-            android:exported="false" />
         <activity
             android:name=".formularios.FormOSManutencaoCorretiva"
             android:exported="false" />

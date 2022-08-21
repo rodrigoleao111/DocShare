@@ -4,10 +4,19 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.docshare.CropImage;
 import com.example.docshare.usuario.FormLogin;
 import com.example.docshare.R;
 import com.example.docshare.metodos.FileGenerator;
@@ -31,10 +41,17 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class FormCadastro extends FileGenerator {
+
+    private static final int GalleryPick = 1;
+    private static final int CAMERA_REQUEST = 100;
+    private static final int STORAGE_REQUEST = 200;
+    private static final int IMAGEPICK_GALLERY_REQUEST = 300;
+    private static final int IMAGE_PICKCAMERA_REQUEST = 400;
 
     private EditText email_user, senha_user, confirmar_senha_user;
     private EditText nome_user, cpf_user, rg_user, telefone_user;
@@ -44,9 +61,14 @@ public class FormCadastro extends FileGenerator {
 
     private FirebaseFirestore db_cadastros = FirebaseFirestore.getInstance();
 
+    String cameraPermission[];
+    String storagePermission[];
 
     String[] mensagens = {"Erro: Preencha todos os campos", "Cadastro realizado", "Erro: Campos de senha diferentes"};
     String usuarioID;
+
+    String email, senha, confirma_senha;
+    Map<String,Object> dados_usuario = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +78,14 @@ public class FormCadastro extends FileGenerator {
         getSupportActionBar().hide();
         IniciarComponentes();
 
+        cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
         // Adicionar foto de perfil
         foto_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mGetContent.launch("image/*");
+                showImagePicDialog();
             }
         });
 
@@ -69,19 +94,7 @@ public class FormCadastro extends FileGenerator {
             @Override
             public void onClick(View v) {
 
-                // Coletar informações inseridas
-                String email = email_user.getText().toString();
-                String senha = senha_user.getText().toString();
-                String confirma_senha = confirmar_senha_user.getText().toString();
-
-                // Informações do documento usuário
-                Map<String,Object> dados_usuario = new HashMap<>();
-                dados_usuario.put("nome", nome_user.getText().toString());
-                dados_usuario.put("cpf", cpf_user.getText().toString());
-                dados_usuario.put("rg", rg_user.getText().toString());
-                dados_usuario.put("telefone", telefone_user.getText().toString());
-                dados_usuario.put("cargo", cargo_user.getSelectedItem().toString());
-                dados_usuario.put("setor", setor_user.getSelectedItem().toString());
+                ColetarInformacoes();
 
                 if(email.isEmpty() || senha.isEmpty() || confirma_senha.isEmpty()){
                     Toast.makeText(getApplicationContext(), mensagens[0], Toast.LENGTH_LONG).show();
@@ -96,6 +109,21 @@ public class FormCadastro extends FileGenerator {
 
     }
 
+    private void ColetarInformacoes() {
+        // Coletar informações inseridas
+        email = email_user.getText().toString();
+        senha = senha_user.getText().toString();
+        confirma_senha = confirmar_senha_user.getText().toString();
+
+        // Informações do documento usuário
+        dados_usuario.put("nome", nome_user.getText().toString());
+        dados_usuario.put("cpf", cpf_user.getText().toString());
+        dados_usuario.put("rg", rg_user.getText().toString());
+        dados_usuario.put("telefone", telefone_user.getText().toString());
+        dados_usuario.put("cargo", cargo_user.getSelectedItem().toString());
+        dados_usuario.put("setor", setor_user.getSelectedItem().toString());
+    }
+
     @Override
     public void onBackPressed() {
         goToFormLogin();
@@ -105,9 +133,10 @@ public class FormCadastro extends FileGenerator {
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
         @Override
         public void onActivityResult(Uri result) {
-            if(result != null){
-                foto_perfil.setImageURI(result);
-            }
+            Intent goToCropActivity = new Intent(getApplicationContext(), CropImage.class);
+            goToCropActivity.putExtra("uri", result);
+            goToCropActivity.putExtra("class", FormCadastro.class);
+            startActivity(goToCropActivity);
         }
     });
 
@@ -169,6 +198,68 @@ public class FormCadastro extends FileGenerator {
             }
         });
     }
+
+    private void showImagePicDialog() {
+        String options[] = {"Camera", "Galeria"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Selecione a fonte da imagem.");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == 0) {
+                    if (!checkCameraPermission()) {
+                        requestCameraPermission();
+                    } else {
+                        mGetContent.launch("image/*");
+                    }
+                } else if (which == 1) {
+                    if (!checkStoragePermission()) {
+                        requestStoragePermission();
+                    } else {
+                        mGetContent.launch("image/*");
+                    }
+                }
+            }
+        });
+        builder.create().show();
+    }
+
+    // Checagem de permissão: armazenamento externo
+    private Boolean checkStoragePermission() {
+        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
+        return result;
+    }
+
+    // Requisição de permissão: galeria
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void requestStoragePermission() {
+        requestPermissions(storagePermission, STORAGE_REQUEST);
+    }
+
+    // Checagem de permissão: camera
+    private Boolean checkCameraPermission() {
+        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
+        boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
+        return result && result1;
+    }
+
+    // Requisição de permissão: camera
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void requestCameraPermission() {
+        requestPermissions(cameraPermission, CAMERA_REQUEST);
+    }
+
+    // Adicionar condição para quando a permissão for negada
+
+
+
+
+
+
+
+
+
 
 
     public void IniciarComponentes(){
