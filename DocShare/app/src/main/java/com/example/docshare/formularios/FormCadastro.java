@@ -1,13 +1,17 @@
 package com.example.docshare.formularios;
 
+import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,6 +20,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -41,6 +46,7 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -58,11 +64,12 @@ public class FormCadastro extends FileGenerator {
     private Spinner cargo_user, setor_user;
     private Button bt_cadastrar;
     private ImageView foto_perfil;
+    private Uri profilePicUri;
 
     private FirebaseFirestore db_cadastros = FirebaseFirestore.getInstance();
 
-    String cameraPermission[];
-    String storagePermission[];
+    String[] cameraPermission;
+    String[] storagePermission;
 
     String[] mensagens = {"Erro: Preencha todos os campos", "Cadastro realizado", "Erro: Campos de senha diferentes"};
     String usuarioID;
@@ -95,6 +102,7 @@ public class FormCadastro extends FileGenerator {
         // Caso já tenha adicionado uma foto de perfil:
         if(check){
             foto_perfil.setImageURI(Uri.parse(profilePic.getStringExtra("uri")));
+            profilePicUri = Uri.parse(profilePic.getStringExtra("uri"));
         }
 
         // Botão Finalizar Cadastro
@@ -108,7 +116,7 @@ public class FormCadastro extends FileGenerator {
                     Toast.makeText(getApplicationContext(), mensagens[0], Toast.LENGTH_LONG).show();
                 } else {
                     if(senha.equals(confirma_senha)){
-                        CadastrarUsuario(email, senha, dados_usuario);
+                        CadastrarUsuario(email, senha, dados_usuario, profilePicUri);
                     } else Toast.makeText(getApplicationContext(), mensagens[2], Toast.LENGTH_LONG).show();
                 }
             }
@@ -138,6 +146,7 @@ public class FormCadastro extends FileGenerator {
         super.onBackPressed();
     }
 
+    // Coletar imagem da galeria
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
         @Override
         public void onActivityResult(Uri result) {
@@ -156,12 +165,16 @@ public class FormCadastro extends FileGenerator {
      * @param senha inserido pelo usuário
      * @param dados_usuario informações a serem adicionadas ao DB
      */
-    private void CadastrarUsuario(String email, String senha, Map<String, Object> dados_usuario){
+    private void CadastrarUsuario(String email, String senha, Map<String, Object> dados_usuario, Uri profilePicUri){
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     SalvarDadosCadastrais(dados_usuario);
+
+                    // Uploade imagem perfil
+
+
                     Toast.makeText(getApplicationContext(), mensagens[1], Toast.LENGTH_LONG).show();
                 } else {
                     String erro;
@@ -219,7 +232,8 @@ public class FormCadastro extends FileGenerator {
                     if (!checkCameraPermission()) {
                         requestCameraPermission();
                     } else {
-                        mGetContent.launch("image/*");
+                        Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        cameraResultLauncher.launch(camera);
                     }
                 } else if (which == 1) {
                     if (!checkStoragePermission()) {
@@ -232,6 +246,21 @@ public class FormCadastro extends FileGenerator {
         });
         builder.create().show();
     }
+
+    ActivityResultLauncher<Intent> cameraResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        Intent goToCropActivity = new Intent(getApplicationContext(), CropImage.class);
+                        goToCropActivity.putExtra("uri", result);
+                        goToCropActivity.putExtra("class", FormCadastro.class);
+                        startActivity(goToCropActivity);
+                    }
+                }
+            });
 
     // Checagem de permissão: armazenamento externo
     private Boolean checkStoragePermission() {
