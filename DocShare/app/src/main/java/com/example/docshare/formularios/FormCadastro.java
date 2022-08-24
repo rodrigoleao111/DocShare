@@ -5,10 +5,8 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.app.Activity;
@@ -16,11 +14,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -30,7 +26,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.docshare.CropImage;
+import com.example.docshare.metodos.CropImage;
 import com.example.docshare.usuario.FormLogin;
 import com.example.docshare.R;
 import com.example.docshare.metodos.FileGenerator;
@@ -46,8 +42,6 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -146,17 +140,6 @@ public class FormCadastro extends FileGenerator {
         super.onBackPressed();
     }
 
-    // Coletar imagem da galeria
-    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
-        @Override
-        public void onActivityResult(Uri result) {
-            Intent goToCropActivity = new Intent(getApplicationContext(), CropImage.class);
-            goToCropActivity.putExtra("uri", result);
-            goToCropActivity.putExtra("class", FormCadastro.class);
-            startActivity(goToCropActivity);
-        }
-    });
-
 
     /***
      * Realizar comunicação com Firebase para autenticar novo usuário e salvar informações no DB
@@ -247,6 +230,19 @@ public class FormCadastro extends FileGenerator {
         builder.create().show();
     }
 
+    // Coletar imagem da galeria
+    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+        @Override
+        public void onActivityResult(Uri result) {
+            Intent goToCropActivity = new Intent(getApplicationContext(), CropImage.class);
+            goToCropActivity.putExtra("uri", result);
+            goToCropActivity.putExtra("class", FormCadastro.class);
+            startActivity(goToCropActivity);
+        }
+    });
+
+
+    // Coletar imagem da camera
     ActivityResultLauncher<Intent> cameraResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -254,13 +250,18 @@ public class FormCadastro extends FileGenerator {
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent data = result.getData();
-                        Intent goToCropActivity = new Intent(getApplicationContext(), CropImage.class);
-                        goToCropActivity.putExtra("uri", result);
-                        goToCropActivity.putExtra("class", FormCadastro.class);
-                        startActivity(goToCropActivity);
+                        if (data != null) {
+                            Uri uri = data.getData();
+                            Intent goToCropActivity = new Intent(getApplicationContext(), CropImage.class);
+                            goToCropActivity.putExtra("uri", uri);
+                            goToCropActivity.putExtra("class", FormCadastro.class);
+                            startActivity(goToCropActivity);
+                        }
                     }
                 }
             });
+
+
 
     // Checagem de permissão: armazenamento externo
     private Boolean checkStoragePermission() {

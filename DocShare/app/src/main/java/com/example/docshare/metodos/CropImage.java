@@ -1,4 +1,4 @@
-package com.example.docshare;
+package com.example.docshare.metodos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.edmodo.cropper.CropImageView;
+import com.example.docshare.R;
 import com.example.docshare.formularios.FormCadastro;
 
 import java.io.ByteArrayOutputStream;
@@ -27,8 +28,8 @@ import java.net.URI;
 
 public class CropImage extends AppCompatActivity {
 
-    private TextView btCrop, btCancel;
-    private ImageView btRotate;
+    private TextView btCrop;
+    private ImageView btRotate, btCancel;
     private CropImageView mCropImageView;
     float rotation = 0.0f;
     Matrix matrix = new Matrix();

@@ -22,7 +22,7 @@
         android:windowSoftInputMode="adjustPan|adjustResize"
         tools:targetApi="31">
         <activity
-            android:name=".CropImage"
+            android:name=".metodos.CropImage"
             android:exported="false" />
         <activity
             android:name=".VizualizarForm"
