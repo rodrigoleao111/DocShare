@@ -78,6 +78,9 @@ public class FormCadastro extends FileGenerator {
         getSupportActionBar().hide();
         IniciarComponentes();
 
+        Intent profilePic = getIntent();
+        boolean check = profilePic.getBooleanExtra("check", false);
+
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
@@ -88,6 +91,11 @@ public class FormCadastro extends FileGenerator {
                 showImagePicDialog();
             }
         });
+
+        // Caso já tenha adicionado uma foto de perfil:
+        if(check){
+            foto_perfil.setImageURI(Uri.parse(profilePic.getStringExtra("uri")));
+        }
 
         // Botão Finalizar Cadastro
         bt_cadastrar.setOnClickListener(new View.OnClickListener() {
