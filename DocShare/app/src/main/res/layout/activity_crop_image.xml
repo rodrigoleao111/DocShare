@@ -10,19 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/azulao"
+        android:background="@color/black"
         tools:context=".CropImage">
-
-        <Button
-            android:id="@+id/btCrop"
-            android:layout_width="200dp"
-            android:layout_height="60dp"
-            android:layout_margin="30dp"
-            android:backgroundTint="@color/azulGelo"
-            android:text="Cortar imagem"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mCropImageView" />
 
         <TextView
             android:id="@+id/tituloCortar"
@@ -39,18 +28,52 @@
 
         <com.edmodo.cropper.CropImageView
             android:id="@+id/mCropImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="70dp"
+            android:layout_marginHorizontal="20dp"
             app:aspectRatioX="1"
             app:aspectRatioY="1"
-            app:guidelines="onTouch"
-            app:layout_constraintBottom_toTopOf="@+id/btCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tituloCortar">
-
         </com.edmodo.cropper.CropImageView>
+
+        <TextView
+            android:id="@+id/btCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="-20dp"
+            android:text="Cancelar"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/btRotate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mCropImageView" />
+
+        <TextView
+            android:id="@+id/btCrop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-20dp"
+            android:layout_marginEnd="30dp"
+            android:text="Ok"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btRotate"
+            app:layout_constraintTop_toBottomOf="@+id/mCropImageView" />
+
+        <ImageView
+            android:id="@+id/btRotate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-20dp"
+            android:backgroundTint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mCropImageView"
+            app:srcCompat="@drawable/ic_baseline_rotate_90_degrees_ccw_24" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
