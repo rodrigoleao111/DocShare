@@ -11,8 +11,10 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.docshare.R;
 import com.example.docshare.formularios.FormOSManutencaoCorretiva;
+import com.example.docshare.metodos.ImageHelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -27,7 +30,9 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-public class TelaDeUsuario extends AppCompatActivity {
+import java.io.IOException;
+
+public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
 
     private static final int PERMISSION_REQUEST_CODE = 200;
 
@@ -83,9 +88,18 @@ public class TelaDeUsuario extends AppCompatActivity {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
                 if(documentSnapshot != null){
-                    ola = "Olá, " + documentSnapshot.getString("nome");
+                    String[] nomeUser = documentSnapshot.getString("nome").split("\\s");
+                    ola = "Olá, " + nomeUser[0];
                     boas_vindas.setText(ola);
-                    profilePic.setImageURI(Uri.parse(documentSnapshot.getString("profilePicUri")));
+                    try {
+                        Bitmap profilePicBitmap = MediaStore.Images.Media.getBitmap(
+                                getContentResolver() ,
+                                Uri.parse(documentSnapshot.getString("profilePicUri")));
+                        profilePic.setImageBitmap(ImageHelper.getRoundedCornerBitmap(profilePicBitmap, 10));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    //profilePic.setImageURI(Uri.parse(documentSnapshot.getString("profilePicUri")));
                 }
             }
         });
