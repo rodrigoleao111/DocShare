@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -59,8 +60,10 @@ public class FormCadastro extends FileGenerator {
     private EditText nome_user, cpf_user, rg_user, telefone_user;
     private Spinner cargo_user, setor_user;
     private Button bt_cadastrar;
-    private ImageView foto_perfil;
+    private ImageView foto_perfil, loadingBg;
     private Uri profilePicUri;
+
+    private ProgressBar loadingPb;
 
     private final FirebaseFirestore db_cadastros = FirebaseFirestore.getInstance();
 //    private final StorageReference storageRef = FirebaseStorage.getInstance().getReference();
@@ -114,6 +117,8 @@ public class FormCadastro extends FileGenerator {
                     Toast.makeText(getApplicationContext(), mensagens[0], Toast.LENGTH_LONG).show();
                 } else {
                     if(senha.equals(confirma_senha)){
+                        loadingBg.setVisibility(View.VISIBLE);
+                        loadingPb.setVisibility(View.VISIBLE);
                         CadastrarUsuario(email, senha, dados_usuario);
                     } else Toast.makeText(getApplicationContext(), mensagens[2], Toast.LENGTH_LONG).show();
                 }
@@ -136,7 +141,10 @@ public class FormCadastro extends FileGenerator {
         dados_usuario.put("telefone", telefone_user.getText().toString());
         dados_usuario.put("cargo", cargo_user.getSelectedItem().toString());
         dados_usuario.put("setor", setor_user.getSelectedItem().toString());
-        dados_usuario.put("profilePicUri", profilePicUri.toString());
+        if(profilePicUri != null)
+            dados_usuario.put("profilePicUri", profilePicUri.toString());
+        else
+            Toast.makeText(getApplicationContext(),mensagens[0], Toast.LENGTH_SHORT).show();
 
 //        // Salvar e coletar imagem de perfil
 //        StorageReference profilePicRef = storageRef.child(profilePicUri.getPath());
@@ -337,6 +345,9 @@ public class FormCadastro extends FileGenerator {
         bt_cadastrar = findViewById(R.id.button_cadastrar);
 
         foto_perfil = findViewById(R.id.profile_picture);
+
+        loadingBg = findViewById(R.id.loagingBg);
+        loadingPb = findViewById(R.id.loadingPb);
     }
 
 

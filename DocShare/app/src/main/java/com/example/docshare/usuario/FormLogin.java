@@ -4,14 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +30,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class FormLogin extends AppCompatActivity {
 
     private EditText edt_email, edt_senha;
+    private ImageView loadingBg;
     private TextView edt_cadastre;
     private Button bt_entrar;
     private ProgressBar progressBar;
@@ -48,17 +52,35 @@ public class FormLogin extends AppCompatActivity {
                 String email = edt_email.getText().toString();
                 String senha = edt_senha.getText().toString();
 
-               progressBar.setVisibility(View.VISIBLE);
-
                 if(email.isEmpty() || senha.isEmpty())
                     Toast.makeText(getApplicationContext(), mensagens[0], Toast.LENGTH_LONG).show();
                 else {
+                    View view = getCurrentFocus();
+                    HideKeyboard(view);
+                    progressBar.setVisibility(View.VISIBLE);
+                    loadingBg.setVisibility(View.VISIBLE);
                     AutenticarUsuario(email, senha);
                 }
             }
         });
 
+        edt_cadastre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToFormCadastroActivity = new Intent(getApplicationContext(), FormCadastro.class);
+                startActivity(goToFormCadastroActivity);
+                finish();
+            }
+        });
+    }
 
+    
+
+    private void HideKeyboard(View view) {
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     @Override
@@ -87,21 +109,6 @@ public class FormLogin extends AppCompatActivity {
         dialog.show();
     }
 
-
-
-
-
-    /***
-     * Mudança para Activity FormCadastro
-     * Obs.: utilizei o método onClick no próprio XML
-     * @param view
-     */
-    public void goToCadastro(View view){
-        Intent goToFormCadastroActivity = new Intent(getApplicationContext(), FormCadastro.class);
-        startActivity(goToFormCadastroActivity);
-        finish();
-    }
-
     public void IniciarComponentes(){
         edt_email = findViewById(R.id.edit_email);
         edt_senha = findViewById(R.id.editTextPassword);
@@ -109,6 +116,9 @@ public class FormLogin extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_bar);
         edt_cadastre = findViewById(R.id.textViewCadastre);
         progressBar.setVisibility(View.INVISIBLE);
+        loadingBg = findViewById(R.id.loagingBgLogin);
+        loadingBg.setVisibility(View.INVISIBLE);
+        edt_cadastre = findViewById(R.id.textViewCadastre);
     }
 
     private void AutenticarUsuario(String email, String senha){
