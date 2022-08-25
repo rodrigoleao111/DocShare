@@ -31,6 +31,7 @@ import com.example.docshare.metodos.CropImage;
 import com.example.docshare.usuario.FormLogin;
 import com.example.docshare.R;
 import com.example.docshare.metodos.FileGenerator;
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -42,6 +43,9 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -58,7 +62,9 @@ public class FormCadastro extends FileGenerator {
     private ImageView foto_perfil;
     private Uri profilePicUri;
 
-    private FirebaseFirestore db_cadastros = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore db_cadastros = FirebaseFirestore.getInstance();
+//    private final StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+//    private final FirebaseStorage storage = FirebaseStorage.getInstance("gs://docshare-db561.appspot.com/ProfilePictures");
 
     String[] cameraPermission;
     String[] storagePermission;
@@ -108,7 +114,7 @@ public class FormCadastro extends FileGenerator {
                     Toast.makeText(getApplicationContext(), mensagens[0], Toast.LENGTH_LONG).show();
                 } else {
                     if(senha.equals(confirma_senha)){
-                        CadastrarUsuario(email, senha, dados_usuario, profilePicUri);
+                        CadastrarUsuario(email, senha, dados_usuario);
                     } else Toast.makeText(getApplicationContext(), mensagens[2], Toast.LENGTH_LONG).show();
                 }
             }
@@ -130,6 +136,30 @@ public class FormCadastro extends FileGenerator {
         dados_usuario.put("telefone", telefone_user.getText().toString());
         dados_usuario.put("cargo", cargo_user.getSelectedItem().toString());
         dados_usuario.put("setor", setor_user.getSelectedItem().toString());
+        dados_usuario.put("profilePicUri", profilePicUri.toString());
+
+//        // Salvar e coletar imagem de perfil
+//        StorageReference profilePicRef = storageRef.child(profilePicUri.getPath());
+//        UploadTask uploadTask = profilePicRef.putFile(profilePicUri);
+//        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+//            @Override
+//            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+//                if (!task.isSuccessful()) {
+//                    throw task.getException();
+//                }
+//                return profilePicRef.getDownloadUrl();
+//            }
+//        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Uri> task) {
+//                if (task.isSuccessful()) {
+//                    Uri downloadUri = task.getResult();
+//                    dados_usuario.put("profilePic", downloadUri.toString());
+//                } else {
+//                    //Toast de falha
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -146,15 +176,12 @@ public class FormCadastro extends FileGenerator {
      * @param senha inserido pelo usuário
      * @param dados_usuario informações a serem adicionadas ao DB
      */
-    private void CadastrarUsuario(String email, String senha, Map<String, Object> dados_usuario, Uri profilePicUri){
+    private void CadastrarUsuario(String email, String senha, Map<String, Object> dados_usuario){
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     SalvarDadosCadastrais(dados_usuario);
-
-                    // Uploade imagem perfil
-
 
                     Toast.makeText(getApplicationContext(), mensagens[1], Toast.LENGTH_LONG).show();
                 } else {

@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,7 +31,7 @@ public class TelaDeUsuario extends AppCompatActivity {
 
     private static final int PERMISSION_REQUEST_CODE = 200;
 
-    private ImageView bt_nova_os_manutencao, bt_historico_de_atividades, bt_configuracoes;
+    private ImageView bt_nova_os_manutencao, bt_historico_de_atividades, bt_configuracoes, profilePic;
     private TextView boas_vindas;
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
     String userID, ola;
@@ -84,6 +85,7 @@ public class TelaDeUsuario extends AppCompatActivity {
                 if(documentSnapshot != null){
                     ola = "Olá, " + documentSnapshot.getString("nome");
                     boas_vindas.setText(ola);
+                    profilePic.setImageURI(Uri.parse(documentSnapshot.getString("profilePicUri")));
                 }
             }
         });
@@ -93,7 +95,7 @@ public class TelaDeUsuario extends AppCompatActivity {
         bt_nova_os_manutencao = findViewById(R.id.image_bt_nova_os);
         bt_historico_de_atividades = findViewById(R.id.image_historico);
         bt_configuracoes = findViewById(R.id.image_configuracoes);
-
+        profilePic = findViewById(R.id.profilePic);
         boas_vindas = findViewById(R.id.txt_boas_vindas);
 
     }
