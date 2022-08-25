@@ -48,13 +48,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/btRotate" />
 
-        <TextView
+        <ImageView
             android:id="@+id/btCrop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ok"
-            android:textColor="@color/white"
-            android:textSize="30dp"
+            app:srcCompat="@drawable/ic_baseline_check_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btRotate"
             app:layout_constraintTop_toTopOf="@+id/btRotate" />

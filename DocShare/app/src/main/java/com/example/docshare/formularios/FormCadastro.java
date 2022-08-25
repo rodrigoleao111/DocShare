@@ -14,6 +14,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -47,11 +48,8 @@ import java.util.Map;
 
 public class FormCadastro extends FileGenerator {
 
-    private static final int GalleryPick = 1;
     private static final int CAMERA_REQUEST = 100;
     private static final int STORAGE_REQUEST = 200;
-    private static final int IMAGEPICK_GALLERY_REQUEST = 300;
-    private static final int IMAGE_PICKCAMERA_REQUEST = 400;
 
     private EditText email_user, senha_user, confirmar_senha_user;
     private EditText nome_user, cpf_user, rg_user, telefone_user;
@@ -251,11 +249,8 @@ public class FormCadastro extends FileGenerator {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent data = result.getData();
                         if (data != null) {
-                            Uri uri = data.getData();
-                            Intent goToCropActivity = new Intent(getApplicationContext(), CropImage.class);
-                            goToCropActivity.putExtra("uri", uri);
-                            goToCropActivity.putExtra("class", FormCadastro.class);
-                            startActivity(goToCropActivity);
+                            Bitmap cameraPic = (Bitmap)(data.getExtras().get("data"));
+                            foto_perfil.setImageBitmap(cameraPic);
                         }
                     }
                 }
