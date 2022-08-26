@@ -22,7 +22,9 @@ import android.widget.Toast;
 
 import com.example.docshare.R;
 import com.example.docshare.formularios.FormOSManutencaoCorretiva;
+import com.example.docshare.metodos.CropImage;
 import com.example.docshare.metodos.ImageHelper;
+import com.example.docshare.metodos.ImagePic;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -31,8 +33,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.io.IOException;
+import java.util.Objects;
 
-public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
+public class TelaDeUsuario extends ImagePic implements ImageHelper {
 
     private static final int PERMISSION_REQUEST_CODE = 200;
 
@@ -48,6 +51,24 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
 
         getSupportActionBar().hide();
         IniciarComponentes();
+
+        // intent recebedora de imagem cortada
+        Intent profilePicReciver = getIntent();
+        boolean check = profilePicReciver.getBooleanExtra("check", false);
+
+        profilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // TO DO: GENERALIZAR ESCOLHA E CORTE DE IMAGEM, PARA USAR EM OUTRAS ACTIVITIES.
+
+                ImagePic imagePic = new ImagePic();
+                showImagePicDialog();
+                Intent cropImage = new Intent(getApplicationContext(), CropImage.class);
+                cropImage.putExtra("uri", imagePic.getUri());
+                startActivity(cropImage);
+            }
+        });
 
         // Por enquanto vou usar com a função de deslogar
         bt_configuracoes.setOnClickListener(new View.OnClickListener() {
@@ -92,10 +113,12 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
                     ola = "Olá, " + nomeUser[0];
                     boas_vindas.setText(ola);
                     try {
-                        Bitmap profilePicBitmap = MediaStore.Images.Media.getBitmap(
-                                getContentResolver() ,
-                                Uri.parse(documentSnapshot.getString("profilePicUri")));
-                        profilePic.setImageBitmap(ImageHelper.getRoundedCornerBitmap(profilePicBitmap, 10));
+                        if(!Objects.equals(documentSnapshot.getString("profilePicUri"), "void")) {
+                            Bitmap profilePicBitmap = MediaStore.Images.Media.getBitmap(
+                                    getContentResolver(),
+                                    Uri.parse(documentSnapshot.getString("profilePicUri")));
+                            profilePic.setImageBitmap(ImageHelper.getRoundedCornerBitmap(profilePicBitmap, 10));
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

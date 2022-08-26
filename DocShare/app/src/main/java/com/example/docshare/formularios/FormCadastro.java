@@ -53,9 +53,6 @@ import java.util.Map;
 
 public class FormCadastro extends FileGenerator {
 
-    private static final int CAMERA_REQUEST = 100;
-    private static final int STORAGE_REQUEST = 200;
-
     private EditText email_user, senha_user, confirmar_senha_user;
     private EditText nome_user, cpf_user, rg_user, telefone_user;
     private Spinner cargo_user, setor_user;
@@ -68,9 +65,6 @@ public class FormCadastro extends FileGenerator {
     private final FirebaseFirestore db_cadastros = FirebaseFirestore.getInstance();
 //    private final StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 //    private final FirebaseStorage storage = FirebaseStorage.getInstance("gs://docshare-db561.appspot.com/ProfilePictures");
-
-    String[] cameraPermission;
-    String[] storagePermission;
 
     String[] mensagens = {"Erro: Preencha todos os campos", "Cadastro realizado", "Erro: Campos de senha diferentes"};
     String usuarioID;
@@ -85,26 +79,6 @@ public class FormCadastro extends FileGenerator {
 
         getSupportActionBar().hide();
         IniciarComponentes();
-
-        Intent profilePic = getIntent();
-        boolean check = profilePic.getBooleanExtra("check", false);
-
-        cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
-
-        // Adicionar foto de perfil
-        foto_perfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showImagePicDialog();
-            }
-        });
-
-        // Caso já tenha adicionado uma foto de perfil:
-        if(check){
-            foto_perfil.setImageURI(Uri.parse(profilePic.getStringExtra("uri")));
-            profilePicUri = Uri.parse(profilePic.getStringExtra("uri"));
-        }
 
         // Botão Finalizar Cadastro
         bt_cadastrar.setOnClickListener(new View.OnClickListener() {
@@ -141,10 +115,8 @@ public class FormCadastro extends FileGenerator {
         dados_usuario.put("telefone", telefone_user.getText().toString());
         dados_usuario.put("cargo", cargo_user.getSelectedItem().toString());
         dados_usuario.put("setor", setor_user.getSelectedItem().toString());
-        if(profilePicUri != null)
-            dados_usuario.put("profilePicUri", profilePicUri.toString());
-        else
-            Toast.makeText(getApplicationContext(),mensagens[0], Toast.LENGTH_SHORT).show();
+        dados_usuario.put("profilePicUri", "void");
+
 
 //        // Salvar e coletar imagem de perfil
 //        StorageReference profilePicRef = storageRef.child(profilePicUri.getPath());
@@ -236,100 +208,6 @@ public class FormCadastro extends FileGenerator {
         });
     }
 
-    private void showImagePicDialog() {
-        String options[] = {"Camera", "Galeria"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Selecione a fonte da imagem.");
-        builder.setItems(options, new DialogInterface.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (which == 0) {
-                    if (!checkCameraPermission()) {
-                        requestCameraPermission();
-                    } else {
-                        Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        cameraResultLauncher.launch(camera);
-                    }
-                } else if (which == 1) {
-                    if (!checkStoragePermission()) {
-                        requestStoragePermission();
-                    } else {
-                        mGetContent.launch("image/*");
-                    }
-                }
-            }
-        });
-        builder.create().show();
-    }
-
-    // Coletar imagem da galeria
-    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
-        @Override
-        public void onActivityResult(Uri result) {
-            Intent goToCropActivity = new Intent(getApplicationContext(), CropImage.class);
-            goToCropActivity.putExtra("uri", result);
-            goToCropActivity.putExtra("class", FormCadastro.class);
-            startActivity(goToCropActivity);
-        }
-    });
-
-
-    // Coletar imagem da camera
-    ActivityResultLauncher<Intent> cameraResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        Intent data = result.getData();
-                        if (data != null) {
-                            Bitmap cameraPic = (Bitmap)(data.getExtras().get("data"));
-                            foto_perfil.setImageBitmap(cameraPic);
-                        }
-                    }
-                }
-            });
-
-
-
-    // Checagem de permissão: armazenamento externo
-    private Boolean checkStoragePermission() {
-        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
-        return result;
-    }
-
-    // Requisição de permissão: galeria
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void requestStoragePermission() {
-        requestPermissions(storagePermission, STORAGE_REQUEST);
-    }
-
-    // Checagem de permissão: camera
-    private Boolean checkCameraPermission() {
-        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
-        boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
-        return result && result1;
-    }
-
-    // Requisição de permissão: camera
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void requestCameraPermission() {
-        requestPermissions(cameraPermission, CAMERA_REQUEST);
-    }
-
-    // Adicionar condição para quando a permissão for negada
-
-
-
-
-
-
-
-
-
-
-
     public void IniciarComponentes(){
         email_user = findViewById(R.id.edit_cadastro_email);
         senha_user = findViewById(R.id.edit_cadastro_senha);
@@ -343,8 +221,6 @@ public class FormCadastro extends FileGenerator {
         setor_user = findViewById(R.id.edit_setor);
 
         bt_cadastrar = findViewById(R.id.button_cadastrar);
-
-        foto_perfil = findViewById(R.id.profile_picture);
 
         loadingBg = findViewById(R.id.loagingBg);
         loadingPb = findViewById(R.id.loadingPb);

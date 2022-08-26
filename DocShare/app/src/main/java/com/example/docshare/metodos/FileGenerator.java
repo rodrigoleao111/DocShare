@@ -199,11 +199,4 @@ public class FileGenerator extends AppCompatActivity {
     }
 
 
-    public Uri PicFromCamera() {
-
-
-        return null;
-    }
-
-
 }

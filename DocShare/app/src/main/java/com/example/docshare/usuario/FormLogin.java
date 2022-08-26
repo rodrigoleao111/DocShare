@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 import com.example.docshare.R;
 import com.example.docshare.formularios.FormCadastro;
+import com.example.docshare.metodos.FileGenerator;
+import com.example.docshare.metodos.ImagePic;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -74,7 +76,7 @@ public class FormLogin extends AppCompatActivity {
         });
     }
 
-    
+
 
     private void HideKeyboard(View view) {
         if (view != null) {
