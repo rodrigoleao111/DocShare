@@ -36,9 +36,7 @@ public class VizualizarForm extends FileGenerator {
         btVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // ESTÁ VOLTANDO E LIMPANDO TODAS AS INFORMAÇÕES QUE ESTAVAM INSERIDAS (NÃO QUERO ISSO)
-                Intent voltar = new Intent(getApplicationContext(), FormOSManutencaoCorretiva.class);
-                startActivity(voltar);
+                finish();
             }
         });
 
