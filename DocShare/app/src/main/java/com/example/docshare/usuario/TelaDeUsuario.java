@@ -134,17 +134,16 @@ public class TelaDeUsuario extends ImagePic implements ImageHelper {
                     String[] nomeUser = documentSnapshot.getString("nome").split("\\s");
                     ola = "Olá, " + nomeUser[0];
                     boas_vindas.setText(ola);
-                    try {
-                        if(!Objects.equals(documentSnapshot.getString("profilePicUri"), "void")) {
-                            Bitmap profilePicBitmap = MediaStore.Images.Media.getBitmap(
-                                    getContentResolver(),
-                                    Uri.parse(documentSnapshot.getString("profilePicUri")));
-                            profilePic.setImageBitmap(ImageHelper.getRoundedCornerBitmap(profilePicBitmap, 10));
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    if(!Objects.equals(documentSnapshot.getString("profilePicUri"), "void")) {
+                        /*
+                        Bitmap profilePicBitmap = MediaStore.Images.Media.getBitmap(
+                                getContentResolver(),
+                                Uri.parse(documentSnapshot.getString("profilePicUri")));
+                        profilePic.setImageBitmap(ImageHelper.getRoundedCornerBitmap(profilePicBitmap, 10));
+
+                         */
+                        profilePic.setImageURI(Uri.parse(documentSnapshot.getString("profilePicUri")));
                     }
-                    //profilePic.setImageURI(Uri.parse(documentSnapshot.getString("profilePicUri")));
                 }
             }
         });

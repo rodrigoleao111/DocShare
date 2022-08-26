@@ -117,29 +117,6 @@ public class FormCadastro extends FileGenerator {
         dados_usuario.put("setor", setor_user.getSelectedItem().toString());
         dados_usuario.put("profilePicUri", "void");
 
-
-//        // Salvar e coletar imagem de perfil
-//        StorageReference profilePicRef = storageRef.child(profilePicUri.getPath());
-//        UploadTask uploadTask = profilePicRef.putFile(profilePicUri);
-//        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-//            @Override
-//            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-//                if (!task.isSuccessful()) {
-//                    throw task.getException();
-//                }
-//                return profilePicRef.getDownloadUrl();
-//            }
-//        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Uri> task) {
-//                if (task.isSuccessful()) {
-//                    Uri downloadUri = task.getResult();
-//                    dados_usuario.put("profilePic", downloadUri.toString());
-//                } else {
-//                    //Toast de falha
-//                }
-//            }
-//        });
     }
 
     @Override

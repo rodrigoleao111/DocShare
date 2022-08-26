@@ -28,8 +28,20 @@ import androidx.core.content.ContextCompat;
 
 import com.example.docshare.formularios.FormCadastro;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Random;
+
 public interface ImageHelper {
 
+    /***
+     * Arredondar cantos de bitmap
+     * @param bitmap - imagem a ser modificada
+     * @param pixels - raio do arredondamento
+     * @return - bitmap de imagem arredondada
+     */
     public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, int pixels) {
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap
                 .getHeight(), Config.ARGB_8888);
@@ -52,4 +64,42 @@ public interface ImageHelper {
         return output;
     }
 
+    /***
+     * Transformar bitmap em file e retornar path
+     * @param bitmap - imagem recebida
+     * @return - String path file criado
+     */
+    public static String bitmapToUri(Bitmap bitmap, Context context, String filename) throws IOException {
+
+        boolean finish = false;
+        StringBuilder filenameBuilder = new StringBuilder(filename);
+        File file = null;
+
+        while (!finish) {
+            file = new File(context.getCacheDir(), filename);
+
+            if (file.createNewFile()) {
+                // Atribuir bitmap ao file
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 0, bos);
+                byte[] bitmapdata = bos.toByteArray();
+
+                FileOutputStream fos = new FileOutputStream(file);
+                fos.write(bitmapdata);
+                fos.flush();
+                fos.close();
+
+                finish = true;
+            } else {
+                // Modificar o filename
+                Random r = new Random();
+                char c = (char)(r.nextInt(26) + 'a');
+                filenameBuilder.insert(0, c);
+                filename = filenameBuilder.toString();
+            }
+        }
+
+
+        return file.getAbsolutePath();
+    }
 }
