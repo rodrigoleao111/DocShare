@@ -147,7 +147,23 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
         @Override
         public void onActivityResult(Uri result) {
-            // FAZER ALGUMA COISA
+            Map<String,Object> addProfilePicUri = new HashMap<>();
+            addProfilePicUri.put("profilePicUri", result.toString());
+
+            documentReference.update(addProfilePicUri).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    Log.d("db", "Imagem de perfil atualizada");
+                    documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                        @Override
+                        public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                            if (documentSnapshot != null) {
+                                changeProfilePic.setImageURI(Uri.parse(documentSnapshot.getString("profilePicUri")));
+                            }
+                        }
+                    });
+                }
+            });
         }
     });
 
@@ -173,7 +189,6 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
                                 e.printStackTrace();
                             }
 
-                            DocumentReference documentReference = db_dados_usuario.collection("Usuarios").document(userID);
                             documentReference.update(addProfilePicUri).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
