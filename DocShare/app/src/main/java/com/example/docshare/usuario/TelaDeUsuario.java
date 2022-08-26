@@ -5,14 +5,18 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -74,10 +78,28 @@ public class TelaDeUsuario extends ImagePic implements ImageHelper {
         bt_configuracoes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Toast.makeText(getApplicationContext(), "Usuário deslogado", Toast.LENGTH_LONG).show();
-                Intent back_to_login = new Intent(getApplicationContext(), FormLogin.class);
-                startActivity(back_to_login);
+                String[] options = {"Configurações de usuário", "Trocar de conta", "Sair"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(TelaDeUsuario.this);
+                builder.setTitle("Opções de configuração");
+                builder.setItems(options, new DialogInterface.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.M)
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (which == 0) {
+                            Intent goToUserConfig = new Intent( getApplicationContext(), ConfiguracoesDeUsuario.class);
+                            startActivity(goToUserConfig);
+                        } else if (which == 1) {
+                            FirebaseAuth.getInstance().signOut();
+                            Intent back_to_login = new Intent(getApplicationContext(), FormLogin.class);
+                            Toast.makeText(getApplicationContext(), "Usuário deslogado", Toast.LENGTH_LONG).show();
+                            startActivity(back_to_login);
+                        } else if (which == 2) {
+                            finishAndRemoveTask();
+                        }
+                    }
+                });
+                builder.create().show();
+
             }
         });
 
