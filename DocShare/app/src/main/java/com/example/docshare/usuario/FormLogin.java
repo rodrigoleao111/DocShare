@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.docshare.R;
+import com.example.docshare.TelaUsuario2Activity;
 import com.example.docshare.formularios.FormCadastro;
 import com.example.docshare.metodos.FileGenerator;
 import com.example.docshare.metodos.ImagePic;
@@ -161,7 +162,7 @@ public class FormLogin extends AppCompatActivity {
     } */
 
     private void goToMainActivity(){
-        Intent intent = new Intent(getApplicationContext(), TelaDeUsuario.class);
+        Intent intent = new Intent(getApplicationContext(), TelaUsuario2Activity.class);
         startActivity(intent);
         finish();
     }
