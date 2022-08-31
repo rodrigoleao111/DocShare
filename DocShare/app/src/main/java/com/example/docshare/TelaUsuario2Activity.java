@@ -3,14 +3,21 @@ package com.example.docshare;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.docshare.fragments.ConfiguracoesFragment;
 import com.example.docshare.fragments.HistoricoFragment;
 import com.example.docshare.fragments.InicioFragment;
+import com.example.docshare.usuario.FormLogin;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class TelaUsuario2Activity extends AppCompatActivity {
@@ -19,6 +26,8 @@ public class TelaUsuario2Activity extends AppCompatActivity {
     private HistoricoFragment historicoFragment = new HistoricoFragment();
     private ConfiguracoesFragment configuracoesFragment = new ConfiguracoesFragment();
     private BottomNavigationView bottomNavigationView;
+    FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
+    private Button buttonSair;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +36,7 @@ public class TelaUsuario2Activity extends AppCompatActivity {
 
         getSupportActionBar().hide();
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, inicioFragment).commit();
+        //getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, inicioFragment).commit();
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -48,5 +57,8 @@ public class TelaUsuario2Activity extends AppCompatActivity {
                 return true;
             }
         });
+
+
     }
+
 }
