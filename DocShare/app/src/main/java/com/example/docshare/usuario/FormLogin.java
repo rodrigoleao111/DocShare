@@ -151,15 +151,15 @@ public class FormLogin extends AppCompatActivity {
     /***
      * Manter usuário logado
      */
-    //@Override
-   /* protected void onStart() {
+    @Override
+    protected void onStart() {
         super.onStart();
         FirebaseUser usuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
 
         if(usuarioAtual != null)
             goToMainActivity();
 
-    } */
+    } 
 
     private void goToMainActivity(){
         Intent intent = new Intent(getApplicationContext(), TelaUsuario2Activity.class);

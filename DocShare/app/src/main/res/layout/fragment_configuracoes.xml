@@ -44,7 +44,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="294dp"
-            android:text="Button"
+            android:backgroundTint="@color/azulao"
+            android:drawableLeft="@drawable/ic_sair"
+            android:text="Sair"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
