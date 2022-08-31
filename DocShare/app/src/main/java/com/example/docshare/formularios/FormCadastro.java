@@ -1,24 +1,9 @@
 package com.example.docshare.formularios;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,11 +13,9 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.docshare.metodos.CropImage;
 import com.example.docshare.usuario.FormLogin;
 import com.example.docshare.R;
 import com.example.docshare.metodos.FileGenerator;
-import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -44,9 +27,6 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,14 +37,11 @@ public class FormCadastro extends FileGenerator {
     private EditText nome_user, cpf_user, rg_user, telefone_user;
     private Spinner cargo_user, setor_user;
     private Button bt_cadastrar;
-    private ImageView foto_perfil, loadingBg;
-    private Uri profilePicUri;
+    private ImageView loadingBg;
 
     private ProgressBar loadingPb;
 
     private final FirebaseFirestore db_cadastros = FirebaseFirestore.getInstance();
-//    private final StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-//    private final FirebaseStorage storage = FirebaseStorage.getInstance("gs://docshare-db561.appspot.com/ProfilePictures");
 
     String[] mensagens = {"Erro: Preencha todos os campos", "Cadastro realizado", "Erro: Campos de senha diferentes"};
     String usuarioID;
@@ -94,7 +71,11 @@ public class FormCadastro extends FileGenerator {
                         loadingBg.setVisibility(View.VISIBLE);
                         loadingPb.setVisibility(View.VISIBLE);
                         CadastrarUsuario(email, senha, dados_usuario);
-                    } else Toast.makeText(getApplicationContext(), mensagens[2], Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), mensagens[2], Toast.LENGTH_LONG).show();
+                        loadingPb.setVisibility(View.INVISIBLE);
+                        loadingBg.setVisibility(View.INVISIBLE);
+                    }
                 }
             }
         });
@@ -156,6 +137,8 @@ public class FormCadastro extends FileGenerator {
                         erro = "Erro ao cadastrar usuário";
                     }
                     Toast.makeText(getApplicationContext(), erro, Toast.LENGTH_LONG).show();
+                    loadingPb.setVisibility(View.INVISIBLE);
+                    loadingBg.setVisibility(View.INVISIBLE);
                 }
             }
         });

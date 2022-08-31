@@ -15,6 +15,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -129,8 +130,9 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
                     String[] nomeUser = documentSnapshot.getString("nome").split("\\s");
                     ola = "Olá, " + nomeUser[0];
                     boas_vindas.setText(ola);
-                    if(!Objects.equals(documentSnapshot.getString("profilePicUrl"), "void")) {
-                        //profilePic.setImageURI(Uri.parse(documentSnapshot.getString("profilePicUrl")));
+                    if(!Objects.equals(documentSnapshot.getString("profilePicUri"), "void")) {
+                        Bitmap profilePicBitmap = BitmapFactory.decodeFile(documentSnapshot.getString("profilePicUri"));
+                        profilePic.setImageBitmap(profilePicBitmap);
                     }
                 }
             }

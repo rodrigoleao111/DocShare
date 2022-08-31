@@ -54,8 +54,11 @@ public class FormLogin extends AppCompatActivity {
                 String email = edt_email.getText().toString();
                 String senha = edt_senha.getText().toString();
 
-                if(email.isEmpty() || senha.isEmpty())
+                if(email.isEmpty() || senha.isEmpty()) {
                     Toast.makeText(getApplicationContext(), mensagens[0], Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.INVISIBLE);
+                    loadingBg.setVisibility(View.INVISIBLE);
+                }
                 else {
                     View view = getCurrentFocus();
                     HideKeyboard(view);
@@ -141,6 +144,8 @@ public class FormLogin extends AppCompatActivity {
                     } catch (Exception e){
                         erro = "Erro ao logar usuário";
                     }
+                    progressBar.setVisibility(View.INVISIBLE);
+                    loadingBg.setVisibility(View.INVISIBLE);
                     Toast.makeText(getApplicationContext(), erro, Toast.LENGTH_LONG).show();
                 }
             }
