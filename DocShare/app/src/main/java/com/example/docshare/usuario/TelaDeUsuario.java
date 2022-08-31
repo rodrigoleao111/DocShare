@@ -39,7 +39,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.io.IOException;
 import java.util.Objects;
 
-public class TelaDeUsuario extends ImagePic implements ImageHelper {
+public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
 
     private static final int PERMISSION_REQUEST_CODE = 200;
 
@@ -66,11 +66,6 @@ public class TelaDeUsuario extends ImagePic implements ImageHelper {
 
                 // TO DO: GENERALIZAR ESCOLHA E CORTE DE IMAGEM, PARA USAR EM OUTRAS ACTIVITIES.
 
-                ImagePic imagePic = new ImagePic();
-                showImagePicDialog();
-                Intent cropImage = new Intent(getApplicationContext(), CropImage.class);
-                cropImage.putExtra("uri", imagePic.getUri());
-                startActivity(cropImage);
             }
         });
 
@@ -134,15 +129,8 @@ public class TelaDeUsuario extends ImagePic implements ImageHelper {
                     String[] nomeUser = documentSnapshot.getString("nome").split("\\s");
                     ola = "Olá, " + nomeUser[0];
                     boas_vindas.setText(ola);
-                    if(!Objects.equals(documentSnapshot.getString("profilePicUri"), "void")) {
-                        /*
-                        Bitmap profilePicBitmap = MediaStore.Images.Media.getBitmap(
-                                getContentResolver(),
-                                Uri.parse(documentSnapshot.getString("profilePicUri")));
-                        profilePic.setImageBitmap(ImageHelper.getRoundedCornerBitmap(profilePicBitmap, 10));
-
-                         */
-                        profilePic.setImageURI(Uri.parse(documentSnapshot.getString("profilePicUri")));
+                    if(!Objects.equals(documentSnapshot.getString("profilePicUrl"), "void")) {
+                        //profilePic.setImageURI(Uri.parse(documentSnapshot.getString("profilePicUrl")));
                     }
                 }
             }

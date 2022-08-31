@@ -116,6 +116,7 @@ public class FormCadastro extends FileGenerator {
         dados_usuario.put("cargo", cargo_user.getSelectedItem().toString());
         dados_usuario.put("setor", setor_user.getSelectedItem().toString());
         dados_usuario.put("profilePicUri", "void");
+        dados_usuario.put("profilePicUrl", "void");
 
     }
 

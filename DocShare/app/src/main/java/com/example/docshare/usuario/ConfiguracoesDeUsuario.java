@@ -29,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.docshare.R;
+import com.example.docshare.metodos.CropImage;
 import com.example.docshare.metodos.ImageHelper;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -40,6 +41,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -61,6 +63,8 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
     private String[] cameraPermission;
     private String[] storagePermission;
 
+    private Map<String,Object> newProfilePicUri = new HashMap<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +79,13 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
                 showImagePicDialog();
             }
         });
+
+        // Recebendo dados de CropImage
+        Intent receberProfilePic = getIntent();
+        if(receberProfilePic.getBooleanExtra("check", false)){
+            newProfilePicUri.put("profilePicUri", receberProfilePic.getStringExtra("path"));
+            updateProfilePic(newProfilePicUri);
+        }
 
 
     }
@@ -147,23 +158,12 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
         @Override
         public void onActivityResult(Uri result) {
-            Map<String,Object> addProfilePicUri = new HashMap<>();
-            addProfilePicUri.put("profilePicUri", result.toString());
-
-            documentReference.update(addProfilePicUri).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void unused) {
-                    Log.d("db", "Imagem de perfil atualizada");
-                    documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                        @Override
-                        public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-                            if (documentSnapshot != null) {
-                                changeProfilePic.setImageURI(Uri.parse(documentSnapshot.getString("profilePicUri")));
-                            }
-                        }
-                    });
-                }
-            });
+            // Enviar bitmap para CropImage
+            Intent sendToCropImageActivity = new Intent(getApplicationContext(), CropImage.class);
+            sendToCropImageActivity.putExtra("uri", result);
+            sendToCropImageActivity.putExtra("call", 0);
+            sendToCropImageActivity.putExtra("source", 1);
+            startActivity(sendToCropImageActivity);
         }
     });
 
@@ -179,35 +179,12 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
                         if (data != null) {
                             Bitmap cameraPic = (Bitmap)(data.getExtras().get("data"));
 
-                            Map<String,Object> addProfilePicUri = new HashMap<>();
-                            try {
-                                addProfilePicUri.put("profilePicUri",
-                                        ImageHelper.bitmapToUri(cameraPic,
-                                        getApplicationContext(),
-                                        "filename"));
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-
-                            documentReference.update(addProfilePicUri).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    Log.d("db", "Imagem de perfil atualizada");
-                                    documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                                        @Override
-                                        public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-                                            if(documentSnapshot != null){
-                                                changeProfilePic.setImageURI(Uri.parse(documentSnapshot.getString("profilePicUri")));
-                                                }
-                                        }
-                                    });
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d("db_error", "Erro ao atualizar imagem de perfil: " + e.toString());
-                                }
-                            });
+                            // Enviar bitmap para CropImage
+                            Intent sendToCropImageActivity = new Intent(getApplicationContext(), CropImage.class);
+                            sendToCropImageActivity.putExtra("byteArray", ImageHelper.bitmapToByteArray(cameraPic));
+                            sendToCropImageActivity.putExtra("call", 0);
+                            sendToCropImageActivity.putExtra("source", 0);
+                            startActivity(sendToCropImageActivity);
                         }
                     }
                 }
@@ -240,7 +217,39 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
         requestPermissions(cameraPermission, CAMERA_REQUEST);
     }
 
+
+
+    // Update profile picture
+    private void updateProfilePic(Map<String,Object> newProfilePicUri){
+        documentReference.update(newProfilePicUri).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.d("db", "Imagem de perfil atualizada");
+                documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                        if(documentSnapshot != null){
+                            changeProfilePic.setImageURI(Uri.parse(documentSnapshot.getString("profilePicUri")));
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("db_error", "Erro ao atualizar imagem de perfil: " + e.toString());
+            }
+        });
+    }
     // Adicionar condição para quando a permissão for negada
+
+
+    
+    @Override
+    public void onBackPressed() {
+        Intent userScreen = new Intent(getApplicationContext(), TelaDeUsuario.class);
+        startActivity(userScreen);
+    }
 
 
 }

@@ -102,4 +102,11 @@ public interface ImageHelper {
 
         return file.getAbsolutePath();
     }
+
+    public static byte[] bitmapToByteArray(Bitmap bitmap){
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
+        bitmap.recycle();
+        return bos.toByteArray();
+    }
 }

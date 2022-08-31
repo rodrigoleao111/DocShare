@@ -41,8 +41,8 @@
 
         <ImageView
             android:id="@+id/btCancel"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             app:srcCompat="@drawable/ic_baseline_arrow_back_24"
             app:layout_constraintEnd_toStartOf="@+id/btRotate"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,8 +50,8 @@
 
         <ImageView
             android:id="@+id/btCrop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             app:srcCompat="@drawable/ic_baseline_check_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btRotate"
@@ -59,8 +59,8 @@
 
         <ImageView
             android:id="@+id/btRotate"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_margin="20dp"
             android:backgroundTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
