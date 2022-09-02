@@ -30,11 +30,12 @@ import java.util.Date;
  * Função da classe: Cortar imagem recebida na proporção 1:1
  *
  * Parâmetros:
- *      - [Intent Recebedora]  ParcelableExtra "uri", referente a imagem a ser cortada
+ *      - [Intent Recebedora]  ParcelableExtra "uri" ou  "byteArray", referente a imagem a ser cortada
  *      - [Intent Recebedora] Extra "call", inteiro referente a classe que chamou
- *          - ConfiguracoesDeUsuario: 0 | FormOSManutencao: 1
+ *              - ConfiguracoesDeUsuario: 0 | FormOSManutencao: 1
 *       - [Intent Recebedora] Extra "source", inteiro referente a fonte da imagem
- *  *          - Camera: 0 | Galeria: 1
+ *              - Camera: 0 | Galeria: 1
+ *
  *      - [Intent Retorno] ParcelableExtra "uri", referente a imagem cortada
  *      - [Intent Retorno] Extra "check" boolean, referente a finalização do processo
  */
@@ -111,7 +112,7 @@ public class CropImage extends AppCompatActivity {
 
                 // Criar arquivo de imagem de perfil
                 java.util.Date date = new Date();
-                String nomeArquivo = "DocShare-Image-" + userID.toString() + "-" + date.getTime() + ".png";;
+                String nomeArquivo = "DocShare-Image-" + userID.toString() + "-" + date.getTime() + ".png";
                 File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), nomeArquivo);
 
                 try {

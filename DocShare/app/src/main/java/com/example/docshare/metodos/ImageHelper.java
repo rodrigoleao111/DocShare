@@ -1,12 +1,9 @@
 package com.example.docshare.metodos;
 
-import android.Manifest;
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
+
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -16,17 +13,7 @@ import android.graphics.RectF;
 import android.graphics.Bitmap.Config;
 import android.graphics.PorterDuff.Mode;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.MediaStore;
-
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
-
-import com.example.docshare.formularios.FormCadastro;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -108,5 +95,18 @@ public interface ImageHelper {
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
         bitmap.recycle();
         return bos.toByteArray();
+    }
+
+    public static Uri getImageUri(Context inContext, Bitmap inImage) {
+        Bitmap OutImage = Bitmap.createScaledBitmap(inImage, inImage.getWidth()*10, inImage.getHeight()*10,true);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), OutImage, "Title", null);
+        return Uri.parse(path);
+    }
+
+    public static String getRealPathFromURI(Uri uri, Context inContext) {
+        Cursor cursor = inContext.getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+        return cursor.getString(idx);
     }
 }

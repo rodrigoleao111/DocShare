@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.loader.content.CursorLoader;
 
 import android.Manifest;
 import android.app.Activity;
@@ -16,6 +17,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
@@ -40,6 +42,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
@@ -155,7 +158,8 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
 
 
     // Coletar imagem da galeria
-    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+    ActivityResultLauncher<String> mGetContent = registerForActivityResult(
+            new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
         @Override
         public void onActivityResult(Uri result) {
             // Enviar bitmap para CropImage
@@ -177,7 +181,9 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent data = result.getData();
                         if (data != null) {
+
                             Bitmap cameraPic = (Bitmap)(data.getExtras().get("data"));
+                            /* ASSIM EU PEGO A TUMBNAIL
 
                             // Enviar bitmap para CropImage
                             Intent sendToCropImageActivity = new Intent(getApplicationContext(), CropImage.class);
@@ -185,6 +191,23 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
                             sendToCropImageActivity.putExtra("call", 0);
                             sendToCropImageActivity.putExtra("source", 0);
                             startActivity(sendToCropImageActivity);
+
+                             */
+
+                            // ASSIM ESTOU MODIFICANDO A TUMBNAIL (ESTICANDO A IMAGEM)
+
+                            Uri tempUri = ImageHelper.getImageUri(getApplicationContext(), cameraPic);
+                            File finalFile = new File(ImageHelper.getRealPathFromURI(tempUri, getApplicationContext()));
+
+                            // Enviar bitmap para CropImage
+                            Intent sendToCropImageActivity = new Intent(getApplicationContext(), CropImage.class);
+                            sendToCropImageActivity.putExtra("uri", tempUri);
+                            sendToCropImageActivity.putExtra("call", 0);
+                            sendToCropImageActivity.putExtra("source", 1);
+                            startActivity(sendToCropImageActivity);
+
+
+
                         }
                     }
                 }
