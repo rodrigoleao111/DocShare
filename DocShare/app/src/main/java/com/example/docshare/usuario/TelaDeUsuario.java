@@ -27,9 +27,12 @@ import android.widget.Toast;
 
 import com.example.docshare.R;
 import com.example.docshare.formularios.FormOSManutencaoCorretiva;
+import com.example.docshare.fragments.ConfiguracoesFragment;
+import com.example.docshare.fragments.HistoricoFragment;
 import com.example.docshare.metodos.CropImage;
 import com.example.docshare.metodos.ImageHelper;
 import com.example.docshare.metodos.ImagePic;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -48,6 +51,9 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
     private TextView boas_vindas;
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
     String userID, ola;
+    ConfiguracoesFragment configuracoesFragment = new ConfiguracoesFragment();
+    HistoricoFragment historicoFragment = new HistoricoFragment();
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +62,8 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
 
         getSupportActionBar().hide();
         IniciarComponentes();
+
+
 
         // intent recebedora de imagem cortada
         Intent profilePicReciver = getIntent();
