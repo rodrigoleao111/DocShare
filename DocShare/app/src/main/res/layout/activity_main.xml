@@ -20,6 +20,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="30dp"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
