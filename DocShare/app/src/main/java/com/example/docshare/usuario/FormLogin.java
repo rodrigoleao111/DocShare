@@ -164,7 +164,7 @@ public class FormLogin extends AppCompatActivity {
         if(usuarioAtual != null)
             goToMainActivity();
 
-    } 
+    }
 
     private void goToMainActivity(){
         Intent intent = new Intent(getApplicationContext(), TelaDeUsuario.class);
