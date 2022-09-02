@@ -51,9 +51,6 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
     private TextView boas_vindas;
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
     String userID, ola;
-    ConfiguracoesFragment configuracoesFragment = new ConfiguracoesFragment();
-    HistoricoFragment historicoFragment = new HistoricoFragment();
-    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +75,6 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
             }
         });
 
-        // Por enquanto vou usar com a função de deslogar
         bt_configuracoes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
