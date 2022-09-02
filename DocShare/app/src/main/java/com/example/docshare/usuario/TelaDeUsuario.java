@@ -136,7 +136,7 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
                     boas_vindas.setText(ola);
                     if(!Objects.equals(documentSnapshot.getString("profilePicUri"), "void")) {
                         Bitmap profilePicBitmap = BitmapFactory.decodeFile(documentSnapshot.getString("profilePicUri"));
-                        profilePic.setImageBitmap(profilePicBitmap);
+                        profilePic.setImageBitmap(ImageHelper.getRoundedCornerBitmap(profilePicBitmap, 1000));
                     }
                 }
             }

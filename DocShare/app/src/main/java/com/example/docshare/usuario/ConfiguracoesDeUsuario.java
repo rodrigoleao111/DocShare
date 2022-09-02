@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -120,7 +121,8 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
                     tvsetor.setText(documentSnapshot.getString("setor"));
 
                     if(!Objects.equals(documentSnapshot.getString("profilePicUri"), "void")){
-                        changeProfilePic.setImageURI(Uri.parse(documentSnapshot.getString("profilePicUri")));
+                        Bitmap profilePicBitmap = BitmapFactory.decodeFile(documentSnapshot.getString("profilePicUri"));
+                        changeProfilePic.setImageBitmap(ImageHelper.getRoundedCornerBitmap(profilePicBitmap, 1000));
                     }
                 }
             }
@@ -196,7 +198,7 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
 
                             // ASSIM ESTOU MODIFICANDO A TUMBNAIL (ESTICANDO A IMAGEM)
 
-                            Uri tempUri = ImageHelper.getImageUri(getApplicationContext(), cameraPic);
+                            Uri tempUri = ImageHelper.getUriFromTumbnailBitmap(getApplicationContext(), cameraPic);
                             File finalFile = new File(ImageHelper.getRealPathFromURI(tempUri, getApplicationContext()));
 
                             // Enviar bitmap para CropImage

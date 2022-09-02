@@ -1,6 +1,5 @@
 package com.example.docshare.metodos;
 
-import android.content.ContentResolver;
 import android.content.Context;
 
 import android.database.Cursor;
@@ -21,6 +20,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Random;
 
+/***
+ * Métodos auxiliares no tratamento de imagens
+ */
 public interface ImageHelper {
 
     /***
@@ -56,7 +58,7 @@ public interface ImageHelper {
      * @param bitmap - imagem recebida
      * @return - String path file criado
      */
-    public static String bitmapToUri(Bitmap bitmap, Context context, String filename) throws IOException {
+    public static String getPathFromBitmap(Bitmap bitmap, Context context, String filename) throws IOException {
 
         boolean finish = false;
         StringBuilder filenameBuilder = new StringBuilder(filename);
@@ -90,14 +92,14 @@ public interface ImageHelper {
         return file.getAbsolutePath();
     }
 
-    public static byte[] bitmapToByteArray(Bitmap bitmap){
+    public static byte[] getByteArrayFromBitmap(Bitmap bitmap){
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
         bitmap.recycle();
         return bos.toByteArray();
     }
 
-    public static Uri getImageUri(Context inContext, Bitmap inImage) {
+    public static Uri getUriFromTumbnailBitmap(Context inContext, Bitmap inImage) {
         Bitmap OutImage = Bitmap.createScaledBitmap(inImage, inImage.getWidth()*10, inImage.getHeight()*10,true);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), OutImage, "Title", null);
         return Uri.parse(path);
@@ -108,5 +110,10 @@ public interface ImageHelper {
         cursor.moveToFirst();
         int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
         return cursor.getString(idx);
+    }
+
+    public static Bitmap getBitmapFromUri(Uri uri, Context context) throws IOException {
+        return MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
+
     }
 }
