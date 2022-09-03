@@ -1,8 +1,10 @@
 package com.example.docshare.fragments;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ public class ConfiguracoesFragment extends Fragment {
 
     private Button buttonSair;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,10 +33,28 @@ public class ConfiguracoesFragment extends Fragment {
         buttonSair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent back_to_login = new Intent(getContext(), FormLogin.class);
-                Toast.makeText(getContext(), "Usuário deslogado", Toast.LENGTH_LONG).show();
-                startActivity(back_to_login);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+                dialog.setTitle("Você será desconectado");
+                dialog.setMessage("Deseja continuar?");
+                dialog.setCancelable(false);
+
+                dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseAuth.getInstance().signOut();
+                        Intent back_to_login = new Intent(getContext(), FormLogin.class);
+                        Toast.makeText(getContext(), "Usuário deslogado", Toast.LENGTH_LONG).show();
+                        startActivity(back_to_login);
+                    }
+                });
+
+                dialog.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {}
+                });
+                dialog.create();
+                dialog.show();
+
             }
         });
 
