@@ -10,18 +10,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,12 +26,7 @@ import android.widget.Toast;
 
 import com.example.docshare.R;
 import com.example.docshare.formularios.FormOSManutencaoCorretiva;
-import com.example.docshare.fragments.ConfiguracoesFragment;
-import com.example.docshare.fragments.HistoricoFragment;
-import com.example.docshare.metodos.CropImage;
 import com.example.docshare.metodos.ImageHelper;
-import com.example.docshare.metodos.ImagePic;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -42,10 +34,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.File;
-import java.io.IOException;
 import java.util.Objects;
 
 public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
@@ -78,14 +67,19 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
             if (checkPermission()) {
                 check = true;
                 String folderName = "DocShare";
-                File folder = new File(Environment.getExternalStoragePublicDirectory("Download"), folderName);
+                File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), folderName);
                 if(!folder.exists()){
                     if(folder.mkdir())
                         paths.putString("rootDir", folder.getAbsolutePath());
                         Toast.makeText(getApplicationContext(), "sucesso ao criar pasta", Toast.LENGTH_SHORT).show();
                     CriarPastasDoApp(folder);
-                } else
+                } else {
                     Toast.makeText(getApplicationContext(), folder.getAbsolutePath(), Toast.LENGTH_LONG).show();
+                    paths.putString("rootDir", folder.getAbsolutePath());
+                    //paths.putString("userDir", userFolder.getAbsolutePath());
+                    //paths.putString("osDir", osFolder.getAbsolutePath());
+                    //paths.putString("imagesDir", imagesFolder.getAbsolutePath());
+                }
             } else {
                 requestPermission();
             }

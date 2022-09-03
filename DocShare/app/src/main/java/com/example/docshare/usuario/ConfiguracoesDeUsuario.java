@@ -69,6 +69,9 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
 
     private Map<String,Object> newProfilePicUri = new HashMap<>();
 
+    // DIRETÓRIOS DO APP
+    Bundle paths = new Bundle();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +89,7 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
 
         // Recebendo dados de CropImage
         Intent receberProfilePic = getIntent();
+        paths = receberProfilePic.getExtras();
         if(receberProfilePic.getBooleanExtra("check", false)){
             newProfilePicUri.put("profilePicUri", receberProfilePic.getStringExtra("path"));
             updateProfilePic(newProfilePicUri);
@@ -167,6 +171,7 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
         public void onActivityResult(Uri result) {
             // Enviar bitmap para CropImage
             Intent sendToCropImageActivity = new Intent(getApplicationContext(), CropImage.class);
+            sendToCropImageActivity.putExtras(paths);
             sendToCropImageActivity.putExtra("uri", result);
             sendToCropImageActivity.putExtra("call", 0);
             sendToCropImageActivity.putExtra("source", 1);
@@ -207,6 +212,7 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
                             sendToCropImageActivity.putExtra("uri", tempUri);
                             sendToCropImageActivity.putExtra("call", 0);
                             sendToCropImageActivity.putExtra("source", 1);
+                            sendToCropImageActivity.putExtras(paths);
                             startActivity(sendToCropImageActivity);
 
 

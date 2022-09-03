@@ -457,10 +457,11 @@
 
         <ImageView
             android:id="@+id/imagePreview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
             android:elevation="12dp"
             android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/vwInfoImagem"
             app:layout_constraintStart_toStartOf="@+id/vwInfoImagem"
             app:layout_constraintTop_toBottomOf="@+id/vwInfoImagem"
             tools:srcCompat="@tools:sample/avatars" />

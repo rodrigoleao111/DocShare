@@ -2,6 +2,8 @@ package com.example.docshare;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,14 +12,19 @@ import android.widget.TextView;
 
 import com.example.docshare.formularios.FormOSManutencaoCorretiva;
 import com.example.docshare.metodos.FileGenerator;
+import com.example.docshare.metodos.ImageHelper;
 
-public class VizualizarForm extends FileGenerator {
+import java.io.IOException;
+
+public class VizualizarForm extends FileGenerator implements ImageHelper {
 
     private TextView nome, rg, cpf, setor, cargo, telefone, email, locacao, equipamento, modelo, equipID, diagnostico, solucao, troca, obs, descricao;
     private String[] chavesForm = {"nome", "rg", "cpf", "setor", "cargo", "telefone", "email", "locacao", "equipamento", "modelo", "equipID", "diagnostico", "solucao", "troca", "obs", "descricaoImg"};
     private TextView txtImage;
     private Button btVoltar, btCompartilhar;
     private ImageView preview;
+    Bitmap bitmap = null;
+    String bitmapPath = null;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +33,12 @@ public class VizualizarForm extends FileGenerator {
         getSupportActionBar().hide();
 
         Intent intentReceberForm = getIntent();
-        Bitmap bitmap = (Bitmap) intentReceberForm.getParcelableExtra("BitmapImage");
+        bitmapPath = intentReceberForm.getStringExtra("BitmapImage");
+        if(bitmapPath != null)
+            bitmap = BitmapFactory.decodeFile(bitmapPath);
+
+
+
         Bundle dadosOS = intentReceberForm.getExtras();
 
         InicializarComponentes();
