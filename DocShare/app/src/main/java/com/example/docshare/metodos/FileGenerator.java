@@ -159,7 +159,7 @@ public class FileGenerator extends AppCompatActivity {
         y += 30;
 
         if(bitmap != null){
-            Rect rect = new Rect( marginLeft, y, marginRigth, y+bitmap.getHeight());
+            Rect rect = new Rect( marginLeft, y, marginLeft+180, y+180);
             canvas.drawBitmap(bitmap, null, rect, myPaint);
         }
 

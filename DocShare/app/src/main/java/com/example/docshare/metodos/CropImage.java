@@ -52,6 +52,9 @@ public class CropImage extends AppCompatActivity {
 
     String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+    // DIRETÓRIOS DO APP
+    Bundle paths = new Bundle();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +65,7 @@ public class CropImage extends AppCompatActivity {
 
         // Recebendo intent
         Intent intentReceberForm = getIntent();
+        paths = intentReceberForm.getExtras();
         call = intentReceberForm.getIntExtra("call", NO_CONTENT);
         source = intentReceberForm.getIntExtra("source", NO_CONTENT);
 
@@ -112,8 +116,9 @@ public class CropImage extends AppCompatActivity {
 
                 // Criar arquivo de imagem de perfil
                 java.util.Date date = new Date();
-                String nomeArquivo = "DocShare-Image-" + userID.toString() + "-" + date.getTime() + ".png";
+                String nomeArquivo = "DocShare-Image-" + userID + "-" + date.getTime() + ".png";
                 File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), nomeArquivo);
+                //File file = new File(paths.getString("imagesDir"), nomeArquivo);
 
                 try {
                     file.createNewFile();

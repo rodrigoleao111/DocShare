@@ -201,6 +201,7 @@ public class FormCadastro extends FileGenerator {
 
     private void goToFormLogin(){
         Intent intent = new Intent(getApplicationContext(), FormLogin.class);
+        intent.putExtra("FirstAccess", true);
         startActivity(intent);
         finish();
     }

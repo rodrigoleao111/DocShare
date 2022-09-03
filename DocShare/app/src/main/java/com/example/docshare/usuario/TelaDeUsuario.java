@@ -16,10 +16,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.os.Environment;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,12 +26,7 @@ import android.widget.Toast;
 
 import com.example.docshare.R;
 import com.example.docshare.formularios.FormOSManutencaoCorretiva;
-import com.example.docshare.fragments.ConfiguracoesFragment;
-import com.example.docshare.fragments.HistoricoFragment;
-import com.example.docshare.metodos.CropImage;
 import com.example.docshare.metodos.ImageHelper;
-import com.example.docshare.metodos.ImagePic;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -40,7 +34,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-import java.io.IOException;
+import java.io.File;
 import java.util.Objects;
 
 public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
@@ -50,7 +44,8 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
     private ImageView bt_nova_os_manutencao, bt_historico_de_atividades, bt_configuracoes, profilePic;
     private TextView boas_vindas;
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
-    String userID, ola;
+    String userID = FirebaseAuth.getInstance().getCurrentUser().getUid(), ola;
+    Bundle paths = new Bundle();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,19 +56,36 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
         IniciarComponentes();
 
 
+        // intent recebedora
+        Intent intentRecebida = getIntent();
+        boolean firstAccess = intentRecebida.getBooleanExtra("FirstAccess", false);
 
-        // intent recebedora de imagem cortada
-        Intent profilePicReciver = getIntent();
-        boolean check = profilePicReciver.getBooleanExtra("check", false);
 
-        profilePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                // TO DO: GENERALIZAR ESCOLHA E CORTE DE IMAGEM, PARA USAR EM OUTRAS ACTIVITIES.
-
+        // CRIAÇÃO DE PASTAS
+        boolean check = false;
+        do {
+            if (checkPermission()) {
+                check = true;
+                String folderName = "DocShare";
+                File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), folderName);
+                if(!folder.exists()){
+                    if(folder.mkdir())
+                        paths.putString("rootDir", folder.getAbsolutePath());
+                        Toast.makeText(getApplicationContext(), "sucesso ao criar pasta", Toast.LENGTH_SHORT).show();
+                    CriarPastasDoApp(folder);
+                } else {
+                    Toast.makeText(getApplicationContext(), folder.getAbsolutePath(), Toast.LENGTH_LONG).show();
+                    paths.putString("rootDir", folder.getAbsolutePath());
+                    //paths.putString("userDir", userFolder.getAbsolutePath());
+                    //paths.putString("osDir", osFolder.getAbsolutePath());
+                    //paths.putString("imagesDir", imagesFolder.getAbsolutePath());
+                }
+            } else {
+                requestPermission();
             }
-        });
+        } while (!check);
+
+
 
         bt_configuracoes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +99,7 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
                     public void onClick(DialogInterface dialog, int which) {
                         if (which == 0) {
                             Intent goToUserConfig = new Intent( getApplicationContext(), ConfiguracoesDeUsuario.class);
+                            goToUserConfig.putExtras(paths);
                             startActivity(goToUserConfig);
                         } else if (which == 1) {
                             FirebaseAuth.getInstance().signOut();
@@ -109,6 +122,7 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
             public void onClick(View v) {
                 if (checkPermission()) {
                     Intent goToFormOsActivity = new Intent(getApplicationContext(), FormOSManutencaoCorretiva.class);
+                    goToFormOsActivity.putExtras(paths);
                     startActivity(goToFormOsActivity);
                 } else {
                     requestPermission();
@@ -118,11 +132,33 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
         });
     }
 
+
+    private void CriarPastasDoApp(File folder) {
+        String folderUserName = userID, folderImages = "DocShare_images", folderOS = "DocShare_os_files";
+        File userFolder = new File(folder, folderUserName);
+        if(!userFolder.exists()){
+            userFolder.mkdir();
+            paths.putString("userDir", userFolder.getAbsolutePath());
+            File imagesFolder = new File(userFolder, folderImages);
+            File osFolder = new File(userFolder, folderOS);
+            if(!imagesFolder.exists()&&!osFolder.exists()){
+                imagesFolder.mkdir();
+                paths.putString("imagesDir", imagesFolder.getAbsolutePath());
+                if(osFolder.mkdir()) {
+                    paths.putString("osDir", osFolder.getAbsolutePath());
+                    Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_SHORT).show();
+                }
+                else
+                    Toast.makeText(getApplicationContext(),"Fail",Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(),"Folder Already Exists",Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
-
-        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         DocumentReference documentReference = db_dados_usuario.collection("Usuarios").document(userID);
 
@@ -136,7 +172,8 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
                     boas_vindas.setText(ola);
                     if(!Objects.equals(documentSnapshot.getString("profilePicUri"), "void")) {
                         Bitmap profilePicBitmap = BitmapFactory.decodeFile(documentSnapshot.getString("profilePicUri"));
-                        profilePic.setImageBitmap(ImageHelper.getRoundedCornerBitmap(profilePicBitmap, 1000));
+                        if(profilePicBitmap !=null)
+                            profilePic.setImageBitmap(ImageHelper.getRoundedCornerBitmap(profilePicBitmap, 1000));
                     }
                 }
             }
