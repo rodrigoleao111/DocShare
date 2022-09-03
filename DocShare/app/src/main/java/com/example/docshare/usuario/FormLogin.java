@@ -155,7 +155,8 @@ public class FormLogin extends AppCompatActivity {
 
     /***
      * Manter usuário logado
-     */
+     * */
+
     @Override
     protected void onStart() {
         super.onStart();
