@@ -37,7 +37,7 @@ public class ConfiguracoesFragment extends Fragment {
         editarPerfil = view.findViewById(R.id.EditarPerfil);
         mudarSenha = view.findViewById(R.id.MudarSenha);
         sobre = view.findViewById(R.id.Sobre);
-        
+
         editarPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
