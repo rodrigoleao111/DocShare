@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.docshare.R;
+import com.example.docshare.usuario.ConfiguracoesDeUsuario;
 import com.example.docshare.usuario.FormLogin;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -22,6 +23,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class ConfiguracoesFragment extends Fragment {
 
     private Button buttonSair;
+    private TextView mudarSenha, editarPerfil, sobre;
+    Bundle paths = new Bundle();
 
 
     @Override
@@ -30,6 +33,20 @@ public class ConfiguracoesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_configuracoes, container, false);
         buttonSair = view.findViewById(R.id.buttonSair);
+
+        editarPerfil = view.findViewById(R.id.EditarPerfil);
+        mudarSenha = view.findViewById(R.id.MudarSenha);
+        sobre = view.findViewById(R.id.Sobre);
+        
+        editarPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToUserConfig = new Intent( getContext(), ConfiguracoesDeUsuario.class);
+                goToUserConfig.putExtras(paths);
+                startActivity(goToUserConfig);
+            }
+        });
+
         buttonSair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
