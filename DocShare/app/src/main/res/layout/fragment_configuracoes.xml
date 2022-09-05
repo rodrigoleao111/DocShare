@@ -56,9 +56,9 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="16dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:src="@drawable/random_profile_picture"
             app:layout_constraintStart_toStartOf="@+id/rectangle_4"
@@ -69,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:text="NOME COMPLETO"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -89,7 +89,7 @@
             android:id="@+id/EditarPerfil"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:clickable="true"
             android:drawableLeft="@drawable/ic_perfil"
             android:drawableRight="@drawable/ic_seta_direita"
@@ -103,7 +103,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/rectangle_4"
             app:layout_constraintStart_toStartOf="@+id/rectangle_4"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
         <TextView
             android:id="@+id/MudarSenha"
@@ -146,9 +146,9 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="64dp"
             android:layout_marginEnd="8dp"
             android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toTopOf="@+id/EditarPerfil"
             app:layout_constraintEnd_toEndOf="@+id/MudarSenha"
             app:layout_constraintStart_toStartOf="@+id/MudarSenha"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -158,13 +158,39 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="@+id/MudarSenha"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/MudarSenha"
             app:layout_constraintTop_toBottomOf="@+id/Sobre" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:drawableLeft="@drawable/ic_email_vazado"
+            android:drawablePadding="8dp"
+            android:text="emailusuario@gmail.com"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/MudarSenha"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:drawableLeft="@drawable/ic_phone_vazado"
+            android:drawablePadding="8dp"
+            android:text="(81) 9 1234-5678"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/MudarSenha"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
