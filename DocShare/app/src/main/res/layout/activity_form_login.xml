@@ -21,7 +21,6 @@
             android:background="@drawable/container_components"
             android:elevation="10dp"
             android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@+id/imageView5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -92,7 +91,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/gradient" />
+            app:srcCompat="@drawable/background_gradient" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -151,15 +150,6 @@
                 app:layout_constraintTop_toTopOf="@+id/cadastroContainer"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="216dp"
-            android:layout_height="108dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/informalogo" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

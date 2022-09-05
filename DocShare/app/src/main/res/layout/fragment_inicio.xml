@@ -1,18 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/azulGelo"
     tools:context=".fragments.InicioFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/inicio"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/random_profile_picture"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_boas_vindas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Olá, #userFirstName"
+            android:textColor="@color/soft_black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+        <View
+            android:id="@+id/containerComponentMain"
+            style="@style/ContainerLogin"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/container_components"
+            android:elevation="8dp"
+            app:flow_horizontalAlign="center"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_boas_vindas" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:elevation="10dp"
+            android:text="Ver todas"
+            android:textColor="@color/azulao"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/containerComponentMain"
+            app:layout_constraintTop_toTopOf="@+id/containerComponentMain" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="?android:attr/listDivider"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/containerComponentMain"
+            app:layout_constraintStart_toStartOf="@+id/containerComponentMain"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="82dp"
+            android:backgroundTint="@color/azulao"
+            android:drawableLeft="@drawable/ic_add"
+            android:text="Nova Ordem de Serviço"
+            android:textAllCaps="false"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:elevation="10dp"
+            android:text="Últimas atividades:"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/containerComponentMain"
+            app:layout_constraintTop_toTopOf="@+id/containerComponentMain" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

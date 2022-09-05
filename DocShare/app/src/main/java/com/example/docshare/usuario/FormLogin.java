@@ -155,7 +155,8 @@ public class FormLogin extends AppCompatActivity {
 
     /***
      * Manter usuário logado
-     */
+     * */
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -164,10 +165,10 @@ public class FormLogin extends AppCompatActivity {
         if(usuarioAtual != null)
             goToMainActivity();
 
-    } 
+    }
 
     private void goToMainActivity(){
-        Intent intent = new Intent(getApplicationContext(), TelaDeUsuario.class);
+        Intent intent = new Intent(getApplicationContext(), TelaUsuario2Activity.class);
         startActivity(intent);
         finish();
     }

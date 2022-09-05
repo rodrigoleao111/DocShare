@@ -36,7 +36,7 @@ public class TelaUsuario2Activity extends AppCompatActivity {
 
         getSupportActionBar().hide();
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        //getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, inicioFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, inicioFragment).commit();
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -61,4 +61,9 @@ public class TelaUsuario2Activity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, inicioFragment).commit();
+       // bottomNavigationView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_SELECTED);
+    }
 }
