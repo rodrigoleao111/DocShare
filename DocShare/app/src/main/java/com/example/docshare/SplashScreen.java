@@ -19,8 +19,11 @@ import android.widget.Toast;
 import com.example.docshare.metodos.UserInfo;
 import com.example.docshare.usuario.FormLogin;
 import com.example.docshare.usuario.TelaDeUsuario;
+import com.example.docshare.usuario.TelaUsuario2Activity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.File;
 
@@ -37,9 +40,10 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
                 FirebaseUser usuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
                 Intent intent;
+
                 if(usuarioAtual != null) {
-                    intent = new Intent(getApplicationContext(), TelaDeUsuario.class);
-                    UserInfo.setUserCredentials();
+                    intent = new Intent(getApplicationContext(), TelaUsuario2Activity.class);
+                    InstanciarFirebase();
                 }
                 else
                     intent = new Intent(SplashScreen.this, FormLogin.class);
@@ -50,6 +54,13 @@ public class SplashScreen extends AppCompatActivity {
             }
         },1000);
 
+    }
+
+    private void InstanciarFirebase() {
+        FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
+        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference documentReference = db_dados_usuario.collection("Usuarios").document(userID);
+        UserInfo.setUserCredentials(documentReference, userID);
     }
 
     /*

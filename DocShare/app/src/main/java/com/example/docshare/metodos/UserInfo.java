@@ -1,7 +1,11 @@
 package com.example.docshare.metodos;
 
+
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,25 +19,21 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 public class UserInfo {
 
-    private static FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
-    private static String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-    private static DocumentReference documentReference = db_dados_usuario.collection("Usuarios").document(userID);
     private static Bundle userCredentials = new Bundle();
 
     public static Bundle getUserCredentials() {
         return userCredentials;
     }
 
-    public static void setUserCredentials(Bundle userCredentials) {
-        UserInfo.userCredentials = userCredentials;
-    }
 
-    public static void setUserCredentials() {
+
+    public static void setUserCredentials(DocumentReference documentReference, String userID) {
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
@@ -46,12 +46,15 @@ public class UserInfo {
                     userCredentials.putString("cargo",documentSnapshot.getString("cargo"));
                     userCredentials.putString("setor",documentSnapshot.getString("setor"));
                     userCredentials.putString("profilePicUri",documentSnapshot.getString("profilePicUri"));
+
                 }
             }
         });
     }
 
-    public void updateProfilePic(String pathProfilePic){
+
+
+    public static void updateProfilePic(String pathProfilePic, DocumentReference documentReference){
         Map<String,Object> newProfilePicUri = new HashMap<>();
         newProfilePicUri.put("profilePicUri", pathProfilePic);
 
@@ -76,5 +79,67 @@ public class UserInfo {
         });
     }
 
+
+
+    public static void updateUserCredentials(Map<String, Object> updateData, DocumentReference documentReference){
+        documentReference.update(updateData).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.d("db", "Dados atualizados");
+                documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                        if(documentSnapshot != null){
+                            setUserCredentials(
+                                    documentReference,
+                                    FirebaseAuth.getInstance().getCurrentUser().getUid());
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("db_error", "Erro ao atualizar imagem de perfil: " + e.toString());
+            }
+        });
+    }
+
+    public static boolean CriarDiretoriosDoApp(boolean permission) {
+        boolean exists = false;
+
+        File rootDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "DocShare");
+        if (!rootDir.exists()) {
+            if (rootDir.mkdir()) {
+                userCredentials.putString("rootDir", rootDir.getAbsolutePath());
+                String imagesDirName = "DocShare_images", osDirName = "DocShare_os_files";
+                File userFolder = new File(rootDir, userCredentials.getString("userID"));
+                if (!userFolder.exists()) {
+                    if(userFolder.mkdir())
+                        userCredentials.putString("userDir", userFolder.getAbsolutePath());
+                    File imagesDir = new File(userFolder, imagesDirName);
+                    File osDir = new File(userFolder, osDirName);
+                    if (!imagesDir.exists() && !osDir.exists()) {
+                        if(imagesDir.mkdir() && osDir.mkdir()){
+                            userCredentials.putString("imagesDir", imagesDir.getAbsolutePath());
+                            userCredentials.putString("osDir", osDir.getAbsolutePath());
+                            exists = true;
+                        }
+                    } else {
+                        userCredentials.putString("imagesDir", imagesDir.getAbsolutePath());
+                        userCredentials.putString("osDir", osDir.getAbsolutePath());
+                        exists = true;
+                    }
+                } else {
+                    userCredentials.putString("userDir", userFolder.getAbsolutePath());
+                    exists = true;
+                }
+            } else
+                exists = true;
+        } else
+            userCredentials.putString("rootDir", rootDir.getAbsolutePath());
+
+        return exists;
+    }
 
 }

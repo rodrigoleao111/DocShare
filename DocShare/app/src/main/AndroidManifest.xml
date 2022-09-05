@@ -25,7 +25,7 @@
             android:name=".usuario.HistoricoDeAtividades"
             android:exported="false" />
         <activity
-            android:name=".TelaUsuario2Activity"
+            android:name=".usuario.TelaUsuario2Activity"
             android:exported="false" />
         <activity
             android:name=".usuario.ConfiguracoesDeUsuario"

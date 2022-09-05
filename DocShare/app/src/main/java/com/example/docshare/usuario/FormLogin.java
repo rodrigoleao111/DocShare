@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -20,16 +19,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.docshare.R;
-import com.example.docshare.TelaUsuario2Activity;
 import com.example.docshare.formularios.FormCadastro;
-import com.example.docshare.metodos.FileGenerator;
-import com.example.docshare.metodos.ImagePic;
 import com.example.docshare.metodos.UserInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class FormLogin extends AppCompatActivity {
 
@@ -169,9 +167,16 @@ public class FormLogin extends AppCompatActivity {
     }
 
     private void goToMainActivity(){
-        UserInfo.setUserCredentials();
+        InstanciarFirebase();
         Intent intent = new Intent(getApplicationContext(), TelaUsuario2Activity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void InstanciarFirebase() {
+        FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
+        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference documentReference = db_dados_usuario.collection("Usuarios").document(userID);
+        UserInfo.setUserCredentials(documentReference, userID);
     }
 }

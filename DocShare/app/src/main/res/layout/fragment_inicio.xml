@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/profilePicInit"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="32dp"
@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txt_boas_vindas"
+            android:id="@+id/txt_boas_vindas2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -32,7 +32,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+            app:layout_constraintTop_toBottomOf="@+id/profilePicInit" />
 
         <View
             android:id="@+id/containerComponentMain"
@@ -44,10 +44,10 @@
             android:background="@drawable/container_components"
             android:elevation="8dp"
             app:flow_horizontalAlign="center"
-            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintBottom_toTopOf="@+id/bt_nova_os_manutencao"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_boas_vindas" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_boas_vindas2" />
 
         <TextView
             android:id="@+id/textView8"
@@ -76,7 +76,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/bt_nova_os_manutencao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="82dp"

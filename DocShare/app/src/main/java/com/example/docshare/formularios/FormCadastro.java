@@ -201,10 +201,16 @@ public class FormCadastro extends FileGenerator {
 
 
     private void goToFormLogin(){
-        UserInfo.setUserCredentials();
+        InstanciarFirebase();
         Intent intent = new Intent(getApplicationContext(), FormLogin.class);
-        intent.putExtra("FirstAccess", true);
         startActivity(intent);
         finish();
+    }
+
+    private void InstanciarFirebase() {
+        FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
+        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference documentReference = db_dados_usuario.collection("Usuarios").document(userID);
+        UserInfo.setUserCredentials(documentReference, userID);
     }
 }

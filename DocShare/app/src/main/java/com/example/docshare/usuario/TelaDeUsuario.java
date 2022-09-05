@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 import com.example.docshare.R;
 import com.example.docshare.formularios.FormOSManutencaoCorretiva;
 import com.example.docshare.metodos.ImageHelper;
+import com.example.docshare.metodos.RequestPermissions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -37,7 +39,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.io.File;
 import java.util.Objects;
 
-public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
+public class TelaDeUsuario extends AppCompatActivity implements ImageHelper, RequestPermissions {
 
     private static final int PERMISSION_REQUEST_CODE = 200;
 
@@ -59,6 +61,28 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
         // intent recebedora
         Intent intentRecebida = getIntent();
         boolean firstAccess = intentRecebida.getBooleanExtra("FirstAccess", false);
+
+
+        // CRIAÇÃO DE PASTAS
+        if (RequestPermissions.checkPermission(getApplicationContext())) {
+            String folderName = "DocShare";
+            File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), folderName);
+            if(!folder.exists()){
+                if(folder.mkdir())
+                    paths.putString("rootDir", folder.getAbsolutePath());
+                    Toast.makeText(getApplicationContext(), "sucesso ao criar pasta", Toast.LENGTH_SHORT).show();
+                CriarPastasDoApp(folder);
+            } else {
+                Toast.makeText(getApplicationContext(), folder.getAbsolutePath(), Toast.LENGTH_LONG).show();
+                paths.putString("rootDir", folder.getAbsolutePath());
+                //paths.putString("userDir", userFolder.getAbsolutePath());
+                //paths.putString("osDir", osFolder.getAbsolutePath());
+                //paths.putString("imagesDir", imagesFolder.getAbsolutePath());
+            }
+        } else {
+            RequestPermissions.requestPermission(TelaDeUsuario.this);
+        }
+
 
 
 
@@ -95,12 +119,12 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
         bt_nova_os_manutencao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkPermission()) {
+                if (RequestPermissions.checkPermission(getApplicationContext())) {
                     Intent goToFormOsActivity = new Intent(getApplicationContext(), FormOSManutencaoCorretiva.class);
                     goToFormOsActivity.putExtras(paths);
                     startActivity(goToFormOsActivity);
                 } else {
-                    requestPermission();
+                    RequestPermissions.requestPermission(TelaDeUsuario.this);
                 }
 
             }
@@ -164,17 +188,17 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
 
     }
 
-    // Checagem de permissão para ler e escrever no armazenamento externo
-    private boolean checkPermission() {
-        int permission1 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
-        int permission2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
-        return permission1 == PackageManager.PERMISSION_GRANTED && permission2 == PackageManager.PERMISSION_GRANTED;
-    }
-
-    // Solicitar permissão
-    private void requestPermission() {
-        ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
-    }
+//    // Checagem de permissão para ler e escrever no armazenamento externo
+//    private boolean checkPermission() {
+//        int permission1 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
+//        int permission2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
+//        return permission1 == PackageManager.PERMISSION_GRANTED && permission2 == PackageManager.PERMISSION_GRANTED;
+//    }
+//
+//    // Solicitar permissão
+//    private void requestPermission() {
+//        ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+//    }
 
     // Alterar condição da permissão
     @Override
