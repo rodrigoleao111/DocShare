@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.docshare.metodos.UserInfo;
 import com.example.docshare.usuario.FormLogin;
 import com.example.docshare.R;
 import com.example.docshare.metodos.FileGenerator;
@@ -200,6 +201,7 @@ public class FormCadastro extends FileGenerator {
 
 
     private void goToFormLogin(){
+        UserInfo.setUserCredentials();
         Intent intent = new Intent(getApplicationContext(), FormLogin.class);
         intent.putExtra("FirstAccess", true);
         startActivity(intent);

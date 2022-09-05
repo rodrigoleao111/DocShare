@@ -61,31 +61,6 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper {
         boolean firstAccess = intentRecebida.getBooleanExtra("FirstAccess", false);
 
 
-        // CRIAÇÃO DE PASTAS
-        boolean check = false;
-        do {
-            if (checkPermission()) {
-                check = true;
-                String folderName = "DocShare";
-                File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), folderName);
-                if(!folder.exists()){
-                    if(folder.mkdir())
-                        paths.putString("rootDir", folder.getAbsolutePath());
-                        Toast.makeText(getApplicationContext(), "sucesso ao criar pasta", Toast.LENGTH_SHORT).show();
-                    CriarPastasDoApp(folder);
-                } else {
-                    Toast.makeText(getApplicationContext(), folder.getAbsolutePath(), Toast.LENGTH_LONG).show();
-                    paths.putString("rootDir", folder.getAbsolutePath());
-                    //paths.putString("userDir", userFolder.getAbsolutePath());
-                    //paths.putString("osDir", osFolder.getAbsolutePath());
-                    //paths.putString("imagesDir", imagesFolder.getAbsolutePath());
-                }
-            } else {
-                requestPermission();
-            }
-        } while (!check);
-
-
 
         bt_configuracoes.setOnClickListener(new View.OnClickListener() {
             @Override

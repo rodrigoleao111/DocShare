@@ -24,6 +24,7 @@ import com.example.docshare.TelaUsuario2Activity;
 import com.example.docshare.formularios.FormCadastro;
 import com.example.docshare.metodos.FileGenerator;
 import com.example.docshare.metodos.ImagePic;
+import com.example.docshare.metodos.UserInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -168,6 +169,7 @@ public class FormLogin extends AppCompatActivity {
     }
 
     private void goToMainActivity(){
+        UserInfo.setUserCredentials();
         Intent intent = new Intent(getApplicationContext(), TelaUsuario2Activity.class);
         startActivity(intent);
         finish();
