@@ -27,7 +27,6 @@ public class TelaUsuario2Activity extends AppCompatActivity {
     private ConfiguracoesFragment configuracoesFragment = new ConfiguracoesFragment();
     private BottomNavigationView bottomNavigationView;
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
-    private Button buttonSair;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +63,5 @@ public class TelaUsuario2Activity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, inicioFragment).commit();
-       // bottomNavigationView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_SELECTED);
     }
 }

@@ -30,6 +30,7 @@
         <View
             android:id="@+id/rectangle_4"
             style="@style/ContainerLogin"
+            android:layout_width="0dp"
             android:layout_height="400dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
