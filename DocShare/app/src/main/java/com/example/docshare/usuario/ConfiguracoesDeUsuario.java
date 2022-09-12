@@ -32,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.docshare.R;
+import com.example.docshare.TelaUsuario2Activity;
 import com.example.docshare.metodos.CropImage;
 import com.example.docshare.metodos.ImageHelper;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -279,7 +280,7 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
     
     @Override
     public void onBackPressed() {
-        Intent userScreen = new Intent(getApplicationContext(), TelaDeUsuario.class);
+        Intent userScreen = new Intent(getApplicationContext(), TelaUsuario2Activity.class);
         startActivity(userScreen);
     }
 
