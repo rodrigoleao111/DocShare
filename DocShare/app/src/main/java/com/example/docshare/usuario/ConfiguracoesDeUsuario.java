@@ -279,7 +279,7 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
     
     @Override
     public void onBackPressed() {
-        Intent userScreen = new Intent(getApplicationContext(), TelaUsuario2Activity.class);
+        Intent userScreen = new Intent(getApplicationContext(), TelaDeUsuario.class);
         startActivity(userScreen);
     }
 

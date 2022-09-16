@@ -73,7 +73,7 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper, Req
                     Toast.makeText(getApplicationContext(), "sucesso ao criar pasta", Toast.LENGTH_SHORT).show();
                 CriarPastasDoApp(folder);
             } else {
-                Toast.makeText(getApplicationContext(), folder.getAbsolutePath(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), folder.getAbsolutePath(), Toast.LENGTH_LONG).show();
                 paths.putString("rootDir", folder.getAbsolutePath());
                 //paths.putString("userDir", userFolder.getAbsolutePath());
                 //paths.putString("osDir", osFolder.getAbsolutePath());

@@ -42,7 +42,7 @@ public class SplashScreen extends AppCompatActivity {
                 Intent intent;
 
                 if(usuarioAtual != null) {
-                    intent = new Intent(getApplicationContext(), TelaUsuario2Activity.class);
+                    intent = new Intent(getApplicationContext(), TelaDeUsuario.class);
                     InstanciarFirebase();
                 }
                 else
