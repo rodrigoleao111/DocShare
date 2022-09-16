@@ -34,9 +34,10 @@
         <View
             android:id="@+id/rectangle_4"
             style="@style/ContainerLogin"
-            android:layout_margin="20dp"
+            android:layout_height="350dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:layout_margin="20dp"
             android:background="@drawable/container_components"
             android:elevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,11 +47,13 @@
         <EditText
             android:id="@+id/edit_cadastro_email"
             style="@style/Edit_Text"
+            android:layout_marginTop="110dp"
             android:background="@drawable/edit_text"
             android:drawableLeft="@drawable/ic_email"
             android:elevation="10dp"
             android:hint=" E-mail"
             android:inputType="textEmailAddress"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/rectangle_4"
             app:layout_constraintStart_toStartOf="@+id/rectangle_4"
             app:layout_constraintTop_toTopOf="@+id/rectangle_4" />
@@ -65,6 +68,7 @@
             android:elevation="10dp"
             android:hint=" Senha"
             android:inputType="textPassword"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/rectangle_4"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/rectangle_4"
@@ -79,6 +83,7 @@
             android:elevation="10dp"
             android:hint=" Confirme sua senha"
             android:inputType="textPassword"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/rectangle_4"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/rectangle_4"
@@ -119,9 +124,10 @@
             android:id="@+id/edit_cadastro_nome"
             style="@style/Edit_Text"
             android:background="@drawable/edit_text"
-            android:maxLines="1"
             android:elevation="10dp"
             android:hint="Nome completo"
+            android:maxLines="1"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
             app:layout_constraintStart_toStartOf="@+id/rectangle_5"
             app:layout_constraintTop_toTopOf="@+id/rectangle_5" />
@@ -132,8 +138,9 @@
             android:background="@drawable/edit_text"
             android:elevation="10dp"
             android:hint="CPF"
-            android:maxLength="11"
             android:inputType="number"
+            android:maxLength="11"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
             app:layout_constraintStart_toStartOf="@+id/rectangle_5"
             app:layout_constraintTop_toBottomOf="@+id/edit_cadastro_nome" />
@@ -143,9 +150,10 @@
             style="@style/Edit_Text"
             android:background="@drawable/edit_text"
             android:elevation="10dp"
-            android:maxLength="7"
             android:hint="RG"
             android:inputType="number"
+            android:maxLength="7"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
             app:layout_constraintStart_toStartOf="@+id/rectangle_5"
             app:layout_constraintTop_toBottomOf="@+id/edit_cadastro_cpf" />
@@ -155,9 +163,10 @@
             style="@style/Edit_Text"
             android:background="@drawable/edit_text"
             android:elevation="10dp"
-            android:maxLength="14"
             android:hint="Telefone"
             android:inputType="number"
+            android:maxLength="14"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
             app:layout_constraintStart_toStartOf="@+id/rectangle_5"
             app:layout_constraintTop_toBottomOf="@+id/edit_cadastro_RG" />
@@ -165,11 +174,11 @@
         <Spinner
             android:id="@+id/edit_cargo"
             style="@style/Edit_Text"
-            android:entries="@array/cargos"
-            android:background="@drawable/edit_text"
             android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24"
             android:elevation="10dp"
+            android:entries="@array/cargos"
             android:hint="Cargo"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
             app:layout_constraintStart_toStartOf="@+id/rectangle_5"
             app:layout_constraintTop_toBottomOf="@+id/edit_cadastro_telefone" />
@@ -177,11 +186,11 @@
         <Spinner
             android:id="@+id/edit_setor"
             style="@style/Edit_Text"
-            android:entries="@array/setores"
-            android:background="@drawable/edit_text"
             android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24"
             android:elevation="10dp"
+            android:entries="@array/setores"
             android:hint="Setor"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
             app:layout_constraintStart_toStartOf="@+id/rectangle_5"
             app:layout_constraintTop_toBottomOf="@+id/edit_cargo" />
@@ -211,8 +220,10 @@
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/gradient" />
 
         <ProgressBar
@@ -227,6 +238,162 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:hint="E-mail"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:layout_constraintEnd_toEndOf="@+id/edit_cadastro_email"
+            app:layout_constraintStart_toStartOf="@+id/edit_cadastro_email"
+            app:layout_constraintTop_toTopOf="@+id/edit_cadastro_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                 />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:hint="Senha"
+            app:endIconMode="password_toggle"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:layout_constraintEnd_toEndOf="@+id/edit_cadastro_email"
+            app:layout_constraintStart_toStartOf="@+id/edit_cadastro_email"
+            app:layout_constraintTop_toTopOf="@+id/edit_cadastro_senha">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_senha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                 />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:hint="Confirmar senha"
+            app:endIconMode="password_toggle"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:layout_constraintEnd_toEndOf="@+id/edit_cadastro_email"
+            app:layout_constraintStart_toStartOf="@+id/edit_cadastro_email"
+            app:layout_constraintTop_toTopOf="@+id/edit_confirmar_senha">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_confirmar_senha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:maxLines="1"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="16dp"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/rectangle_4"
+            app:layout_constraintStart_toStartOf="@+id/rectangle_4"
+            app:layout_constraintTop_toTopOf="@+id/rectangle_4"
+            app:srcCompat="@drawable/add_image" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:layout_constraintEnd_toEndOf="@+id/edit_cadastro_nome"
+            app:layout_constraintStart_toStartOf="@+id/edit_cadastro_nome"
+            app:layout_constraintTop_toTopOf="@+id/edit_cadastro_nome"
+            android:hint="Nome completo" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_nome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:inputType="text"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:layout_constraintEnd_toEndOf="@+id/edit_cadastro_cpf"
+            app:layout_constraintStart_toStartOf="@+id/edit_cadastro_cpf"
+            app:layout_constraintTop_toTopOf="@+id/edit_cadastro_cpf"
+            android:hint="CPF"
+            app:counterMaxLength="11"
+            app:counterEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_cpf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:maxLength="11"
+                android:inputType="number"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:layout_constraintEnd_toEndOf="@+id/edit_cadastro_telefone"
+            app:layout_constraintStart_toStartOf="@+id/edit_cadastro_telefone"
+            app:layout_constraintTop_toTopOf="@+id/edit_cadastro_telefone"
+            android:hint="Telefone"
+            app:counterMaxLength="8"
+            app:prefixText="(81) 9"
+            app:counterEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_telefone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:maxLength="8"
+                android:inputType="number"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:layout_constraintEnd_toEndOf="@+id/edit_cadastro_RG"
+            app:layout_constraintStart_toStartOf="@+id/edit_cadastro_RG"
+            app:layout_constraintTop_toTopOf="@+id/edit_cadastro_RG"
+            android:hint="RG"
+            app:counterMaxLength="7"
+            app:counterEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_rg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:maxLength="7"
+                android:inputType="number"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

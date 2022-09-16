@@ -75,6 +75,19 @@ public class ConfiguracoesFragment extends Fragment {
             }
         });
 
+        mudarSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialogSenha = new AlertDialog.Builder(getContext());
+                View viewMudarSenha = inflater.inflate(R.layout.dialog_mudar_senha, null);
+                dialogSenha.setView(viewMudarSenha);
+                dialogSenha.create();
+                dialogSenha.show();
+
+
+            }
+        });
+
         return view;
     }
 

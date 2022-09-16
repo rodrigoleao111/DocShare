@@ -23,6 +23,7 @@ import com.example.docshare.formularios.FormCadastro;
 import com.example.docshare.metodos.UserInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,6 +37,7 @@ public class FormLogin extends AppCompatActivity {
     private TextView edt_cadastre;
     private Button bt_entrar;
     private ProgressBar progressBar;
+    private TextInputEditText email_input, senha_input;
     private String mensagens[] = {"Insira seu email e senha"};
 
 
@@ -51,8 +53,8 @@ public class FormLogin extends AppCompatActivity {
         bt_entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = edt_email.getText().toString();
-                String senha = edt_senha.getText().toString();
+                String email = email_input.getText().toString();
+                String senha = senha_input.getText().toString();
 
                 if(email.isEmpty() || senha.isEmpty()) {
                     Toast.makeText(getApplicationContext(), mensagens[0], Toast.LENGTH_LONG).show();
@@ -124,6 +126,8 @@ public class FormLogin extends AppCompatActivity {
         loadingBg = findViewById(R.id.loagingBgLogin);
         loadingBg.setVisibility(View.INVISIBLE);
         edt_cadastre = findViewById(R.id.textViewCadastre);
+        email_input = findViewById(R.id.email_input);
+        senha_input = findViewById(R.id.senha_input);
     }
 
     private void AutenticarUsuario(String email, String senha){
