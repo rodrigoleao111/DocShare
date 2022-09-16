@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -39,6 +40,7 @@ public class FormCadastro extends FileGenerator {
     private Spinner cargo_user, setor_user;
     private Button bt_cadastrar;
     private ImageView loadingBg;
+    private TextInputEditText input_email, input_senha, input_confirmar_senha, input_nome, input_cpf, input_rg, input_telefone;
 
     private ProgressBar loadingPb;
 
@@ -86,15 +88,15 @@ public class FormCadastro extends FileGenerator {
 
     private void ColetarInformacoes() {
         // Coletar informações inseridas
-        email = email_user.getText().toString();
-        senha = senha_user.getText().toString();
-        confirma_senha = confirmar_senha_user.getText().toString();
+        email = input_email.getText().toString();
+        senha = input_senha.getText().toString();
+        confirma_senha = input_confirmar_senha.getText().toString();
 
         // Informações do documento usuário
-        dados_usuario.put("nome", nome_user.getText().toString());
-        dados_usuario.put("cpf", cpf_user.getText().toString());
-        dados_usuario.put("rg", rg_user.getText().toString());
-        dados_usuario.put("telefone", telefone_user.getText().toString());
+        dados_usuario.put("nome", input_nome.getText().toString());
+        dados_usuario.put("cpf", input_cpf.getText().toString());
+        dados_usuario.put("rg", input_rg.getText().toString());
+        dados_usuario.put("telefone", input_telefone.getText().toString());
         dados_usuario.put("cargo", cargo_user.getSelectedItem().toString());
         dados_usuario.put("setor", setor_user.getSelectedItem().toString());
         dados_usuario.put("profilePicUri", "void");
@@ -182,6 +184,14 @@ public class FormCadastro extends FileGenerator {
         cargo_user = findViewById(R.id.edit_cargo);
         setor_user = findViewById(R.id.edit_setor);
 
+        input_nome = findViewById(R.id.input_nome);
+        input_senha = findViewById(R.id.input_senha);
+        input_confirmar_senha = findViewById(R.id.input_confirmar_senha);
+        input_cpf = findViewById(R.id.input_cpf);
+        input_rg = findViewById(R.id.input_rg);
+        input_telefone = findViewById(R.id.input_telefone);
+        input_email = findViewById(R.id.input_email);
+
         bt_cadastrar = findViewById(R.id.button_cadastrar);
 
         loadingBg = findViewById(R.id.loagingBg);
@@ -201,7 +211,9 @@ public class FormCadastro extends FileGenerator {
 
 
     private void goToFormLogin(){
+
         InstanciarFirebase();
+       // UserInfo.setUserCredentials();
         Intent intent = new Intent(getApplicationContext(), FormLogin.class);
         startActivity(intent);
         finish();

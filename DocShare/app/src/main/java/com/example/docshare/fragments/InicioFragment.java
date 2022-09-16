@@ -1,5 +1,6 @@
 package com.example.docshare.fragments;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -20,13 +21,8 @@ import com.example.docshare.formularios.FormOSManutencaoCorretiva;
 import com.example.docshare.metodos.ImageHelper;
 import com.example.docshare.metodos.RequestPermissions;
 import com.example.docshare.metodos.UserInfo;
-import com.example.docshare.usuario.TelaDeUsuario;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
-
 
 
 public class InicioFragment extends Fragment {
@@ -34,11 +30,14 @@ public class InicioFragment extends Fragment {
     private Bundle userCredentials = UserInfo.getUserCredentials();
     private TextView boasvindas;
     private ImageView profilePic;
-    private Button bt_novaOSManutencao;
+    private Button bt_novaOSManutencao, button_novaOS;
+    private TextView textVerTodas;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_inicio, container, false);
 
         IniciarComponentes(view);
@@ -54,6 +53,18 @@ public class InicioFragment extends Fragment {
                     Activity activity = new Activity();
                     RequestPermissions.requestPermission(activity);
                 }
+            }
+        });
+
+
+        button_novaOS = view.findViewById(R.id.button_novaOS);
+        textVerTodas = view.findViewById(R.id.textVerTodas);
+
+        button_novaOS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), FormOSManutencaoCorretiva.class);
+                startActivity(intent);
             }
         });
 
@@ -80,6 +91,14 @@ public class InicioFragment extends Fragment {
     private void IniciarComponentes(View view) {
         boasvindas = view.findViewById(R.id.txt_boas_vindas2);
         profilePic = view.findViewById(R.id.profilePicInit);
-        bt_novaOSManutencao = view.findViewById(R.id.bt_nova_os_manutencao);
+        //bt_novaOSManutencao = view.findViewById(R.id.bt_nova_os_manutencao);
     }
+
+
+
+
+
+
+
 }
+

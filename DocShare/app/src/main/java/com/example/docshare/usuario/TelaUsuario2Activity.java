@@ -28,7 +28,8 @@ public class TelaUsuario2Activity extends AppCompatActivity {
     private HistoricoFragment historicoFragment = new HistoricoFragment();
     private ConfiguracoesFragment configuracoesFragment = new ConfiguracoesFragment();
     private BottomNavigationView bottomNavigationView;
-    private Button buttonSair;
+    FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,6 @@ public class TelaUsuario2Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, inicioFragment).commit();
-       // bottomNavigationView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_SELECTED);
+        // desativando o botão de voltar
     }
 }

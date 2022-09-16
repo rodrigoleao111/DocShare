@@ -44,13 +44,13 @@
             android:background="@drawable/container_components"
             android:elevation="8dp"
             app:flow_horizontalAlign="center"
-            app:layout_constraintBottom_toTopOf="@+id/bt_nova_os_manutencao"
+            app:layout_constraintBottom_toTopOf="@+id/button_novaOS"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_boas_vindas2" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/textVerTodas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -76,7 +76,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
         <Button
-            android:id="@+id/bt_nova_os_manutencao"
+            android:id="@+id/button_novaOS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="82dp"

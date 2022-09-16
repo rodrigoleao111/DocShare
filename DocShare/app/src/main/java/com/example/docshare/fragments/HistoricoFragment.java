@@ -35,7 +35,7 @@ public class HistoricoFragment extends Fragment {
 
        //Criar adaptador para a lista
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_list_item_2, android.R.id.text1, itens);
+                android.R.layout.simple_list_item_2, android.R.id.text2, datas);
 
         //ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getContext(),
                // android.R.layout.simple_list_item_2, android.R.id.text2, datas);
