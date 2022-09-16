@@ -1,11 +1,9 @@
 package com.example.docshare.metodos;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,22 +14,27 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+/***
+ * Classe contendo uma variável Bundle, com as informações do usuário logado em formato String, e métodos para
+ * modificação de dados e criação de diretórios no dispositivo.
+ *
+ * Chaves {"userID", "nome", "cpf", "rg", "telefone", "cargo", "setor", "profilePicUri", "rootDir", "userDir", "imagesDir", "osDir"}
+ */
 public class UserInfo {
 
     private static Bundle userCredentials = new Bundle();
 
+
+
     public static Bundle getUserCredentials() {
         return userCredentials;
     }
-
-
 
     public static void setUserCredentials(DocumentReference documentReference, String userID) {
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -74,7 +77,7 @@ public class UserInfo {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("db_error", "Erro ao atualizar imagem de perfil: " + e.toString());
+                Log.d("db_error", "Erro ao atualizar imagem de perfil: " + e);
             }
         });
     }
@@ -100,7 +103,7 @@ public class UserInfo {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("db_error", "Erro ao atualizar imagem de perfil: " + e.toString());
+                Log.d("db_error", "Erro ao atualizar imagem de perfil: " + e);
             }
         });
     }

@@ -127,7 +127,7 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
                     if(!Objects.equals(documentSnapshot.getString("profilePicUri"), "void")){
                         Bitmap profilePicBitmap = BitmapFactory.decodeFile(documentSnapshot.getString("profilePicUri"));
                         if(profilePicBitmap != null)
-                            changeProfilePic.setImageBitmap(ImageHelper.getRoundedCornerBitmap(profilePicBitmap, 10000));
+                            changeProfilePic.setImageBitmap(ImageHelper.getRoundedCornerBitmap(profilePicBitmap, profilePicBitmap.getHeight()));
                     }
                 }
             }

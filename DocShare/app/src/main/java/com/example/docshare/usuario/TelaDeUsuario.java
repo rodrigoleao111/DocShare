@@ -29,6 +29,7 @@ import com.example.docshare.R;
 import com.example.docshare.formularios.FormOSManutencaoCorretiva;
 import com.example.docshare.metodos.ImageHelper;
 import com.example.docshare.metodos.RequestPermissions;
+import com.example.docshare.metodos.UserInfo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -159,6 +160,13 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper, Req
     protected void onStart() {
         super.onStart();
 
+        if(UserInfo.getUserCredentials() != null) {
+            //String[] nomeUser = UserInfo.getUserCredentials().getString("nome").split("\\s");
+            String nomeUser = UserInfo.getUserCredentials().getString("nome");   // NÃO FAÇO IDEIA PQ AQUI DA NULL
+            ola = "Olá, " + nomeUser;
+            //boas_vindas.setText(ola);
+        }
+
         DocumentReference documentReference = db_dados_usuario.collection("Usuarios").document(userID);
 
         // Texto de Boas Vindas
@@ -166,13 +174,13 @@ public class TelaDeUsuario extends AppCompatActivity implements ImageHelper, Req
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
                 if(documentSnapshot != null){
-                    String[] nomeUser = documentSnapshot.getString("nome").split("\\s");
+                    String[] nomeUser = UserInfo.getUserCredentials().getString("nome").split("\\s");
                     ola = "Olá, " + nomeUser[0];
                     boas_vindas.setText(ola);
-                    if(!Objects.equals(documentSnapshot.getString("profilePicUri"), "void")) {
-                        Bitmap profilePicBitmap = BitmapFactory.decodeFile(documentSnapshot.getString("profilePicUri"));
+                    if(!Objects.equals(UserInfo.getUserCredentials().getString("profilePicUri"), "void")) {
+                        Bitmap profilePicBitmap = BitmapFactory.decodeFile(UserInfo.getUserCredentials().getString("profilePicUri"));
                         if(profilePicBitmap !=null)
-                            profilePic.setImageBitmap(ImageHelper.getRoundedCornerBitmap(profilePicBitmap, 1000));
+                            profilePic.setImageBitmap(ImageHelper.getRoundedCornerBitmap(profilePicBitmap, profilePicBitmap.getHeight()));
                     }
                 }
             }

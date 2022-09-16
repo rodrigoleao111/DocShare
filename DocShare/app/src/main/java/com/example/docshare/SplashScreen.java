@@ -1,20 +1,11 @@
 package com.example.docshare;
 
-import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
-import android.widget.Toast;
 
 import com.example.docshare.metodos.UserInfo;
 import com.example.docshare.usuario.FormLogin;
@@ -25,7 +16,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.File;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -42,7 +32,7 @@ public class SplashScreen extends AppCompatActivity {
                 Intent intent;
 
                 if(usuarioAtual != null) {
-                    intent = new Intent(getApplicationContext(), TelaDeUsuario.class);
+                    intent = new Intent(getApplicationContext(), TelaUsuario2Activity.class);
                     InstanciarFirebase();
                 }
                 else

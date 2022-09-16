@@ -28,7 +28,6 @@ public class TelaUsuario2Activity extends AppCompatActivity {
     private HistoricoFragment historicoFragment = new HistoricoFragment();
     private ConfiguracoesFragment configuracoesFragment = new ConfiguracoesFragment();
     private BottomNavigationView bottomNavigationView;
-    FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
 
 
     @Override
