@@ -2,26 +2,32 @@ package com.example.docshare.fragments;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.docshare.R;
 import com.example.docshare.formularios.FormOSManutencaoCorretiva;
 import com.example.docshare.metodos.ImageHelper;
 import com.example.docshare.metodos.RequestPermissions;
 import com.example.docshare.metodos.UserInfo;
+import com.example.docshare.usuario.TelaDeUsuario;
 import com.example.docshare.usuario.TelaUsuario2Activity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -29,16 +35,23 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.auth.User;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 
 public class InicioFragment extends Fragment {
 
+    private static final int PERMISSION_REQUEST_CODE = 200;
+
     private TextView boasvindas;
     private ImageView profilePic;
     private Button button_novaOS;
     private TextView textVerTodas;
+    Bundle paths = new Bundle();
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
     String userID = FirebaseAuth.getInstance().getCurrentUser().getUid(), ola;
 
@@ -51,15 +64,21 @@ public class InicioFragment extends Fragment {
 
         IniciarComponentes(view);
 
+        VerificacaoDiretoriosDoApp(getContext());
+
+
+
+
         button_novaOS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (UserInfo.CriarDiretoriosDoApp(RequestPermissions.checkPermission(getContext()))) {
+                if (RequestPermissions.checkPermission(getContext())) {
                     Intent goToFormOsActivity = new Intent(getContext(), FormOSManutencaoCorretiva.class);
+                    goToFormOsActivity.putExtras(paths);
                     startActivity(goToFormOsActivity);
                 } else {
-                    Activity activity = getActivity();
-                    RequestPermissions.requestPermission(activity);
+                    Toast.makeText(getContext(),"permissão negada", Toast.LENGTH_LONG).show();
+                    RequestPermissions.requestPermission(getActivity());
                 }
             }
         });
@@ -67,6 +86,30 @@ public class InicioFragment extends Fragment {
 
         return view;
     }
+
+    private void VerificacaoDiretoriosDoApp(Context context) {
+        if (RequestPermissions.checkPermission(context)) {
+            String rootDirName = "DocShare", imagesDirName = "DocShare_images", osDirName = "DocShare_os_files";
+            File rootDirFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), rootDirName);
+            rootDirFile.mkdir();
+            File userDir = new File(rootDirFile, userID);
+            userDir.mkdir();
+            File imageDir = new File(userDir, imagesDirName);
+            imageDir.mkdir();
+            File osDir = new File(userDir, osDirName);
+            osDir.mkdir();
+
+            UserInfo.setUserPaths(
+                    rootDirFile.getAbsolutePath(),
+                    userDir.getAbsolutePath(),
+                    imageDir.getAbsolutePath(),
+                    osDir.getAbsolutePath());
+
+        } else {
+            RequestPermissions.requestPermission(getActivity());
+        }
+    }
+
 
 
     private void IniciarComponentes(View view) {
@@ -98,7 +141,25 @@ public class InicioFragment extends Fragment {
                 }
             }
         });
-
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0) {
+                boolean writeStorage = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                boolean readStorage = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+
+                if (writeStorage && readStorage) {
+                    Toast.makeText(getContext(), "Permission Granted.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Permission Denined.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+
 }
 

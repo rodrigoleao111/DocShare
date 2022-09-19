@@ -55,6 +55,13 @@ public class UserInfo {
         });
     }
 
+    public static void setUserPaths(String root, String user, String images, String os){
+        userCredentials.putString("rootPath", root);
+        userCredentials.putString("userPath", user);
+        userCredentials.putString("imagesPath", images);
+        userCredentials.putString("osPath", os);
+    }
+
 
 
     public static void updateProfilePic(String pathProfilePic, DocumentReference documentReference){

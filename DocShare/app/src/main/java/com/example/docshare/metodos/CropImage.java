@@ -117,8 +117,7 @@ public class CropImage extends AppCompatActivity {
                 // Criar arquivo de imagem de perfil
                 java.util.Date date = new Date();
                 String nomeArquivo = "DocShare-Image-" + userID + "-" + date.getTime() + ".png";
-                File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), nomeArquivo);
-                //File file = new File(paths.getString("imagesDir"), nomeArquivo);
+                File file = new File(UserInfo.getUserCredentials().getString("imagesPath"), nomeArquivo);
 
                 try {
                     file.createNewFile();

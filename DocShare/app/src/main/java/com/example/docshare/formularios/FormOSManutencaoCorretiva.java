@@ -173,7 +173,6 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
                             sendToCropImageActivity.putExtra("uri", tempUri);
                             sendToCropImageActivity.putExtra("call", 1);
                             sendToCropImageActivity.putExtra("source", 1);
-                            //sendToCropImageActivity.putExtras(paths);
                             startActivity(sendToCropImageActivity);
 
                         }

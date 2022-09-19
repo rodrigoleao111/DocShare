@@ -32,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.docshare.R;
+import com.example.docshare.fragments.ConfiguracoesFragment;
 import com.example.docshare.metodos.CropImage;
 import com.example.docshare.metodos.ImageHelper;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -171,7 +172,7 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
         public void onActivityResult(Uri result) {
             // Enviar bitmap para CropImage
             Intent sendToCropImageActivity = new Intent(getApplicationContext(), CropImage.class);
-            sendToCropImageActivity.putExtras(paths);
+            //sendToCropImageActivity.putExtras(paths);
             sendToCropImageActivity.putExtra("uri", result);
             sendToCropImageActivity.putExtra("call", 0);
             sendToCropImageActivity.putExtra("source", 1);
@@ -191,18 +192,6 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
                         if (data != null) {
 
                             Bitmap cameraPic = (Bitmap)(data.getExtras().get("data"));
-                            /* ASSIM EU PEGO A TUMBNAIL
-
-                            // Enviar bitmap para CropImage
-                            Intent sendToCropImageActivity = new Intent(getApplicationContext(), CropImage.class);
-                            sendToCropImageActivity.putExtra("byteArray", ImageHelper.bitmapToByteArray(cameraPic));
-                            sendToCropImageActivity.putExtra("call", 0);
-                            sendToCropImageActivity.putExtra("source", 0);
-                            startActivity(sendToCropImageActivity);
-
-                             */
-
-                            // ASSIM ESTOU MODIFICANDO A TUMBNAIL (ESTICANDO A IMAGEM)
 
                             Uri tempUri = ImageHelper.getUriFromTumbnailBitmap(getApplicationContext(), cameraPic);
                             File finalFile = new File(ImageHelper.getRealPathFromURI(tempUri, getApplicationContext()));
@@ -212,7 +201,6 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
                             sendToCropImageActivity.putExtra("uri", tempUri);
                             sendToCropImageActivity.putExtra("call", 0);
                             sendToCropImageActivity.putExtra("source", 1);
-                            sendToCropImageActivity.putExtras(paths);
                             startActivity(sendToCropImageActivity);
 
 

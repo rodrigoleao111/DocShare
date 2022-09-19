@@ -31,6 +31,7 @@ public class SplashScreen extends AppCompatActivity {
                 FirebaseUser usuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
                 Intent intent;
 
+                // Check permissions
                 if(usuarioAtual != null) {
                     intent = new Intent(getApplicationContext(), TelaUsuario2Activity.class);
                     InstanciarFirebase();
