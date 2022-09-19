@@ -35,8 +35,11 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.auth.User;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 
@@ -120,7 +123,13 @@ public class InicioFragment extends Fragment {
         os = osDir.mkdir();
 
         if(rootDirFile.exists() & user & image & os){
-            Toast.makeText(getContext(), "Sucesso ao criar TODAS as pastas", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "Sucesso ao criar TODAS as pastas", Toast.LENGTH_SHORT).show();
+            UserInfo.setUserPaths(
+                    rootDirFile.getAbsolutePath(),
+                    userDir.getAbsolutePath(),
+                    imageDir.getAbsolutePath(),
+                    osDir.getAbsolutePath());
+            //Toast.makeText(getContext(), UserInfo.getUserCredentials().getString("rootPath"), Toast.LENGTH_SHORT).show();
         }
     }
 
