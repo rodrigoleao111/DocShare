@@ -2,6 +2,7 @@ package com.example.docshare.fragments;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -60,25 +61,8 @@ public class InicioFragment extends Fragment {
 
         IniciarComponentes(view);
 
-        // CRIAÇÃO DE PASTAS
-        if (RequestPermissions.checkPermission(getContext())) {
-            String folderName = "DocShare";
-            File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), folderName);
-            if(!folder.exists()){
-                if(folder.mkdir())
-                    paths.putString("rootDir", folder.getAbsolutePath());
-                Toast.makeText(getContext(), "sucesso ao criar pasta", Toast.LENGTH_SHORT).show();
-                CriarPastasDoApp(folder);
-            } else {
-                //Toast.makeText(getApplicationContext(), folder.getAbsolutePath(), Toast.LENGTH_LONG).show();
-                paths.putString("rootDir", folder.getAbsolutePath());
-                //paths.putString("userDir", userFolder.getAbsolutePath());
-                //paths.putString("osDir", osFolder.getAbsolutePath());
-                //paths.putString("imagesDir", imagesFolder.getAbsolutePath());
-            }
-        } else {
-            RequestPermissions.requestPermission(getActivity());
-        }
+        VerificacaoDiretoriosDoApp(getContext());
+
 
 
 
@@ -98,6 +82,48 @@ public class InicioFragment extends Fragment {
 
         return view;
     }
+
+    private void VerificacaoDiretoriosDoApp(Context context) {
+        //Toast.makeText(getContext(), "Chamei", Toast.LENGTH_SHORT).show();
+        if (RequestPermissions.checkPermission(context)) {
+            //Toast.makeText(getContext(), "entrou no requestpermission", Toast.LENGTH_SHORT).show();
+            String rootDirName = "DocShare";
+            File rootDirFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), rootDirName);
+            if(!rootDirFile.exists()){
+                //Toast.makeText(getContext(), "não existe", Toast.LENGTH_SHORT).show();
+                rootDirFile.mkdir();
+                CriarPastasDeUsuario(rootDirFile);
+            } else {
+                //Toast.makeText(getContext(), "Existe", Toast.LENGTH_SHORT).show();
+                // Verificar se a pasta do usuário existe
+                File userDirFile = new File(rootDirFile, userID);
+                if(!userDirFile.exists()) {
+                    Toast.makeText(getContext(), "Chamei 2", Toast.LENGTH_SHORT).show();
+                    CriarPastasDeUsuario(rootDirFile);
+                }
+            }
+        } else {
+            RequestPermissions.requestPermission(getActivity());
+        }
+    }
+
+    private void CriarPastasDeUsuario(File rootDirFile) {
+        //Toast.makeText(getContext(), "função criar", Toast.LENGTH_SHORT).show();
+        boolean user, image, os;
+
+        String imagesDirName = "DocShare_images", osDirName = "DocShare_os_files";
+        File userDir = new File(rootDirFile, userID);
+        user = userDir.mkdir();
+        File imageDir = new File(userDir, imagesDirName);
+        image = imageDir.mkdir();
+        File osDir = new File(userDir, osDirName);
+        os = osDir.mkdir();
+
+        if(rootDirFile.exists() & user & image & os){
+            Toast.makeText(getContext(), "Sucesso ao criar TODAS as pastas", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 
     private void IniciarComponentes(View view) {
@@ -148,28 +174,6 @@ public class InicioFragment extends Fragment {
         }
     }
 
-    private void CriarPastasDoApp(File folder) {
-        String folderUserName = userID, folderImages = "DocShare_images", folderOS = "DocShare_os_files";
-        File userFolder = new File(folder, folderUserName);
-        if(!userFolder.exists()){
-            userFolder.mkdir();
-            paths.putString("userDir", userFolder.getAbsolutePath());
-            File imagesFolder = new File(userFolder, folderImages);
-            File osFolder = new File(userFolder, folderOS);
-            if(!imagesFolder.exists()&&!osFolder.exists()){
-                imagesFolder.mkdir();
-                paths.putString("imagesDir", imagesFolder.getAbsolutePath());
-                if(osFolder.mkdir()) {
-                    paths.putString("osDir", osFolder.getAbsolutePath());
-                    Toast.makeText(getContext(), "Successful", Toast.LENGTH_SHORT).show();
-                }
-                else
-                    Toast.makeText(getContext(),"Fail",Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(getContext(),"Folder Already Exists",Toast.LENGTH_SHORT).show();
-        }
-    }
 
 }
 
