@@ -1,9 +1,15 @@
 package com.example.docshare.formularios;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -39,7 +45,7 @@ public class FormCadastro extends FileGenerator {
     private EditText nome_user, cpf_user, rg_user, telefone_user;
     private Spinner cargo_user, setor_user;
     private Button bt_cadastrar;
-    private ImageView loadingBg;
+    private ImageView loadingBg, imageUserCadastro;
     private TextInputEditText input_email, input_senha, input_confirmar_senha, input_nome, input_cpf, input_rg, input_telefone;
 
     private ProgressBar loadingPb;
@@ -51,6 +57,7 @@ public class FormCadastro extends FileGenerator {
 
     String email, senha, confirma_senha;
     Map<String,Object> dados_usuario = new HashMap<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,6 +198,7 @@ public class FormCadastro extends FileGenerator {
         input_rg = findViewById(R.id.input_rg);
         input_telefone = findViewById(R.id.input_telefone);
         input_email = findViewById(R.id.input_email);
+        imageUserCadastro = findViewById(R.id.imageUserCadastro);
 
         bt_cadastrar = findViewById(R.id.button_cadastrar);
 
@@ -225,4 +233,8 @@ public class FormCadastro extends FileGenerator {
         DocumentReference documentReference = db_dados_usuario.collection("Usuarios").document(userID);
         UserInfo.setUserCredentials(documentReference, userID);
     }
+
+
+
+
 }

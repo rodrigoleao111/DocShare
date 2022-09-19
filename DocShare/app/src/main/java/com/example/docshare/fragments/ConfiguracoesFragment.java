@@ -22,6 +22,7 @@ import com.example.docshare.R;
 import com.example.docshare.metodos.ImageHelper;
 import com.example.docshare.usuario.ConfiguracoesDeUsuario;
 import com.example.docshare.usuario.FormLogin;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -34,10 +35,11 @@ import java.util.Objects;
 
 public class ConfiguracoesFragment extends Fragment {
 
-    private Button buttonSair;
+    private Button buttonSair, buttonSalvar_dialog, buttonCancel_dialog;
     private TextView mudarSenha, editarPerfil, sobre;   // Botões
     private TextView nome, cargo, email, telefone;
     private ImageView profilePic;
+    private TextInputEditText senhaAtual, novaSenha, confirmarSenha;
     Bundle paths = new Bundle();
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
     String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -48,7 +50,6 @@ public class ConfiguracoesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_configuracoes, container, false);
         IniciarComponentes(view);
-
 
         editarPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +94,7 @@ public class ConfiguracoesFragment extends Fragment {
                 AlertDialog.Builder dialogSenha = new AlertDialog.Builder(getContext());
                 View viewMudarSenha = inflater.inflate(R.layout.dialog_mudar_senha, null);
                 dialogSenha.setView(viewMudarSenha);
+                dialogSenha.setCancelable(false);
                 dialogSenha.create();
                 dialogSenha.show();
 
@@ -113,12 +115,16 @@ public class ConfiguracoesFragment extends Fragment {
         email = view.findViewById(R.id.textView);
         telefone = view.findViewById(R.id.textView4);
         profilePic = view.findViewById(R.id.imageView2);
+        buttonCancel_dialog = view.findViewById(R.id.buttonCancel_dialog);
+        buttonSalvar_dialog = view.findViewById(R.id.buttonSalvar_dialog);
+        senhaAtual = view.findViewById(R.id.inputSenhaAtual);
+        novaSenha = view.findViewById(R.id.inputNovaSenha);
+        confirmarSenha = view.findViewById(R.id.inputConfirmarSenha);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-
         DocumentReference documentReference = db_dados_usuario.collection("Usuarios").document(userID);
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override

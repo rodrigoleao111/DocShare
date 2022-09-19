@@ -299,7 +299,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/imageUserCadastro"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginTop="16dp"
