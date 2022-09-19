@@ -56,7 +56,11 @@ public class VizualizarForm extends FileGenerator implements ImageHelper {
         btCompartilhar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GerarPDF(dadosOS, bitmap);
+                try {
+                    GerarPDF(dadosOS, bitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

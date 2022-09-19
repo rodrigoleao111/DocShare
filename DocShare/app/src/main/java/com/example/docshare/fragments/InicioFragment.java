@@ -77,6 +77,7 @@ public class InicioFragment extends Fragment {
                     goToFormOsActivity.putExtras(paths);
                     startActivity(goToFormOsActivity);
                 } else {
+                    Toast.makeText(getContext(),"permissão negada", Toast.LENGTH_LONG).show();
                     RequestPermissions.requestPermission(getActivity());
                 }
             }
@@ -87,49 +88,25 @@ public class InicioFragment extends Fragment {
     }
 
     private void VerificacaoDiretoriosDoApp(Context context) {
-        //Toast.makeText(getContext(), "Chamei", Toast.LENGTH_SHORT).show();
         if (RequestPermissions.checkPermission(context)) {
-            //Toast.makeText(getContext(), "entrou no requestpermission", Toast.LENGTH_SHORT).show();
-            String rootDirName = "DocShare";
+            String rootDirName = "DocShare", imagesDirName = "DocShare_images", osDirName = "DocShare_os_files";
             File rootDirFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), rootDirName);
-            if(!rootDirFile.exists()){
-                //Toast.makeText(getContext(), "não existe", Toast.LENGTH_SHORT).show();
-                rootDirFile.mkdir();
-                CriarPastasDeUsuario(rootDirFile);
-            } else {
-                //Toast.makeText(getContext(), "Existe", Toast.LENGTH_SHORT).show();
-                // Verificar se a pasta do usuário existe
-                File userDirFile = new File(rootDirFile, userID);
-                if(!userDirFile.exists()) {
-                    Toast.makeText(getContext(), "Chamei 2", Toast.LENGTH_SHORT).show();
-                    CriarPastasDeUsuario(rootDirFile);
-                }
-            }
-        } else {
-            RequestPermissions.requestPermission(getActivity());
-        }
-    }
+            rootDirFile.mkdir();
+            File userDir = new File(rootDirFile, userID);
+            userDir.mkdir();
+            File imageDir = new File(userDir, imagesDirName);
+            imageDir.mkdir();
+            File osDir = new File(userDir, osDirName);
+            osDir.mkdir();
 
-    private void CriarPastasDeUsuario(File rootDirFile) {
-        //Toast.makeText(getContext(), "função criar", Toast.LENGTH_SHORT).show();
-        boolean user, image, os;
-
-        String imagesDirName = "DocShare_images", osDirName = "DocShare_os_files";
-        File userDir = new File(rootDirFile, userID);
-        user = userDir.mkdir();
-        File imageDir = new File(userDir, imagesDirName);
-        image = imageDir.mkdir();
-        File osDir = new File(userDir, osDirName);
-        os = osDir.mkdir();
-
-        if(rootDirFile.exists() & user & image & os){
-            //Toast.makeText(getContext(), "Sucesso ao criar TODAS as pastas", Toast.LENGTH_SHORT).show();
             UserInfo.setUserPaths(
                     rootDirFile.getAbsolutePath(),
                     userDir.getAbsolutePath(),
                     imageDir.getAbsolutePath(),
                     osDir.getAbsolutePath());
-            //Toast.makeText(getContext(), UserInfo.getUserCredentials().getString("rootPath"), Toast.LENGTH_SHORT).show();
+
+        } else {
+            RequestPermissions.requestPermission(getActivity());
         }
     }
 

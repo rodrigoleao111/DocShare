@@ -1,5 +1,7 @@
 package com.example.docshare.metodos;
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -10,14 +12,22 @@ import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.documentfile.provider.DocumentFile;
 
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -32,27 +42,7 @@ public class FileGenerator extends AppCompatActivity {
      * @param coletarInformacoes : bundle com as informações de texto inseridas pelo usuário
      * @param bitmap : imagem original anexada pelo usuário
      */
-    public void GerarPDF(Bundle coletarInformacoes, Bitmap bitmap) {
-
-        /*
-
-        // Separar criação de formulário para diferentes tipos.
-
-        switch (coletarInformacoes.getInt("formType")){
-            case 0:
-                // cadastro
-                break;
-            case 1:
-                // FormOSManutencaoCorretiva
-                break;
-            case 2:
-                // FormRelatorioDefeitos
-                break;
-            default:
-                // TO DO
-        }
-
-         */
+    public void GerarPDF(Bundle coletarInformacoes, Bitmap bitmap) throws IOException {
 
         // Chaves e informações
         String[] infoColaborador = {"Nome", "RG", "CPF", "Setor", "Cargo", "Telefone", "E-mail"};
@@ -166,10 +156,15 @@ public class FileGenerator extends AppCompatActivity {
         pdfRelatorio.finishPage(pagRelatorio);
 
         String nomeArquivo = "OSManutencao_" + coletarInformacoes.getString("formID") + ".pdf";
-        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), nomeArquivo);
+        File file = new File(UserInfo.getUserCredentials().getString("osPath"), nomeArquivo);
+        file.setWritable(true);
+
 
         try {
-            pdfRelatorio.writeTo(new FileOutputStream(file));
+            FileOutputStream fos = new FileOutputStream(file);
+            pdfRelatorio.writeTo(fos);
+            fos.flush();
+            fos.close();
             Toast.makeText(getApplicationContext(), "arquivo gerado", Toast.LENGTH_SHORT).show();
             CompartilharRelatorio(file);
         } catch (IOException e) {
@@ -192,7 +187,7 @@ public class FileGenerator extends AppCompatActivity {
             Intent intentShare = new Intent(Intent.ACTION_SEND);
             intentShare.setType("application/pdf");
             intentShare.putExtra(Intent.EXTRA_STREAM, Uri.parse(pathUri.toString()));
-            startActivity(Intent.createChooser(intentShare, "Share file"));
+            startActivity(Intent.createChooser(intentShare, "Compartilhar Ordem de Serviço"));
         } else {
             Toast.makeText(getApplicationContext(), "Arquivo não encontrado", Toast.LENGTH_SHORT).show();
         }
