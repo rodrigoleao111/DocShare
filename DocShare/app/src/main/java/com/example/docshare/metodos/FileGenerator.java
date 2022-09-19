@@ -3,11 +3,14 @@ package com.example.docshare.metodos;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.documentfile.provider.DocumentFile;
 
+import com.example.docshare.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.BufferedWriter;
@@ -122,7 +126,7 @@ public class FileGenerator extends AppCompatActivity {
 
         for (int i = 0; i < infoEquipamento.length; i++) {
             canvas.drawText(infoEquipamento[i] + ":", marginLeft, y, myPaint);
-            canvas.drawText(coletarInformacoes.getString(chavesEquipamento[i]), marginLeft + 200, y, myPaint);
+            canvas.drawText(coletarInformacoes.getString(chavesEquipamento[i]), marginLeft + 300, y, myPaint);
             y += verticalSpacing;
         }
 
@@ -142,16 +146,28 @@ public class FileGenerator extends AppCompatActivity {
 
         for (int i = 0; i < infoManutencao.length; i++) {
             canvas.drawText(infoManutencao[i] + ":", marginLeft, y, myPaint);
-            canvas.drawText(coletarInformacoes.getString(chavesManutencao[i]), marginLeft + 200, y, myPaint);
+            canvas.drawText(coletarInformacoes.getString(chavesManutencao[i]), marginLeft + 300, y, myPaint);
             y += verticalSpacing;
         }
 
         y += 3*verticalSpacing;
 
+        // Imagem
         if(bitmap != null){
             Rect rect = new Rect( marginLeft, y, marginLeft+imageSize, y+imageSize);
             canvas.drawBitmap(bitmap, null, rect, myPaint);
+            y += 2*verticalSpacing;
         }
+
+        // Logo informa
+        Resources res = getResources();
+        Bitmap informaLogo = BitmapFactory.decodeResource(res, R.drawable.informalogopreto);
+        Rect rect = new Rect(
+                marginLeft,
+                pageHeight-2*informaLogo.getHeight(),
+                marginLeft+informaLogo.getWidth(),
+                y+informaLogo.getHeight());
+        canvas.drawBitmap(informaLogo, null, rect, myPaint);
 
         pdfRelatorio.finishPage(pagRelatorio);
 
