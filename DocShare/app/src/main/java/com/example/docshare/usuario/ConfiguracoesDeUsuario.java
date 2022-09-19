@@ -212,34 +212,28 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
 
 
 
-    // Checagem de permissão: armazenamento externo
     public Boolean checkStoragePermission() {
         boolean result = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
         return result;
     }
 
-    // Requisição de permissão: galeria
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void requestStoragePermission() {
         requestPermissions(storagePermission, STORAGE_REQUEST);
     }
 
-    // Checagem de permissão: camera
     public Boolean checkCameraPermission() {
         boolean result = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
         boolean result1 = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
         return result && result1;
     }
 
-    // Requisição de permissão: camera
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void requestCameraPermission() {
         requestPermissions(cameraPermission, CAMERA_REQUEST);
     }
 
 
-
-    // Update profile picture
     private void updateProfilePic(Map<String,Object> newProfilePicUri){
         documentReference.update(newProfilePicUri).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -261,7 +255,6 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
             }
         });
     }
-    // Adicionar condição para quando a permissão for negada
 
 
     

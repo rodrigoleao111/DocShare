@@ -59,8 +59,10 @@ public class FileGenerator extends AppCompatActivity {
         Paint myPaint = new Paint();
 
         // Informações da página
-        int pageWidth = 400, pageHeight = 600;  // Pixels
-        int y = 0, marginLeft = 10, center = pageWidth/2;
+        int pageWidth = 2480, pageHeight = 3508;  // Tamanho A4
+        int y = 200, marginLeft = 115, center = pageWidth/2, marginRight = pageWidth-115,
+                verticalSpacing = 50, imageSize = 900;
+        float titleSize = 90.0f, subTitleSize = 70.0f, textSize = 40.0f, topcSize = 30.0f;
         PdfDocument.PageInfo infoRelatorio = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 1).create();
         PdfDocument.Page pagRelatorio = pdfRelatorio.startPage(infoRelatorio);
         Canvas canvas = pagRelatorio.getCanvas();
@@ -68,88 +70,86 @@ public class FileGenerator extends AppCompatActivity {
         // Layout da página
         // Título
         myPaint.setTextAlign(Paint.Align.CENTER);
-        myPaint.setTextSize(12.0f);
-        y += 30;
+        myPaint.setTextSize(titleSize);
+        myPaint.setFakeBoldText(true);
+        y += 90;
         canvas.drawText("Ordem de Serviço - " + coletarInformacoes.getString("formID"), center, y, myPaint);
 
         // Subtítulo
-        myPaint.setTextSize(8.0f);
+        myPaint.setTextSize(subTitleSize);
+        myPaint.setFakeBoldText(false);
         myPaint.setColor(Color.rgb(112, 119, 119));
-        y += 10;
+        y += 90;
         canvas.drawText("Manutenção corretiva", center, y, myPaint);
 
         // Data de preenchimento
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
-        y += 10;
-        myPaint.setTextSize(5.0f);
+        y += 90;
+        myPaint.setTextSize(subTitleSize - 10.0f);
         canvas.drawText(formatter.format(date), center, y, myPaint);
 
         // Informações do usuário
         myPaint.setTextAlign(Paint.Align.LEFT);
-        myPaint.setTextSize(6.0f);
-        y += 30;
+        myPaint.setTextSize(topcSize);
+        y += 3*verticalSpacing;
         canvas.drawText("Informações do colaborador", marginLeft, y, myPaint);
 
         myPaint.setTextAlign(Paint.Align.LEFT);
-        myPaint.setTextSize(8.0f);
+        myPaint.setTextSize(textSize);
         myPaint.setColor(Color.BLACK);
 
-        int marginRigth = pageWidth - 10;
-        y += 20;
+        y += verticalSpacing;
         for (int i = 0; i < infoColaborador.length; i++) {
-            canvas.drawText(infoColaborador[i], marginLeft, y, myPaint);
-            canvas.drawText(coletarInformacoes.getString(chavesColaborador[i]), marginLeft + 80, y, myPaint);
-            canvas.drawLine(marginLeft, y + 3, marginRigth, y + 3, myPaint);
-            y += 10;
+            canvas.drawText(infoColaborador[i] + ":", marginLeft, y, myPaint);
+            canvas.drawText(coletarInformacoes.getString(chavesColaborador[i]), marginLeft + 200, y, myPaint);
+            y += verticalSpacing;
         }
 
-        y += 30;
+        y += 3*verticalSpacing;
 
         // Informações do equipamento
         myPaint.setColor(Color.rgb(112, 119, 119));
         myPaint.setTextAlign(Paint.Align.LEFT);
-        myPaint.setTextSize(6.0f);
-        canvas.drawText("Equipamento | Ativo", 10, y, myPaint);
+        myPaint.setTextSize(topcSize);
+        canvas.drawText("Equipamento | Ativo", marginLeft, y, myPaint);
 
         myPaint.setTextAlign(Paint.Align.LEFT);
-        myPaint.setTextSize(8.0f);
+        myPaint.setTextSize(textSize);
         myPaint.setColor(Color.BLACK);
 
-        y += 20;
+        y += verticalSpacing;
 
         for (int i = 0; i < infoEquipamento.length; i++) {
-            canvas.drawText(infoEquipamento[i], marginLeft, y, myPaint);
-            canvas.drawText(coletarInformacoes.getString(chavesEquipamento[i]), marginLeft + 80, y, myPaint);
-            canvas.drawLine(marginLeft, y + 3, marginRigth, y + 3, myPaint);
-            y += 10;
+            canvas.drawText(infoEquipamento[i] + ":", marginLeft, y, myPaint);
+            canvas.drawText(coletarInformacoes.getString(chavesEquipamento[i]), marginLeft + 200, y, myPaint);
+            y += verticalSpacing;
         }
 
-        y += 30;
+        y += 3*verticalSpacing;
 
         // Informações de Manutenção
         myPaint.setColor(Color.rgb(112, 119, 119));
         myPaint.setTextAlign(Paint.Align.LEFT);
-        myPaint.setTextSize(6.0f);
-        canvas.drawText("Informações de Manutenção", 10, y, myPaint);
+        myPaint.setTextSize(topcSize);
+        canvas.drawText("Informações de Manutenção", marginLeft, y, myPaint);
 
         myPaint.setTextAlign(Paint.Align.LEFT);
-        myPaint.setTextSize(8.0f);
+        myPaint.setTextSize(textSize);
         myPaint.setColor(Color.BLACK);
 
-        y += 20;
+        y += verticalSpacing;
 
         for (int i = 0; i < infoManutencao.length; i++) {
-            canvas.drawText(infoManutencao[i], marginLeft, y, myPaint);
-            canvas.drawText(coletarInformacoes.getString(chavesManutencao[i]), marginLeft + 80, y, myPaint);
-            canvas.drawLine(marginLeft, y + 3, marginRigth, y + 3, myPaint);
-            y += 10;
+            canvas.drawText(infoManutencao[i] + ":", marginLeft, y, myPaint);
+            canvas.drawText(coletarInformacoes.getString(chavesManutencao[i]), marginLeft + 200, y, myPaint);
+            y += verticalSpacing;
         }
 
-        y += 30;
+        y += 3*verticalSpacing;
 
         if(bitmap != null){
-            Rect rect = new Rect( marginLeft, y, marginLeft+180, y+180);
+            Rect rect = new Rect( marginLeft, y, marginLeft+imageSize, y+imageSize);
             canvas.drawBitmap(bitmap, null, rect, myPaint);
         }
 

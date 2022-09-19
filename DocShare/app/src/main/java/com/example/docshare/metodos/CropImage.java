@@ -49,6 +49,7 @@ public class CropImage extends AppCompatActivity {
     int call, source;
     Matrix matrix = new Matrix();
     Bitmap bitmap, finalBitmap;
+    Bundle dadosDoForm = new Bundle();
 
     String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -68,6 +69,9 @@ public class CropImage extends AppCompatActivity {
         paths = intentReceberForm.getExtras();
         call = intentReceberForm.getIntExtra("call", NO_CONTENT);
         source = intentReceberForm.getIntExtra("source", NO_CONTENT);
+
+        if(call == 1)
+            dadosDoForm = intentReceberForm.getExtras();
 
         // Atribuindo bitmap
         if(source == 0){    // Camera
@@ -149,6 +153,7 @@ public class CropImage extends AppCompatActivity {
                     goToCropActivity = new Intent(getApplicationContext(), ConfiguracoesDeUsuario.class);
                 } else if(call == 1){
                     goToCropActivity = new Intent(getApplicationContext(), FormOSManutencaoCorretiva.class);
+                    goToCropActivity.putExtras(dadosDoForm);
                 } else {
                     Toast.makeText(getApplicationContext(), "Falha no recebimento do contexto", Toast.LENGTH_SHORT).show();
                 }
