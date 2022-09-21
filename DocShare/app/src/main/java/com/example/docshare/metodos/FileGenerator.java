@@ -162,11 +162,12 @@ public class FileGenerator extends AppCompatActivity {
         // Logo informa
         Resources res = getResources();
         Bitmap informaLogo = BitmapFactory.decodeResource(res, R.drawable.informalogopreto);
+        int top = pageHeight-(marginLeft + informaLogo.getHeight());
         Rect rect = new Rect(
                 marginLeft,
-                pageHeight-2*informaLogo.getHeight(),
+                top,
                 marginLeft+informaLogo.getWidth(),
-                y+informaLogo.getHeight());
+                top+informaLogo.getHeight());
         canvas.drawBitmap(informaLogo, null, rect, myPaint);
 
         pdfRelatorio.finishPage(pagRelatorio);
