@@ -20,11 +20,6 @@ public class HistoricoFragment extends Fragment {
             "OS Exemplo 6","OS Exemplo 7","OS Exemplo 8","OS Exemplo 9","OS Exemplo 10","OS Exemplo 11",
     };
 
-    private String[] datas = {"Hoje","Ontem","Segunda","26/08/22","25/08/22", "24/08/22","10/08/22",
-            "08/08/22","01/08/22","31/07/22","28/07/22",
-    };
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,14 +30,10 @@ public class HistoricoFragment extends Fragment {
 
        //Criar adaptador para a lista
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_list_item_2, android.R.id.text2, datas);
-
-        //ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getContext(),
-               // android.R.layout.simple_list_item_2, android.R.id.text2, datas);
+                android.R.layout.simple_list_item_1, android.R.id.text1, itens);
 
         //Adiciona adaptador para a lista
         lista.setAdapter(adapter);
-        //lista.setAdapter(adapter2);
 
         //Adicionando clique na lista
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
