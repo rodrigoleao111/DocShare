@@ -1,7 +1,6 @@
 package com.example.docshare.fragments;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -27,19 +26,14 @@ import com.example.docshare.formularios.FormOSManutencaoCorretiva;
 import com.example.docshare.metodos.ImageHelper;
 import com.example.docshare.metodos.RequestPermissions;
 import com.example.docshare.metodos.UserInfo;
-import com.example.docshare.usuario.TelaDeUsuario;
-import com.example.docshare.usuario.TelaUsuario2Activity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.auth.User;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 

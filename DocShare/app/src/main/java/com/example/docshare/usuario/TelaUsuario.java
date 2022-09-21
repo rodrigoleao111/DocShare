@@ -16,7 +16,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 
 
-public class TelaUsuario2Activity extends AppCompatActivity {
+public class TelaUsuario extends AppCompatActivity {
 
     private InicioFragment inicioFragment = new InicioFragment();
     private HistoricoFragment historicoFragment = new HistoricoFragment();

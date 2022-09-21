@@ -1,4 +1,4 @@
-package com.example.docshare;
+package com.example.docshare.outros;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.docshare.R;
 import com.example.docshare.metodos.FileGenerator;
 import com.example.docshare.metodos.ImageHelper;
 

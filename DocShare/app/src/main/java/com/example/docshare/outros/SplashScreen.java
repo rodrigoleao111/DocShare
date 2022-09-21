@@ -1,4 +1,4 @@
-package com.example.docshare;
+package com.example.docshare.outros;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,9 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.example.docshare.R;
 import com.example.docshare.metodos.UserInfo;
 import com.example.docshare.usuario.FormLogin;
-import com.example.docshare.usuario.TelaUsuario2Activity;
+import com.example.docshare.usuario.TelaUsuario;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -32,7 +33,7 @@ public class SplashScreen extends AppCompatActivity {
 
                 // Check permissions
                 if(usuarioAtual != null) {
-                    intent = new Intent(getApplicationContext(), TelaUsuario2Activity.class);
+                    intent = new Intent(getApplicationContext(), TelaUsuario.class);
                     InstanciarFirebase();
                 }
                 else
