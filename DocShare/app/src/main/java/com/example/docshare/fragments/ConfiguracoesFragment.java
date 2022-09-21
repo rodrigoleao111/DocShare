@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,13 +25,10 @@ import com.example.docshare.R;
 import com.example.docshare.metodos.ImageHelper;
 import com.example.docshare.usuario.ConfiguracoesDeUsuario;
 import com.example.docshare.usuario.FormLogin;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,6 +39,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.Objects;
+
+import mehdi.sakout.aboutpage.AboutPage;
+import mehdi.sakout.aboutpage.Element;
 
 
 public class ConfiguracoesFragment extends Fragment {
@@ -59,12 +58,26 @@ public class ConfiguracoesFragment extends Fragment {
     String userID = FirebaseAuth.getInstance().getCurrentUser().getUid(), senhaAtual, novaSenha, confirmarSenha;
     String emailUser = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_configuracoes, container, false);
         IniciarComponentes(view);
+        Element informa = new Element();
+        informa.setTitle("In Forma Sofware");
+        informa.setIconDrawable(R.drawable.informa_logoab);
+        View sobrePage = new AboutPage(getContext())
+                //.setDescription("Este aplicativo tem a função de formatar os dados inseridos em um formulário, " +
+                 //       "gerar um arquivo PDF com esses dados e compartilhar este PDF para outros aplicativos.")
+                .setDescription("teste")
+                .addGroup("Desenvolvedores")
+                .addGitHub("Dayv1dx", "Dayvid Cunha")
+                .addGitHub("rodrigoleao111", "Rodrigo Leão")
+
+                .addGroup("Powered by")
+                .addItem(informa)
+                .addWebsite("informa.com.br","Site da empresa" )
+                .create();
 
         editarPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +113,19 @@ public class ConfiguracoesFragment extends Fragment {
                 dialog.create();
                 dialog.show();
 
+            }
+        });
+
+        sobre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            AlertDialog.Builder sobreDialog = new AlertDialog.Builder(getContext());
+            sobreDialog.setView(sobrePage);
+            sobreDialog.setCancelable(false);
+            sobreDialog.setPositiveButton("fechar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {}});
+            sobreDialog.create().show();
             }
         });
 
@@ -166,7 +192,6 @@ public class ConfiguracoesFragment extends Fragment {
 
         return view;
     }
-
 
 
     private void IniciarComponentes(View view) {
