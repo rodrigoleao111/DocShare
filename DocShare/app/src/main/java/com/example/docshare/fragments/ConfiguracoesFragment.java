@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,16 +68,15 @@ public class ConfiguracoesFragment extends Fragment {
         informa.setTitle("In Forma Sofware");
         informa.setIconDrawable(R.drawable.informa_logoab);
         View sobrePage = new AboutPage(getContext())
-                //.setDescription("Este aplicativo tem a função de formatar os dados inseridos em um formulário, " +
-                 //       "gerar um arquivo PDF com esses dados e compartilhar este PDF para outros aplicativos.")
-                .setDescription("teste")
+                .setDescription("Este aplicativo tem a função de formatar os dados inseridos em um formulário, " +
+                 "gerar um arquivo PDF com esses dados e compartilhar este PDF para outros aplicativos.")
                 .addGroup("Desenvolvedores")
                 .addGitHub("Dayv1dx", "Dayvid Cunha")
                 .addGitHub("rodrigoleao111", "Rodrigo Leão")
 
                 .addGroup("Powered by")
                 .addItem(informa)
-                .addWebsite("informa.com.br","Site da empresa" )
+                //.addWebsite("informa.com.br","Site da empresa" )
                 .create();
 
         editarPerfil.setOnClickListener(new View.OnClickListener() {
