@@ -190,7 +190,6 @@ public class FormCadastro extends FileGenerator {
         input_rg = findViewById(R.id.input_rg);
         input_telefone = findViewById(R.id.input_telefone);
         input_email = findViewById(R.id.input_email);
-        imageUserCadastro = findViewById(R.id.imageUserCadastro);
 
         bt_cadastrar = findViewById(R.id.button_cadastrar);
 
