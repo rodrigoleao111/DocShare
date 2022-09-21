@@ -41,9 +41,7 @@ import java.util.Map;
 
 public class FormCadastro extends FileGenerator {
 
-    private EditText email_user, senha_user, confirmar_senha_user;
-    private EditText nome_user, cpf_user, rg_user, telefone_user;
-    private Spinner cargo_user, setor_user;
+        private Spinner cargo_user, setor_user;
     private Button bt_cadastrar;
     private ImageView loadingBg, imageUserCadastro;
     private TextInputEditText input_email, input_senha, input_confirmar_senha, input_nome, input_cpf, input_rg, input_telefone;
@@ -169,6 +167,7 @@ public class FormCadastro extends FileGenerator {
             @Override
             public void onSuccess(Void unused) {
                 Log.d("db", "Sucesso ao salvar os dados");
+                InstanciarFirebase();
                 goToFormLogin();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -179,15 +178,8 @@ public class FormCadastro extends FileGenerator {
         });
     }
 
-    public void IniciarComponentes(){
-        email_user = findViewById(R.id.edit_cadastro_email);
-        senha_user = findViewById(R.id.edit_cadastro_senha);
-        confirmar_senha_user = findViewById(R.id.edit_confirmar_senha);
 
-        nome_user = findViewById(R.id.edit_cadastro_nome);
-        cpf_user = findViewById(R.id.edit_cadastro_cpf);
-        rg_user = findViewById(R.id.edit_cadastro_RG);
-        telefone_user = findViewById(R.id.edit_cadastro_telefone);
+    public void IniciarComponentes(){
         cargo_user = findViewById(R.id.edit_cargo);
         setor_user = findViewById(R.id.edit_setor);
 
@@ -207,21 +199,7 @@ public class FormCadastro extends FileGenerator {
     }
 
 
-    private boolean ValidacaoPreenchimento(String edt_valor, String nome_do_item){
-        boolean validacao = false;
-        if(edt_valor.isEmpty())         // Colocar validação isBlank
-            Toast.makeText(getApplicationContext(), "Preencha o campo do " + nome_do_item, Toast.LENGTH_LONG).show();
-        else
-            validacao = true;
-
-        return validacao;
-    }
-
-
     private void goToFormLogin(){
-
-        InstanciarFirebase();
-       // UserInfo.setUserCredentials();
         Intent intent = new Intent(getApplicationContext(), FormLogin.class);
         startActivity(intent);
         finish();

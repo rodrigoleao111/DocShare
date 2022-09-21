@@ -94,8 +94,21 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
             hitDescricao.setVisibility(View.VISIBLE);
             vwConteiner.setVisibility(View.VISIBLE);
             bitmap = BitmapFactory.decodeFile(bitmapPath);
+            Bundle dados = new Bundle();
+            dados = receberProfilePic.getExtras();
+            RePreenchimento(dados);
         }
 
+    }
+
+    private void RePreenchimento(Bundle dados) {
+        edtEquipamento.setText(dados.getString("equipamento"));
+        edtModelo.setText(dados.getString("modelo"));
+        edtEquipID.setText(dados.getString("equipID"));
+        edtDiagnostico.setText(dados.getString("diagnostico"));
+        edtSolucao.setText(dados.getString("solucao"));
+        edtPecasTrocadas.setText(dados.getString("troca"));
+        edtObservacoes.setText(dados.getString("obs"));
     }
 
     public void showImagePicDialog() {
@@ -174,6 +187,7 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
                             sendToCropImageActivity.putExtra("uri", tempUri);
                             sendToCropImageActivity.putExtra("call", 1);
                             sendToCropImageActivity.putExtra("source", 1);
+                            sendToCropImageActivity.putExtras(ColetarInformacoes());
                             startActivity(sendToCropImageActivity);
 
                         }
@@ -192,6 +206,7 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
                     sendToCropImageActivity.putExtra("uri", result);
                     sendToCropImageActivity.putExtra("call", 1);
                     sendToCropImageActivity.putExtra("source", 1);
+                    sendToCropImageActivity.putExtras(ColetarInformacoes());
                     startActivity(sendToCropImageActivity);
                 }
             });
@@ -202,7 +217,7 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
         startActivity(backToUserScreen);
     }
 
-    // PREENCHIMENTO AUTOMÁTICO COM OS DADOS DO USUÁRIO
+    // Preenchimento de dados
     @Override
     protected void onStart() {
         super.onStart();
@@ -210,7 +225,6 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DocumentReference documentReference = db_dados_usuario.collection("Usuarios").document(userID);
 
-        // Recuperação de dados pessoais
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
