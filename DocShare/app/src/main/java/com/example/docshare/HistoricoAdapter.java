@@ -1,52 +1,54 @@
 package com.example.docshare;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
+import android.widget.Adapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class HistoricoAdapter extends BaseAdapter {
+import java.io.File;
+import java.util.List;
 
-    Context context;
-    String titulos[];
-    String datas[];
-    LayoutInflater inflater;
+public class HistoricoAdapter extends RecyclerView.Adapter<HistoricoAdapter.MyviewHolder> {
 
-    public HistoricoAdapter(Context c, String [] titulos, String[] datas) {
-        this.context = c;
-        this.titulos = titulos;
-        this.datas = datas;
-        inflater = LayoutInflater.from(c);
+    private Context context;
+    private List<File> pdfFiles;
+
+    public HistoricoAdapter(Context context, List<File> pdfFiles) {
+        this.context = context;
+        this.pdfFiles = pdfFiles;
+    }
+
+    @NonNull
+    @Override
+    public MyviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemLista = LayoutInflater.from(parent.getContext()).inflate(R.layout.line_listview_custom, parent, false);
+        return new MyviewHolder(itemLista);
     }
 
     @Override
-    public int getCount() {
-        return titulos.length;
+    public void onBindViewHolder(@NonNull MyviewHolder holder, int position) {
+        holder.txtTitulo.setText(pdfFiles.get(position).getName());
+        holder.txtTitulo.setSelected(true);
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
-    }
+    public int getItemCount() {return pdfFiles.size();}
 
-    @Override
-    public long getItemId(int position) {
-        return 0;
-    }
+    public static class MyviewHolder extends RecyclerView.ViewHolder{
+            TextView txtTitulo;
+            ConstraintLayout conteiner;
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = inflater.inflate(R.layout.line_listview_custom,null);
-        TextView textView = convertView.findViewById(R.id.tituloHistorico);
-        TextView textView2 = convertView.findViewById(R.id.dataOS);
-        textView.setText(titulos[position]);
-        textView2.setText(datas[position]);
-        return convertView;
+        public MyviewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            txtTitulo = itemView.findViewById(R.id.tituloHistorico);
+            conteiner = itemView.findViewById(R.id.line_historico);
+        }
     }
 }
