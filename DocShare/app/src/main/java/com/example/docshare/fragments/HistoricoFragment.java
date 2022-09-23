@@ -1,9 +1,9 @@
 package com.example.docshare.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,15 +11,11 @@ import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 
-import com.example.docshare.HistoricoAdapter;
+import com.example.docshare.adapters.HistoricoAdapter;
 import com.example.docshare.R;
 import com.example.docshare.metodos.RequestPermissions;
-import com.example.docshare.usuario.TelaUsuario2Activity;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -42,6 +38,7 @@ public class HistoricoFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration( new DividerItemDecoration(getContext(), LinearLayout.VERTICAL));
         recyclerView.setAdapter(adapter);
 
         return view;
