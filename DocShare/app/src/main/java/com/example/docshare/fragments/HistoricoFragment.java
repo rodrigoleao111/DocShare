@@ -1,5 +1,6 @@
 package com.example.docshare.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,13 +16,15 @@ import android.widget.LinearLayout;
 
 import com.example.docshare.adapters.HistoricoAdapter;
 import com.example.docshare.R;
+import com.example.docshare.DocumentActivity;
+import com.example.docshare.metodos.OnPdfFileSelectListener;
 import com.example.docshare.metodos.RequestPermissions;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HistoricoFragment extends Fragment {
+public class HistoricoFragment extends Fragment implements OnPdfFileSelectListener {
 
     private RecyclerView recyclerView;
     private List<File> pdfList;
@@ -34,7 +37,7 @@ public class HistoricoFragment extends Fragment {
         
         permissoes();
         recyclerView = view.findViewById(R.id.recyclerView);
-        HistoricoAdapter adapter = new HistoricoAdapter(getContext(), pdfList);
+        HistoricoAdapter adapter = new HistoricoAdapter(getContext(), pdfList, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
@@ -72,6 +75,11 @@ public class HistoricoFragment extends Fragment {
 
         pdfList = new ArrayList<>();
         pdfList.addAll(findPdf(Environment.getExternalStorageDirectory()));
+
     }
 
+    @Override
+    public void onPdfSelected(File file) {
+        startActivity( new Intent(getContext(), DocumentActivity.class).putExtra("path", file.getAbsolutePath()));
+    }
 }

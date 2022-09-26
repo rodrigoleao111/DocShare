@@ -152,6 +152,7 @@ public class InicioFragment extends Fragment {
 
         pdfList = new ArrayList<>();
         pdfList.addAll(findPdf(Environment.getExternalStorageDirectory()));
+
     }
 
     @Override
