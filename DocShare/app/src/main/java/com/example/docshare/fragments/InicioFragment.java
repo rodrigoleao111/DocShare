@@ -11,6 +11,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -18,9 +21,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.docshare.adapters.InicioAdapter;
 import com.example.docshare.R;
 import com.example.docshare.formularios.FormOSManutencaoCorretiva;
 import com.example.docshare.metodos.ImageHelper;
@@ -45,6 +50,8 @@ public class InicioFragment extends Fragment {
     private ImageView profilePic;
     private Button button_novaOS;
     private TextView textVerTodas;
+    private RecyclerView recyclerView;
+    private List<File> pdfList;
     Bundle paths = new Bundle();
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
     String userID = FirebaseAuth.getInstance().getCurrentUser().getUid(), ola;
@@ -59,6 +66,14 @@ public class InicioFragment extends Fragment {
         IniciarComponentes(view);
 
         VerificacaoDiretoriosDoApp(getContext());
+
+        recyclerView = view.findViewById(R.id.recyclerInicio);
+        InicioAdapter adapter = new InicioAdapter(getContext(), pdfList);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration( new DividerItemDecoration(getContext(), LinearLayout.VERTICAL));
+        recyclerView.setAdapter(adapter);
 
 
 
@@ -93,6 +108,8 @@ public class InicioFragment extends Fragment {
             File osDir = new File(userDir, osDirName);
             osDir.mkdir();
 
+            displayPdf();
+
             UserInfo.setUserPaths(
                     rootDirFile.getAbsolutePath(),
                     userDir.getAbsolutePath(),
@@ -104,13 +121,31 @@ public class InicioFragment extends Fragment {
         }
     }
 
-
-
     private void IniciarComponentes(View view) {
         boasvindas = view.findViewById(R.id.txt_boas_vindas2);
         profilePic = view.findViewById(R.id.profilePicInit);
         button_novaOS = view.findViewById(R.id.button_novaOS);
         textVerTodas = view.findViewById(R.id.textVerTodas);
+    }
+    public ArrayList<File> findPdf (File file){
+        ArrayList<File> arrayList = new ArrayList<>();
+        File[] files = file.listFiles();
+
+        for(File singleFile : files){
+            if(singleFile.isDirectory() && !singleFile.isHidden()){
+                arrayList.addAll(findPdf(singleFile));
+            } else {
+                if (singleFile.getName().endsWith(".pdf")){
+                    arrayList.add(singleFile);
+                }
+            }
+        } return arrayList;
+    }
+
+    private void displayPdf() {
+
+        pdfList = new ArrayList<>();
+        pdfList.addAll(findPdf(Environment.getExternalStorageDirectory()));
     }
 
     @Override

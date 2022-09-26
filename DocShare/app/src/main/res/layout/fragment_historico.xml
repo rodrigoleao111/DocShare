@@ -12,6 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <View
+            android:id="@+id/containerHist1"
+            style="@style/ContainerLogin"
+            android:layout_height="380dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/container_components"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
@@ -27,30 +38,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ListView
-            android:id="@+id/listView"
-            tools:listitem="@layout/line_listview_custom"
-            android:layout_width="match_parent"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:elevation="12dp"
-            android:padding="10dp"
+            android:elevation="11dp"
+            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/containerHist1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/containerHist1"
+            app:layout_constraintStart_toStartOf="@+id/containerHist1"
             app:layout_constraintTop_toTopOf="@+id/containerHist1" />
-
-        <View
-            android:id="@+id/containerHist1"
-            style="@style/ContainerLogin"
-            android:layout_height="380dp"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/container_components"
-            android:elevation="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

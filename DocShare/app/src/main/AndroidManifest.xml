@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.docshare">
+    package="com.example.docshare" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -20,7 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DocShare"
         android:windowSoftInputMode="adjustPan|adjustResize"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+        <activity
+            android:name=".DocumentActivity"
+            android:exported="false" />
         <activity
             android:name=".usuario.TelaUsuario"
             android:exported="false" />
@@ -38,7 +41,7 @@
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.docshare.provider"
             android:exported="false"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true" >
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_path" />
