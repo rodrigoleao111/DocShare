@@ -57,6 +57,8 @@ public class InicioFragment extends Fragment {
     Bundle paths = new Bundle();
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
     String userID = FirebaseAuth.getInstance().getCurrentUser().getUid(), ola;
+    InicioAdapter adapter = new InicioAdapter(getContext(), pdfList);
+    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
 
 
     @Override
@@ -68,17 +70,7 @@ public class InicioFragment extends Fragment {
         IniciarComponentes(view);
 
         VerificacaoDiretoriosDoApp(getContext());
-
-        recyclerView = view.findViewById(R.id.recyclerInicio);
-        InicioAdapter adapter = new InicioAdapter(getContext(), pdfList);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.addItemDecoration( new DividerItemDecoration(getContext(), LinearLayout.VERTICAL));
-        recyclerView.setAdapter(adapter);
-
-
-
+        
 
         button_novaOS.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,8 +120,14 @@ public class InicioFragment extends Fragment {
         profilePic = view.findViewById(R.id.profilePicInit);
         button_novaOS = view.findViewById(R.id.button_novaOS);
         textVerTodas = view.findViewById(R.id.textVerTodas);
+
+        recyclerView = view.findViewById(R.id.recyclerInicio);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration( new DividerItemDecoration(getContext(), LinearLayout.VERTICAL));
+        recyclerView.setAdapter(adapter);
     }
-    
+
     public ArrayList<File> findPdf (File file){
         ArrayList<File> arrayList = new ArrayList<>();
         File[] files = file.listFiles();
