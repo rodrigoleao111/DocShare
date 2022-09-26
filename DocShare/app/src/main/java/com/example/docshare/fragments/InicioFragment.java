@@ -39,6 +39,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -127,6 +129,7 @@ public class InicioFragment extends Fragment {
         button_novaOS = view.findViewById(R.id.button_novaOS);
         textVerTodas = view.findViewById(R.id.textVerTodas);
     }
+    
     public ArrayList<File> findPdf (File file){
         ArrayList<File> arrayList = new ArrayList<>();
         File[] files = file.listFiles();

@@ -43,7 +43,7 @@ public class HistoricoAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = inflater.inflate(R.layout.line_listview_custom,null);
         TextView textView = convertView.findViewById(R.id.tituloHistorico);
-        TextView textView2 = convertView.findViewById(R.id.dataOS);
+        TextView textView2 = convertView.findViewById(R.id.txtData);
         textView.setText(titulos[position]);
         textView2.setText(datas[position]);
         return convertView;
