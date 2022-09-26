@@ -169,9 +169,6 @@
             android:layout_margin="30dp"
             android:backgroundTint="@color/button_blue"
             android:text="Alterar dados"
-<<<<<<< HEAD
-            android:textSize="20sp"
-=======
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -184,15 +181,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
             android:backgroundTint="@color/button_blue"
-            android:text="Voltar"
             android:drawableLeft="@drawable/ic_baseline_arrow_back_24"
+            android:text="Voltar"
             android:textSize="24sp"
->>>>>>> 437c02e74b739827d2dc0d9f040c53d37c49b886
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rectangle_5" />
+            app:layout_constraintTop_toBottomOf="@+id/btAlterarDados" />
 
         <ImageView
             android:id="@+id/changeProfilePic"

@@ -55,11 +55,7 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
 
     private EditText edtnome, edtcpf, edtrg, edttelefone;
     private TextView tvcargo, tvsetor, tvUserId;
-<<<<<<< HEAD
-    private Button btAlterarDados;
-=======
     private Button btAlterarDados, voltarUserScreen;
->>>>>>> 437c02e74b739827d2dc0d9f040c53d37c49b886
     private ImageView changeProfilePic;
     private TextInputEditText inputNome_config, inputCPF_config, inputRG_config, inputTelefone_config;
 
@@ -115,10 +111,7 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
         tvcargo = findViewById(R.id.edtCargoConfig);
         tvsetor = findViewById(R.id.edtSetorConfig);
         btAlterarDados = findViewById(R.id.btAlterarDados);
-<<<<<<< HEAD
-=======
         voltarUserScreen = findViewById(R.id.btMudarSenha);
->>>>>>> 437c02e74b739827d2dc0d9f040c53d37c49b886
 
         tvUserId = findViewById(R.id.tvUserIdConfig);
         tvUserId.setText(userID);

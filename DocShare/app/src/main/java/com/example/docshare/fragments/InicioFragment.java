@@ -59,12 +59,9 @@ public class InicioFragment extends Fragment {
     Bundle paths = new Bundle();
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
     String userID = FirebaseAuth.getInstance().getCurrentUser().getUid(), ola;
-<<<<<<< HEAD
     private HistoricoFragment historicoFragment = new HistoricoFragment();
-=======
     InicioAdapter adapter = new InicioAdapter(getContext(), pdfList);
     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
->>>>>>> 437c02e74b739827d2dc0d9f040c53d37c49b886
 
 
     @Override
