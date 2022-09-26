@@ -1,5 +1,6 @@
 package com.example.docshare.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.docshare.R;
+import com.example.docshare.metodos.OnPdfFileSelectListener;
 
 import java.io.File;
 import java.util.List;
@@ -19,11 +21,13 @@ public class HistoricoAdapter extends RecyclerView.Adapter<HistoricoAdapter.Myvi
 
     private Context context;
     private List<File> pdfFiles;
+    private OnPdfFileSelectListener listener;
 
 
-    public HistoricoAdapter(Context context, List<File> pdfFiles) {
+    public HistoricoAdapter(Context context, List<File> pdfFiles, OnPdfFileSelectListener listener) {
         this.context = context;
         this.pdfFiles = pdfFiles;
+        this.listener = listener;
     }
 
     @NonNull
@@ -34,10 +38,16 @@ public class HistoricoAdapter extends RecyclerView.Adapter<HistoricoAdapter.Myvi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyviewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyviewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.txtTitulo.setText(pdfFiles.get(position).getName());
         holder.txtTitulo.setSelected(true);
 
+        holder.conteiner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onPdfSelected(pdfFiles.get(position));
+            }
+        });
     }
 
     @Override

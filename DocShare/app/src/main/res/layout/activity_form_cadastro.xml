@@ -179,7 +179,7 @@
             android:elevation="10dp"
             android:entries="@array/cargos"
             android:hint="Cargo"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
             app:layout_constraintStart_toStartOf="@+id/rectangle_5"
             app:layout_constraintTop_toBottomOf="@+id/edit_cadastro_telefone" />
@@ -191,7 +191,7 @@
             android:elevation="10dp"
             android:entries="@array/setores"
             android:hint="Setor"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
             app:layout_constraintStart_toStartOf="@+id/rectangle_5"
             app:layout_constraintTop_toBottomOf="@+id/edit_cargo" />
@@ -203,7 +203,7 @@
             android:layout_margin="30dp"
             android:backgroundTint="@color/button_blue"
             android:text="Finalizar cadastro"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -225,7 +225,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/gradient" />
+            app:srcCompat="@drawable/background_gradient" />
 
         <ProgressBar
             android:id="@+id/loadingPb"
@@ -341,26 +341,26 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:elevation="10dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="Telefone"
+            app:counterEnabled="true"
+            app:counterMaxLength="8"
             app:layout_constraintEnd_toEndOf="@+id/edit_cadastro_telefone"
             app:layout_constraintStart_toStartOf="@+id/edit_cadastro_telefone"
             app:layout_constraintTop_toTopOf="@+id/edit_cadastro_telefone"
-            android:hint="Telefone"
-            app:counterMaxLength="8"
-            app:prefixText="(81) 9"
-            app:counterEnabled="true">
+            app:prefixText="(81) 9">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_telefone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:maxLength="8"
                 android:inputType="number"
-                />
+                android:maxLength="8"
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -383,6 +383,40 @@
                 android:maxLength="7"
                 android:inputType="number"
                 />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:hint="Selecione seu cargo"
+            app:layout_constraintEnd_toEndOf="@+id/edit_cargo"
+            app:layout_constraintStart_toStartOf="@+id/edit_cargo"
+            app:layout_constraintTop_toTopOf="@+id/edit_cargo">
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteCargo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:hint="Selecione seu setor"
+            app:layout_constraintEnd_toEndOf="@+id/edit_setor"
+            app:layout_constraintStart_toStartOf="@+id/edit_setor"
+            app:layout_constraintTop_toTopOf="@+id/edit_setor">
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteSetor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 

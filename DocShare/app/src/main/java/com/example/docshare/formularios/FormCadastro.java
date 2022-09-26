@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -34,12 +37,18 @@ import java.util.Map;
 
 public class FormCadastro extends FileGenerator {
 
-        private Spinner cargo_user, setor_user;
+    private Spinner cargo_user, setor_user;
     private Button bt_cadastrar;
-    private ImageView loadingBg, imageUserCadastro;
+    private ImageView loadingBg;
     private TextInputEditText input_email, input_senha, input_confirmar_senha, input_nome, input_cpf, input_rg, input_telefone;
-
+    private AutoCompleteTextView autoCompleteTxt_cargo, autoCompleteTxt_setor;
     private ProgressBar loadingPb;
+    private String item_cargo, item_setor;
+    private String[] array_cargos = {"Operador Técnico", "Engenheiro Elétrico", "Agente de Campo", "Supervisor de Manutenção"};
+    private String[] array_setores = {"Engenharia", "Manutenção", "Qualidade"};
+
+    ArrayAdapter<String> adapter_cargos;
+    ArrayAdapter<String> adapter_setores;
 
     private final FirebaseFirestore db_cadastros = FirebaseFirestore.getInstance();
 
@@ -57,6 +66,23 @@ public class FormCadastro extends FileGenerator {
 
         getSupportActionBar().hide();
         IniciarComponentes();
+
+        adapter_cargos = new ArrayAdapter<String>(this, R.layout.dropdown_item, array_cargos);
+        adapter_setores = new ArrayAdapter<String>(this, R.layout.dropdown_item, array_setores);
+
+        autoCompleteTxt_cargo.setAdapter(adapter_cargos);
+        autoCompleteTxt_setor.setAdapter(adapter_setores);
+
+        autoCompleteTxt_cargo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                item_cargo = parent.getItemAtPosition(position).toString();}});
+
+        autoCompleteTxt_setor.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                item_setor = parent.getItemAtPosition(position).toString();}});
+
 
         // Botão Finalizar Cadastro
         bt_cadastrar.setOnClickListener(new View.OnClickListener() {
@@ -95,8 +121,8 @@ public class FormCadastro extends FileGenerator {
         dados_usuario.put("cpf", input_cpf.getText().toString());
         dados_usuario.put("rg", input_rg.getText().toString());
         dados_usuario.put("telefone", input_telefone.getText().toString());
-        dados_usuario.put("cargo", cargo_user.getSelectedItem().toString());
-        dados_usuario.put("setor", setor_user.getSelectedItem().toString());
+        dados_usuario.put("cargo", item_cargo);
+        dados_usuario.put("setor", item_setor);
         dados_usuario.put("profilePicUri", "void");
         dados_usuario.put("profilePicUrl", "void");
 
@@ -173,8 +199,8 @@ public class FormCadastro extends FileGenerator {
 
 
     public void IniciarComponentes(){
-        cargo_user = findViewById(R.id.edit_cargo);
-        setor_user = findViewById(R.id.edit_setor);
+        autoCompleteTxt_cargo = findViewById(R.id.autoCompleteCargo);
+        autoCompleteTxt_setor = findViewById(R.id.autoCompleteSetor);
 
         input_nome = findViewById(R.id.input_nome);
         input_senha = findViewById(R.id.input_senha);
@@ -203,7 +229,6 @@ public class FormCadastro extends FileGenerator {
         DocumentReference documentReference = db_dados_usuario.collection("Usuarios").document(userID);
         UserInfo.setUserCredentials(documentReference, userID);
     }
-
 
 
 

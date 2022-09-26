@@ -11,6 +11,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,6 +41,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -55,6 +59,12 @@ public class InicioFragment extends Fragment {
     Bundle paths = new Bundle();
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
     String userID = FirebaseAuth.getInstance().getCurrentUser().getUid(), ola;
+<<<<<<< HEAD
+    private HistoricoFragment historicoFragment = new HistoricoFragment();
+=======
+    InicioAdapter adapter = new InicioAdapter(getContext(), pdfList);
+    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+>>>>>>> 437c02e74b739827d2dc0d9f040c53d37c49b886
 
 
     @Override
@@ -66,17 +76,7 @@ public class InicioFragment extends Fragment {
         IniciarComponentes(view);
 
         VerificacaoDiretoriosDoApp(getContext());
-
-        recyclerView = view.findViewById(R.id.recyclerInicio);
-        InicioAdapter adapter = new InicioAdapter(getContext(), pdfList);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.addItemDecoration( new DividerItemDecoration(getContext(), LinearLayout.VERTICAL));
-        recyclerView.setAdapter(adapter);
-
-
-
+        
 
         button_novaOS.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +91,7 @@ public class InicioFragment extends Fragment {
                 }
             }
         });
+
 
 
         return view;
@@ -126,7 +127,14 @@ public class InicioFragment extends Fragment {
         profilePic = view.findViewById(R.id.profilePicInit);
         button_novaOS = view.findViewById(R.id.button_novaOS);
         textVerTodas = view.findViewById(R.id.textVerTodas);
+
+        recyclerView = view.findViewById(R.id.recyclerInicio);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration( new DividerItemDecoration(getContext(), LinearLayout.VERTICAL));
+        recyclerView.setAdapter(adapter);
     }
+
     public ArrayList<File> findPdf (File file){
         ArrayList<File> arrayList = new ArrayList<>();
         File[] files = file.listFiles();
@@ -146,6 +154,7 @@ public class InicioFragment extends Fragment {
 
         pdfList = new ArrayList<>();
         pdfList.addAll(findPdf(Environment.getExternalStorageDirectory()));
+
     }
 
     @Override

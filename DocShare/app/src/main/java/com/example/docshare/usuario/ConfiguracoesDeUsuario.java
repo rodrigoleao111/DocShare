@@ -34,6 +34,7 @@ import com.example.docshare.metodos.CropImage;
 import com.example.docshare.metodos.ImageHelper;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -54,8 +55,13 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
 
     private EditText edtnome, edtcpf, edtrg, edttelefone;
     private TextView tvcargo, tvsetor, tvUserId;
+<<<<<<< HEAD
+    private Button btAlterarDados;
+=======
     private Button btAlterarDados, voltarUserScreen;
+>>>>>>> 437c02e74b739827d2dc0d9f040c53d37c49b886
     private ImageView changeProfilePic;
+    private TextInputEditText inputNome_config, inputCPF_config, inputRG_config, inputTelefone_config;
 
     // Códigos de requisição
     private static final int CAMERA_REQUEST = 100;
@@ -109,21 +115,29 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
         tvcargo = findViewById(R.id.edtCargoConfig);
         tvsetor = findViewById(R.id.edtSetorConfig);
         btAlterarDados = findViewById(R.id.btAlterarDados);
+<<<<<<< HEAD
+=======
         voltarUserScreen = findViewById(R.id.btMudarSenha);
+>>>>>>> 437c02e74b739827d2dc0d9f040c53d37c49b886
 
         tvUserId = findViewById(R.id.tvUserIdConfig);
         tvUserId.setText(userID);
 
         changeProfilePic = findViewById(R.id.changeProfilePic);
 
+        inputCPF_config = findViewById(R.id.input_cpf_config);
+        inputNome_config = findViewById(R.id.input_nome_config);
+        inputRG_config = findViewById(R.id.input_rg_config);
+        inputTelefone_config = findViewById(R.id.input_telefone_config);
+
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
                 if(documentSnapshot != null){
-                    edtnome.setText(documentSnapshot.getString("nome"));
-                    edtcpf.setText(documentSnapshot.getString("cpf"));
-                    edtrg.setText(documentSnapshot.getString("rg"));
-                    edttelefone.setText(documentSnapshot.getString("telefone"));
+                    inputNome_config.setText(documentSnapshot.getString("nome"));
+                    inputCPF_config.setText(documentSnapshot.getString("cpf"));
+                    inputRG_config.setText(documentSnapshot.getString("rg"));
+                    inputTelefone_config.setText(documentSnapshot.getString("telefone"));
                     tvcargo.setText(documentSnapshot.getString("cargo"));
                     tvsetor.setText(documentSnapshot.getString("setor"));
 
@@ -140,9 +154,9 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
     public void showImagePicDialog() {
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        String[] options = {"Camera", "Galeria"};
+        String[] options = {"Câmera", "Galeria"};
         AlertDialog.Builder builder = new AlertDialog.Builder(ConfiguracoesDeUsuario.this);
-        builder.setTitle("Selecione a fonte da imagem.");
+        builder.setTitle("Selecione a fonte da imagem:");
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override

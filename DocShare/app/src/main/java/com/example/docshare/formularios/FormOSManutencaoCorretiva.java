@@ -112,9 +112,9 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
     public void showImagePicDialog() {
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        String[] options = {"Camera", "Galeria"};
+        String[] options = {"Câmera", "Galeria"};
         AlertDialog.Builder builder = new AlertDialog.Builder(FormOSManutencaoCorretiva.this);
-        builder.setTitle("Selecione a fonte da imagem.");
+        builder.setTitle("Selecione a fonte da imagem:");
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
