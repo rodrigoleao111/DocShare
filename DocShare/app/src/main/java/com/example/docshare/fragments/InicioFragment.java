@@ -135,22 +135,26 @@ public class InicioFragment extends Fragment {
     public ArrayList<File> findPdf (File file){
         ArrayList<File> arrayList = new ArrayList<>();
         File[] files = file.listFiles();
-
-        for(File singleFile : files){
-            if(singleFile.isDirectory() && !singleFile.isHidden()){
-                arrayList.addAll(findPdf(singleFile));
-            } else {
-                if (singleFile.getName().endsWith(".pdf")){
-                    arrayList.add(singleFile);
+        if (files != null) {
+            for (File singleFile : files) {
+                if (singleFile.isDirectory() && !singleFile.isHidden()) {
+                    arrayList.addAll(findPdf(singleFile));
+                } else {
+                    if (singleFile.getName().endsWith(".pdf")) {
+                        arrayList.add(singleFile);
+                    }
                 }
             }
-        } return arrayList;
+        }
+        return arrayList;
     }
 
     private void displayPdf() {
 
         pdfList = new ArrayList<>();
-        pdfList.addAll(findPdf(Environment.getExternalStorageDirectory()));
+        //File diretorio = new File(UserInfo.getUserCredentials().getString("osPath"));
+        File diretorio = new File(Environment.DIRECTORY_DOWNLOADS);
+        pdfList.addAll(findPdf(diretorio));
 
     }
 
