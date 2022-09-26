@@ -33,12 +33,10 @@ import java.io.File;
 import java.util.Date;
 
 import com.example.docshare.R;
-import com.example.docshare.VizualizarForm;
+import com.example.docshare.outros.VizualizarForm;
 import com.example.docshare.metodos.CropImage;
 import com.example.docshare.metodos.ImageHelper;
-import com.example.docshare.usuario.ConfiguracoesDeUsuario;
-import com.example.docshare.usuario.TelaDeUsuario;
-import com.example.docshare.usuario.TelaUsuario2Activity;
+import com.example.docshare.usuario.TelaUsuario;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -213,7 +211,7 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
 
     @Override
     public void onBackPressed() {
-        Intent backToUserScreen = new Intent(this, TelaUsuario2Activity.class);
+        Intent backToUserScreen = new Intent(this, TelaUsuario.class);
         startActivity(backToUserScreen);
     }
 

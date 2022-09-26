@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.loader.content.CursorLoader;
 
 import android.Manifest;
 import android.app.Activity;
@@ -17,7 +16,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -32,7 +30,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.docshare.R;
-import com.example.docshare.fragments.ConfiguracoesFragment;
 import com.example.docshare.metodos.CropImage;
 import com.example.docshare.metodos.ImageHelper;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -45,8 +42,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -59,7 +54,7 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
 
     private EditText edtnome, edtcpf, edtrg, edttelefone;
     private TextView tvcargo, tvsetor, tvUserId;
-    private Button btAlterarDados, btMudarSenha;
+    private Button btAlterarDados, voltarUserScreen;
     private ImageView changeProfilePic;
 
     // Códigos de requisição
@@ -96,6 +91,13 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
             updateProfilePic(newProfilePicUri);
         }
 
+        voltarUserScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
 
     }
 
@@ -107,7 +109,7 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
         tvcargo = findViewById(R.id.edtCargoConfig);
         tvsetor = findViewById(R.id.edtSetorConfig);
         btAlterarDados = findViewById(R.id.btAlterarDados);
-        btMudarSenha = findViewById(R.id.btMudarSenha);
+        voltarUserScreen = findViewById(R.id.btMudarSenha);
 
         tvUserId = findViewById(R.id.tvUserIdConfig);
         tvUserId.setText(userID);
@@ -260,7 +262,7 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
     
     @Override
     public void onBackPressed() {
-        Intent userScreen = new Intent(getApplicationContext(), TelaUsuario2Activity.class);
+        Intent userScreen = new Intent(getApplicationContext(), TelaUsuario.class);
         startActivity(userScreen);
     }
 

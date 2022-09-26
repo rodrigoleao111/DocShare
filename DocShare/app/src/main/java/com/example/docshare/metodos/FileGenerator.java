@@ -1,7 +1,5 @@
 package com.example.docshare.metodos;
 
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -10,28 +8,19 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
-import androidx.documentfile.provider.DocumentFile;
 
 import com.example.docshare.R;
-import com.google.firebase.auth.FirebaseAuth;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -72,6 +61,17 @@ public class FileGenerator extends AppCompatActivity {
         Canvas canvas = pagRelatorio.getCanvas();
 
         // Layout da página
+
+        // Template Background
+        Resources res = getResources();
+        Bitmap informaLogo = BitmapFactory.decodeResource(res, R.drawable.backgroundosinforma);
+        Rect rect = new Rect(
+                0,
+                0,
+                pageWidth,
+                pageHeight);
+        canvas.drawBitmap(informaLogo, null, rect, myPaint);
+
         // Título
         myPaint.setTextAlign(Paint.Align.CENTER);
         myPaint.setTextSize(titleSize);
@@ -154,20 +154,10 @@ public class FileGenerator extends AppCompatActivity {
 
         // Imagem
         if(bitmap != null){
-            Rect rect = new Rect( marginLeft, y, marginLeft+imageSize, y+imageSize);
-            canvas.drawBitmap(bitmap, null, rect, myPaint);
+            Rect rectImage = new Rect( marginLeft, y, marginLeft+imageSize, y+imageSize);
+            canvas.drawBitmap(bitmap, null, rectImage, myPaint);
             y += 2*verticalSpacing;
         }
-
-        // Logo informa
-        Resources res = getResources();
-        Bitmap informaLogo = BitmapFactory.decodeResource(res, R.drawable.informalogopreto);
-        Rect rect = new Rect(
-                marginLeft,
-                pageHeight-2*informaLogo.getHeight(),
-                marginLeft+informaLogo.getWidth(),
-                y+informaLogo.getHeight());
-        canvas.drawBitmap(informaLogo, null, rect, myPaint);
 
         pdfRelatorio.finishPage(pagRelatorio);
 

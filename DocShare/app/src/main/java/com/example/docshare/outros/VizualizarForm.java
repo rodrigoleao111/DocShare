@@ -1,16 +1,15 @@
-package com.example.docshare;
+package com.example.docshare.outros;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.docshare.formularios.FormOSManutencaoCorretiva;
+import com.example.docshare.R;
 import com.example.docshare.metodos.FileGenerator;
 import com.example.docshare.metodos.ImageHelper;
 
