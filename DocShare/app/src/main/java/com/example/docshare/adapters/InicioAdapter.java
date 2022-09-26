@@ -31,9 +31,11 @@ public class InicioAdapter extends RecyclerView.Adapter<InicioAdapter.MyviewHold
         return new InicioAdapter.MyviewHolder(itemLista);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull MyviewHolder holder, int position) {
-        holder.txtTitulo.setText(pdfFiles.get(position).getName());
+        //holder.txtTitulo.setText(pdfFiles.get(position).getName());
+
     }
 
     @Override

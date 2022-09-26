@@ -19,6 +19,7 @@ import com.example.docshare.R;
 import com.example.docshare.DocumentActivity;
 import com.example.docshare.metodos.OnPdfFileSelectListener;
 import com.example.docshare.metodos.RequestPermissions;
+import com.example.docshare.metodos.UserInfo;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -32,7 +33,6 @@ public class HistoricoFragment extends Fragment implements OnPdfFileSelectListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_historico, container, false);
         
         permissoes();
@@ -59,6 +59,7 @@ public class HistoricoFragment extends Fragment implements OnPdfFileSelectListen
         ArrayList<File> arrayList = new ArrayList<>();
         File[] files = file.listFiles();
 
+        assert files != null;
         for(File singleFile : files){
             if(singleFile.isDirectory() && !singleFile.isHidden()){
                 arrayList.addAll(findPdf(singleFile));
@@ -74,7 +75,8 @@ public class HistoricoFragment extends Fragment implements OnPdfFileSelectListen
     private void displayPdf() {
 
         pdfList = new ArrayList<>();
-        pdfList.addAll(findPdf(Environment.getExternalStorageDirectory()));
+        File diretorio = new File(UserInfo.getUserCredentials().getString("osPath"));
+        pdfList.addAll(findPdf(diretorio));
 
     }
 
