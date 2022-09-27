@@ -140,7 +140,7 @@ public class InicioFragment extends Fragment {
                 arrayList.addAll(findPdf(singleFile));
             } else {
                 if (singleFile.getName().endsWith(".pdf")) {
-                    arrayList.add(singleFile);
+                    arrayList.add(0, singleFile);
                 }
             }
 

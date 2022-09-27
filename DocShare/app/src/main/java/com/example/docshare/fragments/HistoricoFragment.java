@@ -64,7 +64,7 @@ public class HistoricoFragment extends Fragment implements OnPdfFileSelectListen
                 arrayList.addAll(findPdf(singleFile));
             } else {
                 if (singleFile.getName().endsWith(".pdf")){
-                    arrayList.add(singleFile);
+                    arrayList.add(0,singleFile);
                 }
             }
         } return arrayList;
