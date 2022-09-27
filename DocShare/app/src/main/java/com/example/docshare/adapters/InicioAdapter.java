@@ -1,5 +1,6 @@
 package com.example.docshare.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.docshare.R;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class InicioAdapter extends RecyclerView.Adapter<InicioAdapter.MyviewHolder>{
@@ -33,20 +36,27 @@ public class InicioAdapter extends RecyclerView.Adapter<InicioAdapter.MyviewHold
 
 
     @Override
-    public void onBindViewHolder(@NonNull MyviewHolder holder, int position) {
-        //holder.txtTitulo.setText(pdfFiles.get(position).getName());
+    public void onBindViewHolder(@NonNull MyviewHolder holder, @SuppressLint("RecyclerView") int position) {
+
+        holder.txtTitulo.setText(pdfFiles.get(position).getName());
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date(pdfFiles.get(position).lastModified());
+        holder.txtData.setText(formatter.format(date));
 
     }
 
     @Override
-    public int getItemCount() {return 4;}
+    public int getItemCount() {return pdfFiles.size();}
 
     public static class MyviewHolder extends RecyclerView.ViewHolder{
         TextView txtTitulo;
+        TextView txtData;
 
         public MyviewHolder(@NonNull View itemView) {
             super(itemView);
             txtTitulo = itemView.findViewById(R.id.textViewTituloInicio);
+            txtData = itemView.findViewById(R.id.textViewData);
         }
     }
 }
