@@ -62,6 +62,9 @@ public class FileGenerator extends AppCompatActivity {
 
         // Layout da página
 
+        /*
+        Background removido pois deixa o arquivo muito pesado
+
         // Template Background
         Resources res = getResources();
         Bitmap informaLogo = BitmapFactory.decodeResource(res, R.drawable.backgroundosinforma);
@@ -71,6 +74,8 @@ public class FileGenerator extends AppCompatActivity {
                 pageWidth,
                 pageHeight);
         canvas.drawBitmap(informaLogo, null, rect, myPaint);
+
+         */
 
         // Título
         myPaint.setTextAlign(Paint.Align.CENTER);
@@ -158,6 +163,16 @@ public class FileGenerator extends AppCompatActivity {
             canvas.drawBitmap(bitmap, null, rectImage, myPaint);
             y += 2*verticalSpacing;
         }
+
+        // Logo In Forma
+        Resources res = getResources();
+        Bitmap informaLogo = BitmapFactory.decodeResource(res, R.drawable.informalogopreto);
+        Rect rect = new Rect(
+                marginLeft,
+                pageHeight - informaLogo.getHeight() - marginLeft,
+                informaLogo.getWidth() + marginLeft,
+                pageHeight - marginLeft);
+        canvas.drawBitmap(informaLogo, null, rect, myPaint);
 
         pdfRelatorio.finishPage(pagRelatorio);
 

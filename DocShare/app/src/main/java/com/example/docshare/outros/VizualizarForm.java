@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.docshare.R;
 import com.example.docshare.metodos.FileGenerator;
 import com.example.docshare.metodos.ImageHelper;
+import com.example.docshare.usuario.TelaUsuario;
 
 import java.io.IOException;
 
@@ -20,7 +21,7 @@ public class VizualizarForm extends FileGenerator implements ImageHelper {
     private TextView nome, rg, cpf, setor, cargo, telefone, email, locacao, equipamento, modelo, equipID, diagnostico, solucao, troca, obs, descricao;
     private String[] chavesForm = {"nome", "rg", "cpf", "setor", "cargo", "telefone", "email", "locacao", "equipamento", "modelo", "equipID", "diagnostico", "solucao", "troca", "obs", "descricaoImg"};
     private TextView txtImage;
-    private Button btVoltar, btCompartilhar;
+    private Button btVoltar, btCompartilhar, btHome;
     private ImageView preview;
     Bitmap bitmap = null;
     String bitmapPath = null;
@@ -60,6 +61,15 @@ public class VizualizarForm extends FileGenerator implements ImageHelper {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+
+        btHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TelaUsuario.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -112,5 +122,6 @@ public class VizualizarForm extends FileGenerator implements ImageHelper {
 
         btVoltar = findViewById(R.id.btVoltar);
         btCompartilhar = findViewById(R.id.btSaveShare);
+        btHome = findViewById(R.id.btHome);
     }
 }
