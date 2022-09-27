@@ -23,6 +23,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -37,6 +40,8 @@ import com.example.docshare.outros.VizualizarForm;
 import com.example.docshare.metodos.CropImage;
 import com.example.docshare.metodos.ImageHelper;
 import com.example.docshare.usuario.TelaUsuario;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -47,17 +52,20 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class FormOSManutencaoCorretiva extends AppCompatActivity implements ImageHelper {
 
     private Button bt_visualizarOS;
-    private EditText edtNome, edtRG, edtCPF, edtSetor, edtCargo, edtTelefone, edtEmail;  // Edt referente as informaçoes do colaborador
-    private EditText edtEquipamento, edtModelo, edtEquipID;                              // Edt referente ao Equipamento | Ativo
-    private EditText edtDiagnostico, edtSolucao, edtPecasTrocadas, edtObservacoes;       // Edt referente a manutenção
-    private EditText edtDescricao;
+    private TextInputEditText edtNome, edtRG, edtCPF, edtSetor, edtCargo, edtTelefone, edtEmail;  // Edt referente as informaçoes do colaborador
+    private TextInputEditText edtEquipamento, edtModelo, edtEquipID;                              // Edt referente ao Equipamento | Ativo
+    private TextInputEditText edtDiagnostico, edtSolucao, edtPecasTrocadas, edtObservacoes;       // Edt referente a manutenção
+    private TextInputEditText edtDescricao;
+    private TextInputLayout txtDesccricao;
     private ImageView addFoto, preview;
-    private Spinner formLocacao;
+    private AutoCompleteTextView formLocacao;
+    ArrayAdapter<String> adapter_locacoes;
     private View vwConteiner;
     private TextView hitDescricao;
     Bitmap bitmap;
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
-    String userID, bitmapPath = null;
+    String userID, bitmapPath = null, item_locacao;
+    String[] array_locacoes = {"Un. Recife I", "Un. Recife II", "Un. Camaragibe"};
 
     // Códigos de requisição
     private static final int CAMERA_REQUEST = 100;
@@ -89,13 +97,18 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
             bitmapPath = receberProfilePic.getStringExtra("path");
             preview.setImageURI(Uri.parse(bitmapPath));
             edtDescricao.setVisibility(View.VISIBLE);
-            hitDescricao.setVisibility(View.VISIBLE);
             vwConteiner.setVisibility(View.VISIBLE);
+            txtDesccricao.setVisibility(View.VISIBLE);
             bitmap = BitmapFactory.decodeFile(bitmapPath);
             Bundle dados = new Bundle();
             dados = receberProfilePic.getExtras();
             RePreenchimento(dados);
         }
+
+        formLocacao.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                item_locacao = parent.getItemAtPosition(position).toString();}});
 
     }
 
@@ -255,33 +268,37 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
     // INICIALIZAR COMPONENTES DA CLASSE
     public void IniciarComponentes() {
         // Dados usuário
-        edtNome = findViewById(R.id.userName);
-        edtRG = findViewById(R.id.userRG);
-        edtCPF = findViewById(R.id.userCPF);
-        edtSetor = findViewById(R.id.userSetor);
-        edtCargo = findViewById(R.id.userCargo);
-        edtTelefone = findViewById(R.id.userTelefone);
-        edtEmail = findViewById(R.id.userEmail);
+        edtNome = findViewById(R.id.userNametxt);
+        edtRG = findViewById(R.id.userRGtxt);
+        edtCPF = findViewById(R.id.userCPFtxt);
+        edtSetor = findViewById(R.id.userSetortxt);
+        edtCargo = findViewById(R.id.userCargotxt);
+        edtTelefone = findViewById(R.id.userTelefonetxt);
+        edtEmail = findViewById(R.id.userEmailtxt);
 
         // Formulário
-        formLocacao = findViewById(R.id.edtFormOSLocacao);
-        edtEquipamento = findViewById(R.id.edtFormOSEquipamento);
-        edtModelo =findViewById(R.id.edtFormOSModelo);
-        edtEquipID = findViewById(R.id.edtFormOSIDEquipamento);
+        formLocacao = findViewById(R.id.edtFormOSLocacaoipt);
+        edtEquipamento = findViewById(R.id.edtFormOSEquipamentoipt);
+        edtModelo =findViewById(R.id.edtFormOSModeloipt);
+        edtEquipID = findViewById(R.id.edtFormOSIDEquipamentoipt);
 
-        edtDiagnostico = findViewById(R.id.edtFormOSDiagnostico);
-        edtSolucao = findViewById(R.id.edtFormOSSolucao);
-        edtPecasTrocadas = findViewById(R.id.edtFormOSTroca);
-        edtObservacoes = findViewById(R.id.edtFormOSObservacoes);
+        edtDiagnostico = findViewById(R.id.edtFormOSDiagnosticoipt);
+        edtSolucao = findViewById(R.id.edtFormOSSolucaoipt);
+        edtPecasTrocadas = findViewById(R.id.edtFormOSTrocaipt);
+        edtObservacoes = findViewById(R.id.edtFormOSObservacoesipt);
 
         addFoto = findViewById(R.id.addFoto);
         preview = findViewById(R.id.preview);
 
-        edtDescricao = findViewById(R.id.edtFormOSDescricao);
+        edtDescricao = findViewById(R.id.edtFormOSDescricaoipt);
+        txtDesccricao = findViewById(R.id.edtFormOSDescricao);
         vwConteiner = findViewById(R.id.containerHist4);
-        hitDescricao = findViewById(R.id.hintDescricao);
 
         bt_visualizarOS = findViewById(R.id.bt_visualizarOS);
+
+        adapter_locacoes = new ArrayAdapter<String>(this, R.layout.dropdown_item, array_locacoes);
+
+        formLocacao.setAdapter(adapter_locacoes);
     }
 
 
@@ -305,7 +322,7 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
             formularioOS.putString(chaves[i], dadosDoForm[i].getText().toString());
         }
 
-        formularioOS.putString("locacao", formLocacao.getSelectedItem().toString());
+        formularioOS.putString("locacao", item_locacao);
 
         return formularioOS;
     }
