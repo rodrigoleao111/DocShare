@@ -37,24 +37,22 @@ import java.util.Map;
 
 public class FormCadastro extends FileGenerator {
 
-    private Spinner cargo_user, setor_user;
     private Button bt_cadastrar;
     private ImageView loadingBg;
     private TextInputEditText input_email, input_senha, input_confirmar_senha, input_nome, input_cpf, input_rg, input_telefone;
     private AutoCompleteTextView autoCompleteTxt_cargo, autoCompleteTxt_setor;
     private ProgressBar loadingPb;
     private String item_cargo, item_setor;
-    private String[] array_cargos = {"Operador Técnico", "Engenheiro Elétrico", "Agente de Campo", "Supervisor de Manutenção"};
-    private String[] array_setores = {"Engenharia", "Manutenção", "Qualidade"};
+    private final String[] array_cargos = {"Operador Técnico", "Engenheiro Elétrico", "Agente de Campo", "Supervisor de Manutenção"};
+    private final String[] array_setores = {"Engenharia", "Manutenção", "Qualidade"};
 
-    ArrayAdapter<String> adapter_cargos;
-    ArrayAdapter<String> adapter_setores;
+    private ArrayAdapter<String> adapter_cargos;
+    private ArrayAdapter<String> adapter_setores;
 
-    private final FirebaseFirestore db_cadastros = FirebaseFirestore.getInstance();
+    private final String[] mensagens = {"Erro: Preencha todos os campos", "Cadastro realizado", "Erro: Campos de senha diferentes"};
 
-    String[] mensagens = {"Erro: Preencha todos os campos", "Cadastro realizado", "Erro: Campos de senha diferentes"};
+    FirebaseFirestore db_cadastros = FirebaseFirestore.getInstance();
     String usuarioID;
-
     String email, senha, confirma_senha;
     Map<String,Object> dados_usuario = new HashMap<>();
 
@@ -66,12 +64,6 @@ public class FormCadastro extends FileGenerator {
 
         getSupportActionBar().hide();
         IniciarComponentes();
-
-        adapter_cargos = new ArrayAdapter<String>(this, R.layout.dropdown_item, array_cargos);
-        adapter_setores = new ArrayAdapter<String>(this, R.layout.dropdown_item, array_setores);
-
-        autoCompleteTxt_cargo.setAdapter(adapter_cargos);
-        autoCompleteTxt_setor.setAdapter(adapter_setores);
 
         autoCompleteTxt_cargo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -214,6 +206,11 @@ public class FormCadastro extends FileGenerator {
 
         loadingBg = findViewById(R.id.loagingBg);
         loadingPb = findViewById(R.id.loadingPb);
+
+        adapter_cargos = new ArrayAdapter<String>(this, R.layout.dropdown_item, array_cargos);
+        adapter_setores = new ArrayAdapter<String>(this, R.layout.dropdown_item, array_setores);
+        autoCompleteTxt_cargo.setAdapter(adapter_cargos);
+        autoCompleteTxt_setor.setAdapter(adapter_setores);
     }
 
 

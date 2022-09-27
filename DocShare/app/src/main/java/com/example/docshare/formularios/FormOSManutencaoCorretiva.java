@@ -29,8 +29,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.io.File;
 import java.util.Date;
@@ -59,13 +57,12 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
     private TextInputLayout txtDesccricao;
     private ImageView addFoto, preview;
     private AutoCompleteTextView formLocacao;
-    ArrayAdapter<String> adapter_locacoes;
+    private ArrayAdapter<String> adapter_locacoes;
     private View vwConteiner;
-    private TextView hitDescricao;
-    Bitmap bitmap;
+    private Bitmap bitmap;
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
-    String userID, bitmapPath = null, item_locacao;
-    String[] array_locacoes = {"Un. Recife I", "Un. Recife II", "Un. Camaragibe"};
+    private String userID, bitmapPath = null, item_locacao;
+    private String[] array_locacoes = {"Un. Recife I", "Un. Recife II", "Un. Camaragibe"};
 
     // Códigos de requisição
     private static final int CAMERA_REQUEST = 100;
@@ -100,8 +97,7 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
             vwConteiner.setVisibility(View.VISIBLE);
             txtDesccricao.setVisibility(View.VISIBLE);
             bitmap = BitmapFactory.decodeFile(bitmapPath);
-            Bundle dados = new Bundle();
-            dados = receberProfilePic.getExtras();
+            Bundle dados = receberProfilePic.getExtras();
             RePreenchimento(dados);
         }
 
@@ -120,6 +116,8 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
         edtSolucao.setText(dados.getString("solucao"));
         edtPecasTrocadas.setText(dados.getString("troca"));
         edtObservacoes.setText(dados.getString("obs"));
+        formLocacao.setText(dados.getString("locacao"));
+        item_locacao = dados.getString("locacao");
     }
 
     public void showImagePicDialog() {
@@ -185,15 +183,10 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent data = result.getData();
                         if (data != null) {
-
-                            Bitmap cameraPic = (Bitmap)(data.getExtras().get("data"));
-
                             // ASSIM ESTOU MODIFICANDO A TUMBNAIL (ESTICANDO A IMAGEM)
-
+                            Bitmap cameraPic = (Bitmap)(data.getExtras().get("data"));
                             Uri tempUri = ImageHelper.getUriFromTumbnailBitmap(getApplicationContext(), cameraPic);
-                            File finalFile = new File(ImageHelper.getRealPathFromURI(tempUri, getApplicationContext()));
 
-                            // Enviar bitmap para CropImage
                             Intent sendToCropImageActivity = new Intent(getApplicationContext(), CropImage.class);
                             sendToCropImageActivity.putExtra("uri", tempUri);
                             sendToCropImageActivity.putExtra("call", 1);
@@ -211,9 +204,7 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
             new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
                 @Override
                 public void onActivityResult(Uri result) {
-                    // Enviar bitmap para CropImage
                     Intent sendToCropImageActivity = new Intent(getApplicationContext(), CropImage.class);
-                    //sendToCropImageActivity.putExtras(paths);
                     sendToCropImageActivity.putExtra("uri", result);
                     sendToCropImageActivity.putExtra("call", 1);
                     sendToCropImageActivity.putExtra("source", 1);
@@ -251,7 +242,6 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
             }
         });
 
-        // BOTÃO VIZUALIZAR FORMULÁRIO
         bt_visualizarOS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -265,9 +255,7 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
         });
     }
 
-    // INICIALIZAR COMPONENTES DA CLASSE
     public void IniciarComponentes() {
-        // Dados usuário
         edtNome = findViewById(R.id.userNametxt);
         edtRG = findViewById(R.id.userRGtxt);
         edtCPF = findViewById(R.id.userCPFtxt);
@@ -276,7 +264,6 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
         edtTelefone = findViewById(R.id.userTelefonetxt);
         edtEmail = findViewById(R.id.userEmailtxt);
 
-        // Formulário
         formLocacao = findViewById(R.id.edtFormOSLocacaoipt);
         edtEquipamento = findViewById(R.id.edtFormOSEquipamentoipt);
         edtModelo =findViewById(R.id.edtFormOSModeloipt);
@@ -302,12 +289,10 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
     }
 
 
-    // MÉTODO PARA COLETAR AS INFORMAÇÕES INSERIDAS PELO USUÁRIO
     public Bundle ColetarInformacoes() {
         Bundle formularioOS = new Bundle();
 
         Date formID = new Date();
-        // Colocar validação para caso o item esteja em vazio
 
         formularioOS.putInt("formType", 1);     // Tipo do formulário
         formularioOS.putString("formID", String.valueOf(formID.getTime()));
