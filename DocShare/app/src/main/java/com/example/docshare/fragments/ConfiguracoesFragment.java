@@ -52,8 +52,7 @@ public class ConfiguracoesFragment extends Fragment {
     private ImageButton button_close;
     private TextView mudarSenha, editarPerfil, sobre;   // Botões
     private TextView nome, cargo, email, telefone, gitDayvid, gitRodrigo, siteInforma;
-    private ImageView profilePic, loadingBackGround;
-    private ProgressBar progressBar;
+    private ImageView profilePic;
     private TextInputEditText input_senhaAtual, input_novaSenha, input_confirmarSenha;
     Bundle paths = new Bundle();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -220,11 +219,6 @@ public class ConfiguracoesFragment extends Fragment {
         email = view.findViewById(R.id.textView);
         telefone = view.findViewById(R.id.textView4);
         profilePic = view.findViewById(R.id.imageView2);
-        loadingBackGround = view.findViewById(R.id.loadingBackGround);
-        progressBar = view.findViewById(R.id.progressBarC);
-
-        loadingBackGround.setVisibility(View.INVISIBLE);
-        progressBar.setVisibility(View.INVISIBLE);
 
     }
 

@@ -49,8 +49,6 @@
             android:id="@+id/containerHist1"
             style="@style/ContainerLogin"
             android:layout_height="380dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:background="@drawable/container_components"
             android:elevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
