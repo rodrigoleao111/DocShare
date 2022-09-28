@@ -55,6 +55,7 @@ public class InicioFragment extends Fragment {
     private Button button_novaOS;
     private RecyclerView recyclerView;
     private List<File> pdfList;
+    String[] itens;
     Bundle paths = new Bundle();
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
     String userID = FirebaseAuth.getInstance().getCurrentUser().getUid(), ola;
@@ -70,7 +71,7 @@ public class InicioFragment extends Fragment {
 
         VerificacaoDiretoriosDoApp(getContext());
 
-        InicioAdapter adapter = new InicioAdapter(getContext(), pdfList);
+        InicioAdapter adapter = new InicioAdapter(getContext(), pdfList, itens);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
@@ -150,6 +151,11 @@ public class InicioFragment extends Fragment {
 
         File diretorio = new File(UserInfo.getUserCredentials().getString("osPath"));
         pdfList.addAll(findPdf(diretorio));
+
+        itens = new String[pdfList.size()];
+        for( int i = 0; i < itens.length; i++){
+            itens[i] = pdfList.get(i).getName().replace(".pdf", "");
+        }
 
     }
 

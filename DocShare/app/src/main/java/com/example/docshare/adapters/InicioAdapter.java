@@ -21,10 +21,12 @@ public class InicioAdapter extends RecyclerView.Adapter<InicioAdapter.MyviewHold
 
     private Context context;
     private List<File> pdfFiles;
+    private String[] itens;
 
-    public InicioAdapter(Context context, List<File> pdfFiles) {
+    public InicioAdapter(Context context, List<File> pdfFiles, String[] itens) {
         this.context = context;
         this.pdfFiles = pdfFiles;
+        this.itens = itens;
     }
 
     @NonNull
@@ -38,7 +40,7 @@ public class InicioAdapter extends RecyclerView.Adapter<InicioAdapter.MyviewHold
     @Override
     public void onBindViewHolder(@NonNull MyviewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        holder.txtTitulo.setText(pdfFiles.get(position).getName());
+        holder.txtTitulo.setText(itens[position]);
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date(pdfFiles.get(position).lastModified());
