@@ -58,7 +58,6 @@ public class InicioFragment extends Fragment {
     Bundle paths = new Bundle();
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
     String userID = FirebaseAuth.getInstance().getCurrentUser().getUid(), ola;
-    private HistoricoFragment historicoFragment = new HistoricoFragment();
 
 
     @Override
