@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -47,8 +49,9 @@ import mehdi.sakout.aboutpage.Element;
 public class ConfiguracoesFragment extends Fragment {
 
     private Button buttonSair;
+    private ImageButton button_close;
     private TextView mudarSenha, editarPerfil, sobre;   // Botões
-    private TextView nome, cargo, email, telefone;
+    private TextView nome, cargo, email, telefone, gitDayvid, gitRodrigo, siteInforma;
     private ImageView profilePic, loadingBackGround;
     private ProgressBar progressBar;
     private TextInputEditText input_senhaAtual, input_novaSenha, input_confirmarSenha;
@@ -63,20 +66,6 @@ public class ConfiguracoesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_configuracoes, container, false);
         IniciarComponentes(view);
-        Element informa = new Element();
-        informa.setTitle("In Forma Sofware");
-        informa.setIconDrawable(R.drawable.informa_logoab);
-        View sobrePage = new AboutPage(getContext())
-                .setDescription("Este aplicativo tem a função de formatar os dados inseridos em um formulário, " +
-                 "gerar um arquivo PDF com esses dados e compartilhar este PDF para outros aplicativos.")
-                .addGroup("Desenvolvedores")
-                .addGitHub("Dayv1dx", "Dayvid Cunha")
-                .addGitHub("rodrigoleao111", "Rodrigo Leão")
-
-                .addGroup("Powered by")
-                .addItem(informa)
-                //.addWebsite("informa.com.br","Site da empresa" )
-                .create();
 
         editarPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,12 +108,35 @@ public class ConfiguracoesFragment extends Fragment {
             @Override
             public void onClick(View v) {
             AlertDialog.Builder sobreDialog = new AlertDialog.Builder(getContext());
-            sobreDialog.setView(sobrePage);
+            View viewSobre = inflater.inflate(R.layout.dialog_sobre, null);
+            sobreDialog.setView(viewSobre);
             sobreDialog.setCancelable(false);
-            sobreDialog.setPositiveButton("fechar", new DialogInterface.OnClickListener() {
+            AlertDialog dialog = sobreDialog.create();
+            dialog.show();
+
+            gitDayvid = viewSobre.findViewById(R.id.gitDayvid);
+            gitRodrigo = viewSobre.findViewById(R.id.gitRodrigo);
+            siteInforma = viewSobre.findViewById(R.id.siteInforma);
+            button_close = viewSobre.findViewById(R.id.button_close);
+
+            gitDayvid.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {}});
-            sobreDialog.create().show();
+                public void onClick(View v) {
+                    goToURL("https://github.com/Dayv1dx");}});
+
+            gitRodrigo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    goToURL("https://github.com/rodrigoleao111");}});
+
+            siteInforma.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    goToURL("https://www.informa.com.br/");}});
+
+            button_close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {dialog.dismiss();}});
             }
         });
 
@@ -190,6 +202,11 @@ public class ConfiguracoesFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void goToURL(String s) {
+        Uri url = Uri.parse(s);
+        startActivity(new Intent(Intent.ACTION_VIEW, url));
     }
 
 
