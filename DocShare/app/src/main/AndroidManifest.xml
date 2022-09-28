@@ -25,10 +25,7 @@
             android:name=".DocumentActivity"
             android:exported="false" />
         <activity
-            android:name=".usuario.HistoricoDeAtividades"
-            android:exported="false" />
-        <activity
-            android:name=".usuario.TelaUsuario2Activity"
+            android:name=".usuario.TelaUsuario"
             android:exported="false" />
         <activity
             android:name=".usuario.ConfiguracoesDeUsuario"
@@ -37,7 +34,7 @@
             android:name=".metodos.CropImage"
             android:exported="false" />
         <activity
-            android:name=".VizualizarForm"
+            android:name=".outros.VizualizarForm"
             android:exported="false" />
 
         <provider
@@ -60,11 +57,8 @@
             android:name=".formularios.FormCadastro"
             android:exported="false" />
         <activity
-            android:name=".usuario.TelaDeUsuario"
-            android:exported="false" />
-        <activity
-            android:name=".SplashScreen"
-            android:exported="true" >
+            android:name=".outros.SplashScreen"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

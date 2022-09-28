@@ -53,6 +53,7 @@
         <entry key="..\:/UPE/In_Forma_PET_UPE/DocShare/app/src/main/res/drawable/ic_person.xml" value="0.279" />
         <entry key="..\:/UPE/In_Forma_PET_UPE/DocShare/app/src/main/res/layout/activity_configuracoes_de_usuario.xml" value="0.27447916666666666" />
         <entry key="..\:/UPE/In_Forma_PET_UPE/DocShare/app/src/main/res/layout/activity_crop_image.xml" value="0.176" />
+        <entry key="..\:/UPE/In_Forma_PET_UPE/DocShare/app/src/main/res/layout/activity_document.xml" value="0.22735507246376813" />
         <entry key="..\:/UPE/In_Forma_PET_UPE/DocShare/app/src/main/res/layout/activity_form_cadastro.xml" value="0.264" />
         <entry key="..\:/UPE/In_Forma_PET_UPE/DocShare/app/src/main/res/layout/activity_form_login.xml" value="0.264" />
         <entry key="..\:/UPE/In_Forma_PET_UPE/DocShare/app/src/main/res/layout/activity_formulario_osmanutencao_corretiva.xml" value="0.264" />
@@ -65,6 +66,8 @@
         <entry key="..\:/UPE/In_Forma_PET_UPE/DocShare/app/src/main/res/layout/fragment_configuracoes.xml" value="0.38697916666666665" />
         <entry key="..\:/UPE/In_Forma_PET_UPE/DocShare/app/src/main/res/layout/fragment_historico.xml" value="0.38697916666666665" />
         <entry key="..\:/UPE/In_Forma_PET_UPE/DocShare/app/src/main/res/layout/fragment_inicio.xml" value="0.2463768115942029" />
+        <entry key="..\:/UPE/In_Forma_PET_UPE/DocShare/app/src/main/res/layout/line_listview_custom.xml" value="0.27447916666666666" />
+        <entry key="..\:/UPE/In_Forma_PET_UPE/DocShare/app/src/main/res/layout/line_recycler_inicio.xml" value="0.27447916666666666" />
         <entry key="..\:/UPE/In_Forma_PET_UPE/DocShare/app/src/main/res/xml/file_path.xml" value="0.27447916666666666" />
       </map>
     </option>

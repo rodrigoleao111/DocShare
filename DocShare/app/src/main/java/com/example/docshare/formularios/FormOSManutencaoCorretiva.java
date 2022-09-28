@@ -23,22 +23,23 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.io.File;
 import java.util.Date;
 
 import com.example.docshare.R;
-import com.example.docshare.VizualizarForm;
+import com.example.docshare.outros.VizualizarForm;
 import com.example.docshare.metodos.CropImage;
 import com.example.docshare.metodos.ImageHelper;
-import com.example.docshare.usuario.ConfiguracoesDeUsuario;
-import com.example.docshare.usuario.TelaDeUsuario;
-import com.example.docshare.usuario.TelaUsuario2Activity;
+import com.example.docshare.usuario.TelaUsuario;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -49,17 +50,19 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class FormOSManutencaoCorretiva extends AppCompatActivity implements ImageHelper {
 
     private Button bt_visualizarOS;
-    private EditText edtNome, edtRG, edtCPF, edtSetor, edtCargo, edtTelefone, edtEmail;  // Edt referente as informaçoes do colaborador
-    private EditText edtEquipamento, edtModelo, edtEquipID;                              // Edt referente ao Equipamento | Ativo
-    private EditText edtDiagnostico, edtSolucao, edtPecasTrocadas, edtObservacoes;       // Edt referente a manutenção
-    private EditText edtDescricao;
+    private TextInputEditText edtNome, edtRG, edtCPF, edtSetor, edtCargo, edtTelefone, edtEmail;  // Edt referente as informaçoes do colaborador
+    private TextInputEditText edtEquipamento, edtModelo, edtEquipID;                              // Edt referente ao Equipamento | Ativo
+    private TextInputEditText edtDiagnostico, edtSolucao, edtPecasTrocadas, edtObservacoes;       // Edt referente a manutenção
+    private TextInputEditText edtDescricao;
+    private TextInputLayout txtDesccricao;
     private ImageView addFoto, preview;
-    private Spinner formLocacao;
+    private AutoCompleteTextView formLocacao;
+    private ArrayAdapter<String> adapter_locacoes;
     private View vwConteiner;
-    private TextView hitDescricao;
-    Bitmap bitmap;
+    private Bitmap bitmap;
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
-    String userID, bitmapPath = null;
+    private String userID, bitmapPath = null, item_locacao;
+    private String[] array_locacoes = {"Un. Recife I", "Un. Recife II", "Un. Camaragibe"};
 
     // Códigos de requisição
     private static final int CAMERA_REQUEST = 100;
@@ -91,13 +94,17 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
             bitmapPath = receberProfilePic.getStringExtra("path");
             preview.setImageURI(Uri.parse(bitmapPath));
             edtDescricao.setVisibility(View.VISIBLE);
-            hitDescricao.setVisibility(View.VISIBLE);
             vwConteiner.setVisibility(View.VISIBLE);
+            txtDesccricao.setVisibility(View.VISIBLE);
             bitmap = BitmapFactory.decodeFile(bitmapPath);
-            Bundle dados = new Bundle();
-            dados = receberProfilePic.getExtras();
+            Bundle dados = receberProfilePic.getExtras();
             RePreenchimento(dados);
         }
+
+        formLocacao.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                item_locacao = parent.getItemAtPosition(position).toString();}});
 
     }
 
@@ -109,6 +116,8 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
         edtSolucao.setText(dados.getString("solucao"));
         edtPecasTrocadas.setText(dados.getString("troca"));
         edtObservacoes.setText(dados.getString("obs"));
+        formLocacao.setText(dados.getString("locacao"));
+        item_locacao = dados.getString("locacao");
     }
 
     public void showImagePicDialog() {
@@ -174,15 +183,10 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent data = result.getData();
                         if (data != null) {
-
-                            Bitmap cameraPic = (Bitmap)(data.getExtras().get("data"));
-
                             // ASSIM ESTOU MODIFICANDO A TUMBNAIL (ESTICANDO A IMAGEM)
-
+                            Bitmap cameraPic = (Bitmap)(data.getExtras().get("data"));
                             Uri tempUri = ImageHelper.getUriFromTumbnailBitmap(getApplicationContext(), cameraPic);
-                            File finalFile = new File(ImageHelper.getRealPathFromURI(tempUri, getApplicationContext()));
 
-                            // Enviar bitmap para CropImage
                             Intent sendToCropImageActivity = new Intent(getApplicationContext(), CropImage.class);
                             sendToCropImageActivity.putExtra("uri", tempUri);
                             sendToCropImageActivity.putExtra("call", 1);
@@ -200,9 +204,7 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
             new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
                 @Override
                 public void onActivityResult(Uri result) {
-                    // Enviar bitmap para CropImage
                     Intent sendToCropImageActivity = new Intent(getApplicationContext(), CropImage.class);
-                    //sendToCropImageActivity.putExtras(paths);
                     sendToCropImageActivity.putExtra("uri", result);
                     sendToCropImageActivity.putExtra("call", 1);
                     sendToCropImageActivity.putExtra("source", 1);
@@ -213,7 +215,7 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
 
     @Override
     public void onBackPressed() {
-        Intent backToUserScreen = new Intent(this, TelaUsuario2Activity.class);
+        Intent backToUserScreen = new Intent(this, TelaUsuario.class);
         startActivity(backToUserScreen);
     }
 
@@ -240,7 +242,6 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
             }
         });
 
-        // BOTÃO VIZUALIZAR FORMULÁRIO
         bt_visualizarOS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -254,45 +255,44 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
         });
     }
 
-    // INICIALIZAR COMPONENTES DA CLASSE
     public void IniciarComponentes() {
-        // Dados usuário
-        edtNome = findViewById(R.id.userName);
-        edtRG = findViewById(R.id.userRG);
-        edtCPF = findViewById(R.id.userCPF);
-        edtSetor = findViewById(R.id.userSetor);
-        edtCargo = findViewById(R.id.userCargo);
-        edtTelefone = findViewById(R.id.userTelefone);
-        edtEmail = findViewById(R.id.userEmail);
+        edtNome = findViewById(R.id.userNametxt);
+        edtRG = findViewById(R.id.userRGtxt);
+        edtCPF = findViewById(R.id.userCPFtxt);
+        edtSetor = findViewById(R.id.userSetortxt);
+        edtCargo = findViewById(R.id.userCargotxt);
+        edtTelefone = findViewById(R.id.userTelefonetxt);
+        edtEmail = findViewById(R.id.userEmailtxt);
 
-        // Formulário
-        formLocacao = findViewById(R.id.edtFormOSLocacao);
-        edtEquipamento = findViewById(R.id.edtFormOSEquipamento);
-        edtModelo =findViewById(R.id.edtFormOSModelo);
-        edtEquipID = findViewById(R.id.edtFormOSIDEquipamento);
+        formLocacao = findViewById(R.id.edtFormOSLocacaoipt);
+        edtEquipamento = findViewById(R.id.edtFormOSEquipamentoipt);
+        edtModelo =findViewById(R.id.edtFormOSModeloipt);
+        edtEquipID = findViewById(R.id.edtFormOSIDEquipamentoipt);
 
-        edtDiagnostico = findViewById(R.id.edtFormOSDiagnostico);
-        edtSolucao = findViewById(R.id.edtFormOSSolucao);
-        edtPecasTrocadas = findViewById(R.id.edtFormOSTroca);
-        edtObservacoes = findViewById(R.id.edtFormOSObservacoes);
+        edtDiagnostico = findViewById(R.id.edtFormOSDiagnosticoipt);
+        edtSolucao = findViewById(R.id.edtFormOSSolucaoipt);
+        edtPecasTrocadas = findViewById(R.id.edtFormOSTrocaipt);
+        edtObservacoes = findViewById(R.id.edtFormOSObservacoesipt);
 
         addFoto = findViewById(R.id.addFoto);
         preview = findViewById(R.id.preview);
 
-        edtDescricao = findViewById(R.id.edtFormOSDescricao);
+        edtDescricao = findViewById(R.id.edtFormOSDescricaoipt);
+        txtDesccricao = findViewById(R.id.edtFormOSDescricao);
         vwConteiner = findViewById(R.id.containerHist4);
-        hitDescricao = findViewById(R.id.hintDescricao);
 
         bt_visualizarOS = findViewById(R.id.bt_visualizarOS);
+
+        adapter_locacoes = new ArrayAdapter<String>(this, R.layout.dropdown_item, array_locacoes);
+
+        formLocacao.setAdapter(adapter_locacoes);
     }
 
 
-    // MÉTODO PARA COLETAR AS INFORMAÇÕES INSERIDAS PELO USUÁRIO
     public Bundle ColetarInformacoes() {
         Bundle formularioOS = new Bundle();
 
         Date formID = new Date();
-        // Colocar validação para caso o item esteja em vazio
 
         formularioOS.putInt("formType", 1);     // Tipo do formulário
         formularioOS.putString("formID", String.valueOf(formID.getTime()));
@@ -307,7 +307,7 @@ public class FormOSManutencaoCorretiva extends AppCompatActivity implements Imag
             formularioOS.putString(chaves[i], dadosDoForm[i].getText().toString());
         }
 
-        formularioOS.putString("locacao", formLocacao.getSelectedItem().toString());
+        formularioOS.putString("locacao", item_locacao);
 
         return formularioOS;
     }

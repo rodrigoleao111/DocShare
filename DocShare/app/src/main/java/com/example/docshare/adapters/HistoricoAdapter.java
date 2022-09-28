@@ -15,6 +15,8 @@ import com.example.docshare.R;
 import com.example.docshare.metodos.OnPdfFileSelectListener;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class HistoricoAdapter extends RecyclerView.Adapter<HistoricoAdapter.MyviewHolder> {
@@ -41,6 +43,10 @@ public class HistoricoAdapter extends RecyclerView.Adapter<HistoricoAdapter.Myvi
     public void onBindViewHolder(@NonNull MyviewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.txtTitulo.setText(pdfFiles.get(position).getName());
         holder.txtTitulo.setSelected(true);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date(pdfFiles.get(position).lastModified());
+        holder.txtdata.setText(formatter.format(date));
 
         holder.conteiner.setOnClickListener(new View.OnClickListener() {
             @Override

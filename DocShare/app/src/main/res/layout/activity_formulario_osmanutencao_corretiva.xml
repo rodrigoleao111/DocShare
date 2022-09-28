@@ -57,188 +57,151 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt1" />
 
-        <TextView
-            android:id="@+id/hintNome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="10dp"
-            android:text="Nome"
-            android:textColor="@color/soft_black"
-            android:textSize="14dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="22dp"
-            app:layout_constraintStart_toStartOf="@+id/containerHist1"
-            app:layout_constraintTop_toTopOf="@+id/containerHist1" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/userName"
-            style="@style/Edit_Text"
-            android:background="@drawable/edit_text"
-            android:layout_marginTop="0dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:elevation="10dp"
-            android:minHeight="48dp"
-            android:padding="7dp"
+            android:hint="Nome completo"
             app:layout_constraintEnd_toEndOf="@+id/containerHist1"
             app:layout_constraintStart_toStartOf="@+id/containerHist1"
-            app:layout_constraintTop_toBottomOf="@+id/hintNome" />
+            app:layout_constraintTop_toTopOf="@+id/containerHist1">
 
-        <TextView
-            android:id="@+id/hintRG"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="10dp"
-            android:text="RG"
-            android:textColor="@color/soft_black"
-            android:textSize="14dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="22dp"
-            app:layout_constraintStart_toStartOf="@+id/containerHist1"
-            app:layout_constraintTop_toBottomOf="@+id/userName" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userNametxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/userRG"
-            style="@style/Edit_Text"
-            android:layout_width="110dp"
-            android:layout_marginLeft="22dp"
-            android:layout_marginTop="0dp"
-            android:background="@drawable/edit_text"
-            android:elevation="10dp"
-            android:maxLength="9"
-            android:minHeight="48dp"
-            android:padding="7dp"
-            app:layout_constraintStart_toStartOf="@+id/containerHist1"
-            app:layout_constraintTop_toBottomOf="@+id/hintRG" />
-
-        <TextView
-            android:id="@+id/hintCPF"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:elevation="10dp"
-            android:text="CPF"
-            android:textColor="@color/soft_black"
-            android:textSize="14dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="130dp"
-            app:layout_constraintStart_toStartOf="@+id/hintRG"
-            app:layout_constraintTop_toBottomOf="@+id/userName" />
+            android:hint="RG"
+            app:layout_constraintStart_toStartOf="@+id/containerHist1"
+            app:layout_constraintTop_toBottomOf="@+id/userName">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userRGtxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/userCPF"
-            style="@style/Edit_Text"
-            android:layout_width="130dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="0dp"
-            android:background="@drawable/edit_text"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:elevation="10dp"
-            android:maxLength="11"
-            android:minHeight="48dp"
-            android:padding="7dp"
+            android:hint="CPF"
             app:layout_constraintStart_toEndOf="@id/userRG"
-            app:layout_constraintTop_toBottomOf="@+id/hintCPF" />
+            app:layout_constraintTop_toTopOf="@+id/userRG">
 
-        <TextView
-            android:id="@+id/hintSetor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="10dp"
-            android:text="Setor"
-            android:textColor="@color/soft_black"
-            android:textSize="14dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="22dp"
-            app:layout_constraintStart_toStartOf="@+id/containerHist1"
-            app:layout_constraintTop_toBottomOf="@+id/userRG" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userCPFtxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/userSetor"
-            style="@style/Edit_Text"
-            android:layout_width="110dp"
-            android:layout_marginLeft="22dp"
-            android:layout_marginTop="0dp"
-            android:background="@drawable/edit_text"
-            android:elevation="10dp"
-            android:minHeight="48dp"
-            android:padding="7dp"
-            app:layout_constraintStart_toStartOf="@+id/containerHist1"
-            app:layout_constraintTop_toBottomOf="@+id/hintSetor" />
-
-        <TextView
-            android:id="@+id/hintCargo"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:elevation="10dp"
-            android:text="Cargo"
-            android:textColor="@color/soft_black"
-            android:textSize="14dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="130dp"
-            app:layout_constraintStart_toStartOf="@+id/hintSetor"
-            app:layout_constraintTop_toBottomOf="@+id/userCPF" />
+            android:hint="Setor"
+            app:layout_constraintStart_toStartOf="@+id/containerHist1"
+            app:layout_constraintTop_toBottomOf="@+id/userRG">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userSetortxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/userCargo"
-            style="@style/Edit_Text"
-            android:layout_width="200dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="0dp"
-            android:background="@drawable/edit_text"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:elevation="10dp"
-            android:minHeight="48dp"
-            android:padding="7dp"
+            android:hint="Cargo"
             app:layout_constraintStart_toEndOf="@id/userSetor"
-            app:layout_constraintTop_toBottomOf="@+id/hintCargo" />
+            app:layout_constraintTop_toTopOf="@+id/userSetor">
 
-        <TextView
-            android:id="@+id/hintTelefone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="10dp"
-            android:text="Telefone"
-            android:textColor="@color/soft_black"
-            android:textSize="14dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="22dp"
-            app:layout_constraintStart_toStartOf="@+id/containerHist1"
-            app:layout_constraintTop_toBottomOf="@+id/userSetor" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userCargotxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/userTelefone"
-            style="@style/Edit_Text"
-            android:layout_width="130dp"
-            android:layout_marginLeft="22dp"
-            android:layout_marginTop="0dp"
-            android:background="@drawable/edit_text"
-            android:elevation="10dp"
-            android:maxLength="11"
-            android:minHeight="48dp"
-            android:padding="7dp"
-            app:layout_constraintStart_toStartOf="@+id/containerHist1"
-            app:layout_constraintTop_toBottomOf="@+id/hintTelefone" />
-
-        <TextView
-            android:id="@+id/hintEmail"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:elevation="10dp"
-            android:text="E-mail"
-            android:textColor="@color/soft_black"
-            android:textSize="14dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="22dp"
+            android:hint="Telefone"
             app:layout_constraintStart_toStartOf="@+id/containerHist1"
-            app:layout_constraintTop_toBottomOf="@+id/userTelefone" />
+            app:layout_constraintTop_toBottomOf="@+id/userSetor">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userTelefonetxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/userEmail"
-            style="@style/Edit_Text"
-            android:background="@drawable/edit_text"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             android:elevation="10dp"
-            android:minHeight="48dp"
-            android:layout_marginTop="0dp"
-            android:padding="7dp"
+            android:hint="Cargo"
             app:layout_constraintEnd_toEndOf="@+id/containerHist1"
             app:layout_constraintStart_toStartOf="@+id/containerHist1"
-            app:layout_constraintTop_toBottomOf="@+id/hintEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/userTelefone">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userEmailtxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/txt2"
@@ -267,107 +230,91 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txt2" />
 
-        <TextView
-            android:id="@+id/hintLocacao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="10dp"
-            android:text="Locação"
-            android:textColor="@color/soft_black"
-            android:textSize="14dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="22dp"
-            app:layout_constraintStart_toStartOf="@+id/containerHist2"
-            app:layout_constraintTop_toTopOf="@+id/containerHist2" />
 
-        <Spinner
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edtFormOSLocacao"
-            style="@style/Edit_Text"
-            android:entries="@array/formOSLocacao"
-            android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24"
-            android:background="@drawable/edit_text"
-            android:layout_marginTop="0dp"
-            android:elevation="10dp"
-            android:minHeight="48dp"
-            android:padding="7dp"
-            app:layout_constraintEnd_toEndOf="@+id/containerHist2"
-            app:layout_constraintStart_toStartOf="@+id/containerHist2"
-            app:layout_constraintTop_toBottomOf="@+id/hintLocacao" />
-
-        <TextView
-            android:id="@+id/hintEquipamento"
-            android:layout_width="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:elevation="10dp"
-            android:text="Equipamento"
-            android:textColor="@color/soft_black"
-            android:textSize="14dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="22dp"
+            android:layout_margin="10dp"
+            android:hint="Selecione uma locação"
+            app:layout_constraintEnd_toEndOf="@+id/containerHist2"
             app:layout_constraintStart_toStartOf="@+id/containerHist2"
-            app:layout_constraintTop_toBottomOf="@+id/edtFormOSLocacao" />
+            app:layout_constraintTop_toTopOf="@+id/containerHist2">
 
-        <EditText
+            <AutoCompleteTextView
+                android:id="@+id/edtFormOSLocacaoipt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edtFormOSEquipamento"
-            style="@style/Edit_Text"
-            android:background="@drawable/edit_text"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             android:elevation="10dp"
-            android:minHeight="48dp"
-            android:layout_marginTop="0dp"
-            android:padding="7dp"
+            android:hint="Equipamento"
             app:layout_constraintEnd_toEndOf="@+id/containerHist2"
             app:layout_constraintStart_toStartOf="@+id/containerHist2"
-            app:layout_constraintTop_toBottomOf="@+id/hintEquipamento" />
+            app:layout_constraintTop_toBottomOf="@+id/edtFormOSLocacao">
 
-        <TextView
-            android:id="@+id/hintModelo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="10dp"
-            android:text="Modelo"
-            android:textColor="@color/soft_black"
-            android:textSize="14dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="22dp"
-            app:layout_constraintStart_toStartOf="@+id/containerHist2"
-            app:layout_constraintTop_toBottomOf="@+id/edtFormOSEquipamento" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtFormOSEquipamentoipt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edtFormOSModelo"
-            style="@style/Edit_Text"
-            android:background="@drawable/edit_text"
-            android:elevation="10dp"
-            android:minHeight="48dp"
-            android:layout_marginTop="0dp"
-            android:padding="7dp"
-            app:layout_constraintEnd_toEndOf="@+id/containerHist2"
-            app:layout_constraintStart_toStartOf="@+id/containerHist2"
-            app:layout_constraintTop_toBottomOf="@+id/hintModelo" />
-
-        <TextView
-            android:id="@+id/hintIDEquipamento"
-            android:layout_width="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             android:elevation="10dp"
-            android:text="Código de identificação do item"
-            android:textColor="@color/soft_black"
-            android:textSize="14dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="22dp"
-            app:layout_constraintStart_toStartOf="@+id/containerHist2"
-            app:layout_constraintTop_toBottomOf="@+id/edtFormOSModelo" />
-
-        <EditText
-            android:id="@+id/edtFormOSIDEquipamento"
-            style="@style/Edit_Text"
-            android:background="@drawable/edit_text"
-            android:elevation="10dp"
-            android:minHeight="48dp"
-            android:layout_marginTop="0dp"
-            android:padding="7dp"
+            android:hint="Modelo"
             app:layout_constraintEnd_toEndOf="@+id/containerHist2"
             app:layout_constraintStart_toStartOf="@+id/containerHist2"
-            app:layout_constraintTop_toBottomOf="@+id/hintIDEquipamento" />
+            app:layout_constraintTop_toBottomOf="@+id/edtFormOSEquipamento">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtFormOSModeloipt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtFormOSIDEquipamento"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:elevation="10dp"
+            android:hint="Cód. de Identificação"
+            app:layout_constraintEnd_toEndOf="@+id/containerHist2"
+            app:layout_constraintStart_toStartOf="@+id/containerHist2"
+            app:layout_constraintTop_toBottomOf="@+id/edtFormOSModelo">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtFormOSIDEquipamentoipt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/txt3"
@@ -396,126 +343,104 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txt3" />
 
-        <TextView
-            android:id="@+id/hintDiagnostico"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="10dp"
-            android:text="Diagnóstico / Causa do problema"
-            android:textColor="@color/soft_black"
-            android:textSize="14dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="22dp"
-            app:layout_constraintStart_toStartOf="@+id/containerHist3"
-            app:layout_constraintTop_toBottomOf="@+id/txt3" />
 
-        <EditText
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edtFormOSDiagnostico"
-            style="@style/Edit_Text"
-            android:background="@drawable/edit_text"
-            android:inputType="textMultiLine"
-            android:lines="10"
-            android:minLines="1"
-            android:elevation="10dp"
-            android:minHeight="48dp"
-            android:layout_marginTop="0dp"
-            android:padding="7dp"
-            app:layout_constraintEnd_toEndOf="@+id/containerHist3"
-            app:layout_constraintStart_toStartOf="@+id/containerHist3"
-            app:layout_constraintTop_toBottomOf="@+id/hintDiagnostico" />
-
-        <TextView
-            android:id="@+id/hintSolucao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="10dp"
-            android:text="Solução"
-            android:textColor="@color/soft_black"
-            android:textSize="14dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="22dp"
-            app:layout_constraintStart_toStartOf="@+id/containerHist3"
-            app:layout_constraintTop_toBottomOf="@+id/edtFormOSDiagnostico" />
-
-        <EditText
-            android:id="@+id/edtFormOSSolucao"
-            style="@style/Edit_Text"
-            android:background="@drawable/edit_text"
-            android:elevation="10dp"
-            android:minHeight="48dp"
-            android:layout_marginTop="0dp"
-            android:padding="7dp"
-            android:inputType="textMultiLine"
-            android:lines="10"
-            android:minLines="1"
-            app:layout_constraintEnd_toEndOf="@+id/containerHist3"
-            app:layout_constraintStart_toStartOf="@+id/containerHist3"
-            app:layout_constraintTop_toBottomOf="@+id/hintSolucao" />
-
-        <TextView
-            android:id="@+id/hintTroca"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="10dp"
-            android:text="Peças trocadas"
-            android:textColor="@color/soft_black"
-            android:textSize="14dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="22dp"
-            app:layout_constraintStart_toStartOf="@+id/containerHist3"
-            app:layout_constraintTop_toBottomOf="@+id/edtFormOSSolucao" />
-
-        <EditText
-            android:id="@+id/edtFormOSTroca"
-            style="@style/Edit_Text"
-            android:background="@drawable/edit_text"
-            android:elevation="10dp"
-            android:minHeight="48dp"
-            android:layout_marginTop="0dp"
-            android:padding="7dp"
-            android:inputType="textMultiLine"
-            android:lines="10"
-            android:minLines="1"
-            app:layout_constraintEnd_toEndOf="@+id/containerHist3"
-            app:layout_constraintStart_toStartOf="@+id/containerHist3"
-            app:layout_constraintTop_toBottomOf="@+id/hintTroca" />
-
-        <TextView
-            android:id="@+id/hintObservacoes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="10dp"
-            android:text="Observações"
-            android:textColor="@color/soft_black"
-            android:textSize="14dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="22dp"
-            app:layout_constraintStart_toStartOf="@+id/containerHist3"
-            app:layout_constraintTop_toBottomOf="@+id/edtFormOSTroca" />
-
-
-        <EditText
-            android:id="@+id/edtFormOSObservacoes"
-            style="@style/Edit_Text"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/edit_text"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             android:elevation="10dp"
-            android:inputType="textMultiLine"
-            android:lines="10"
-            android:minHeight="48dp"
-            android:minLines="1"
-            android:padding="7dp"
+            android:hint="Diagnóstico / Causa do problema"
+            app:layout_constraintEnd_toEndOf="@+id/containerHist3"
+            app:layout_constraintStart_toStartOf="@+id/containerHist3"
+            app:layout_constraintTop_toTopOf="@+id/containerHist3">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtFormOSDiagnosticoipt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:maxLength="90"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtFormOSSolucao"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:elevation="10dp"
+            android:hint="Solução"
+            app:layout_constraintEnd_toEndOf="@+id/containerHist3"
+            app:layout_constraintStart_toStartOf="@+id/containerHist3"
+            app:layout_constraintTop_toBottomOf="@+id/edtFormOSDiagnostico">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtFormOSSolucaoipt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:maxLength="90"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtFormOSTroca"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:elevation="10dp"
+            android:hint="Peças Trocadas"
+            app:layout_constraintEnd_toEndOf="@+id/containerHist3"
+            app:layout_constraintStart_toStartOf="@+id/containerHist3"
+            app:layout_constraintTop_toBottomOf="@+id/edtFormOSSolucao">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtFormOSTrocaipt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:maxLength="90"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtFormOSObservacoes"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:elevation="10dp"
+            android:hint="Observações"
             app:layout_constraintEnd_toStartOf="@+id/addFoto"
             app:layout_constraintStart_toStartOf="@+id/containerHist3"
-            app:layout_constraintTop_toBottomOf="@+id/hintObservacoes" />
+            app:layout_constraintTop_toBottomOf="@+id/edtFormOSTroca">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtFormOSObservacoesipt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:maxLength="90"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
             android:id="@+id/addFoto"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:elevation="12dp"
             app:layout_constraintEnd_toEndOf="@+id/edtFormOSTroca"
             app:layout_constraintHorizontal_bias="1.0"
@@ -528,7 +453,7 @@
             style="@style/ContainerLogin"
             android:layout_height="0dp"
             android:layout_marginTop="30dp"
-            android:layout_marginBottom="-20dp"
+            android:layout_marginBottom="-40dp"
             android:background="@drawable/container_components"
             android:elevation="10dp"
             android:visibility="invisible"
@@ -538,39 +463,31 @@
             app:layout_constraintTop_toBottomOf="@id/containerHist3"
             app:layout_constraintBottom_toBottomOf="@+id/edtFormOSDescricao"/>
 
-        <TextView
-            android:id="@+id/hintDescricao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:elevation="10dp"
-            android:text="Descrição da imagem"
-            android:textColor="@color/soft_black"
-            android:textSize="14dp"
-            android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="@+id/containerHist4"
-            app:layout_constraintTop_toTopOf="@+id/containerHist4" />
 
 
-        <EditText
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edtFormOSDescricao"
-            style="@style/Edit_Text"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/edit_text"
-            android:elevation="10dp"
-            android:inputType="textMultiLine"
-            android:lines="10"
-            android:minHeight="48dp"
-            android:minLines="1"
-            android:padding="7dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             android:visibility="invisible"
+            android:elevation="10dp"
+            android:hint="Descrição da imagem"
             app:layout_constraintEnd_toStartOf="@+id/preview"
             app:layout_constraintStart_toStartOf="@+id/containerHist4"
-            app:layout_constraintTop_toBottomOf="@+id/hintDescricao" />
+            app:layout_constraintTop_toTopOf="@+id/containerHist4">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtFormOSDescricaoipt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:maxLength="90"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
             android:id="@+id/preview"

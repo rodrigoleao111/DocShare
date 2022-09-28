@@ -53,7 +53,6 @@ public class InicioFragment extends Fragment {
     private TextView boasvindas;
     private ImageView profilePic;
     private Button button_novaOS;
-    private TextView textVerTodas;
     private RecyclerView recyclerView;
     private List<File> pdfList;
     Bundle paths = new Bundle();
@@ -72,16 +71,12 @@ public class InicioFragment extends Fragment {
 
         VerificacaoDiretoriosDoApp(getContext());
 
-        recyclerView = view.findViewById(R.id.recyclerInicio);
         InicioAdapter adapter = new InicioAdapter(getContext(), pdfList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration( new DividerItemDecoration(getContext(), LinearLayout.VERTICAL));
         recyclerView.setAdapter(adapter);
-
-
-
 
         button_novaOS.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,8 +91,6 @@ public class InicioFragment extends Fragment {
                 }
             }
         });
-
-
 
         return view;
     }
@@ -114,13 +107,13 @@ public class InicioFragment extends Fragment {
             File osDir = new File(userDir, osDirName);
             osDir.mkdir();
 
-            displayPdf();
-
             UserInfo.setUserPaths(
                     rootDirFile.getAbsolutePath(),
                     userDir.getAbsolutePath(),
                     imageDir.getAbsolutePath(),
                     osDir.getAbsolutePath());
+
+            displayPdf();
 
         } else {
             RequestPermissions.requestPermission(getActivity());
@@ -131,27 +124,33 @@ public class InicioFragment extends Fragment {
         boasvindas = view.findViewById(R.id.txt_boas_vindas2);
         profilePic = view.findViewById(R.id.profilePicInit);
         button_novaOS = view.findViewById(R.id.button_novaOS);
-        textVerTodas = view.findViewById(R.id.textVerTodas);
+        recyclerView = view.findViewById(R.id.recyclerInicio);
     }
+
     public ArrayList<File> findPdf (File file){
         ArrayList<File> arrayList = new ArrayList<>();
         File[] files = file.listFiles();
 
-        for(File singleFile : files){
-            if(singleFile.isDirectory() && !singleFile.isHidden()){
+        assert files != null;
+        for (File singleFile : files) {
+            if (singleFile.isDirectory() && !singleFile.isHidden()) {
                 arrayList.addAll(findPdf(singleFile));
             } else {
-                if (singleFile.getName().endsWith(".pdf")){
-                    arrayList.add(singleFile);
+                if (singleFile.getName().endsWith(".pdf")) {
+                    arrayList.add(0, singleFile);
                 }
             }
-        } return arrayList;
+
+        }
+        return arrayList;
     }
 
     private void displayPdf() {
-
         pdfList = new ArrayList<>();
         pdfList.addAll(findPdf(Environment.getExternalStorageDirectory()));
+
+        File diretorio = new File(UserInfo.getUserCredentials().getString("osPath"));
+        pdfList.addAll(findPdf(diretorio));
 
     }
 
@@ -177,6 +176,7 @@ public class InicioFragment extends Fragment {
                 }
             }
         });
+
     }
 
     @Override
@@ -195,7 +195,4 @@ public class InicioFragment extends Fragment {
             }
         }
     }
-
-
 }
-

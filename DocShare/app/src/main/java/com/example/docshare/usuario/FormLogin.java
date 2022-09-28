@@ -172,7 +172,7 @@ public class FormLogin extends AppCompatActivity {
 
     private void goToMainActivity(){
         InstanciarFirebase();
-        Intent intent = new Intent(getApplicationContext(), TelaUsuario2Activity.class);
+        Intent intent = new Intent(getApplicationContext(), TelaUsuario.class);
         startActivity(intent);
         finish();
     }

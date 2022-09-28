@@ -7,15 +7,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.edmodo.cropper.CropImageView;
 import com.example.docshare.R;
-import com.example.docshare.formularios.FormCadastro;
 import com.example.docshare.formularios.FormOSManutencaoCorretiva;
 import com.example.docshare.usuario.ConfiguracoesDeUsuario;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,6 +43,7 @@ public class CropImage extends AppCompatActivity {
     private static final int NO_CONTENT = 404;
 
     private ImageView btRotate, btCancel, btCrop;
+    private ProgressBar progressBarCrop;
     private CropImageView mCropImageView;
     float rotation = 0.0f;
     int call, source;
@@ -63,6 +63,7 @@ public class CropImage extends AppCompatActivity {
 
         getSupportActionBar().hide();
         IniciarComponentes();
+        progressBarCrop.setVisibility(ProgressBar.INVISIBLE);
 
         // Recebendo intent
         Intent intentReceberForm = getIntent();
@@ -107,6 +108,8 @@ public class CropImage extends AppCompatActivity {
         btCrop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBarCrop.setVisibility(ProgressBar.VISIBLE);
+
                 // Criar nova imagem
                 matrix.setRotate(mCropImageView.getRotation());
                 finalBitmap = Bitmap.createScaledBitmap(
@@ -179,5 +182,6 @@ public class CropImage extends AppCompatActivity {
         btCrop = findViewById(R.id.btCrop);
         btCancel = findViewById(R.id.btCancel);
         btRotate = findViewById(R.id.btRotate);
+        progressBarCrop = findViewById(R.id.progressBarCrop);
     }
 }
