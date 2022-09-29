@@ -16,12 +16,12 @@
             android:id="@+id/buttonSair"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:backgroundTint="@color/azulao"
             android:drawableLeft="@drawable/ic_sair"
             android:elevation="11dp"
             android:text="Sair"
             android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/rectangle_4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,11 +30,9 @@
         <View
             android:id="@+id/rectangle_4"
             style="@style/ContainerLogin"
-            android:layout_width="0dp"
-            android:layout_height="400dp"
+            android:layout_height="370dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_margin="20dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/container_components"
             android:elevation="0dp"
@@ -192,30 +190,6 @@
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/MudarSenha"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-        <ImageView
-            android:id="@+id/loadingBackGround"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:alpha="0.8"
-            android:elevation="20dp"
-            android:src="@drawable/background_gradient"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ProgressBar
-            android:id="@+id/progressBarC"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="150dp"
-            android:layout_height="0dp"
-            android:elevation="22dp"
-            android:indeterminateTint="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/loadingBackGround"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

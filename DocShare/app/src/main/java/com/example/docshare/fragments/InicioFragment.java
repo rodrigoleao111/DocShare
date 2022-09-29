@@ -11,6 +11,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,6 +55,7 @@ public class InicioFragment extends Fragment {
     private Button button_novaOS;
     private RecyclerView recyclerView;
     private List<File> pdfList;
+    String[] itens;
     Bundle paths = new Bundle();
     FirebaseFirestore db_dados_usuario = FirebaseFirestore.getInstance();
     String userID = FirebaseAuth.getInstance().getCurrentUser().getUid(), ola;
@@ -68,7 +71,7 @@ public class InicioFragment extends Fragment {
 
         VerificacaoDiretoriosDoApp(getContext());
 
-        InicioAdapter adapter = new InicioAdapter(getContext(), pdfList);
+        InicioAdapter adapter = new InicioAdapter(getContext(), pdfList, itens);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
@@ -144,8 +147,16 @@ public class InicioFragment extends Fragment {
 
     private void displayPdf() {
         pdfList = new ArrayList<>();
+        pdfList.addAll(findPdf(Environment.getExternalStorageDirectory()));
+
         File diretorio = new File(UserInfo.getUserCredentials().getString("osPath"));
         pdfList.addAll(findPdf(diretorio));
+
+        itens = new String[pdfList.size()];
+        for( int i = 0; i < itens.length; i++){
+            itens[i] = pdfList.get(i).getName().replace(".pdf", "");
+        }
+
     }
 
     @Override

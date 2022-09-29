@@ -111,6 +111,7 @@ public class ConfiguracoesDeUsuario extends AppCompatActivity implements ImageHe
         tvcargo = findViewById(R.id.edtCargoConfig);
         tvsetor = findViewById(R.id.edtSetorConfig);
         btAlterarDados = findViewById(R.id.btAlterarDados);
+
         voltarUserScreen = findViewById(R.id.btMudarSenha);
 
         tvUserId = findViewById(R.id.tvUserIdConfig);

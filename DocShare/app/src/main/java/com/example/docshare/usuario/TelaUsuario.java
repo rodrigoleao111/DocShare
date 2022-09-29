@@ -57,7 +57,5 @@ public class TelaUsuario extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        // desativando o botão de voltar
-    }
+    public void onBackPressed() {}
 }
