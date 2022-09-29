@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.docshare.R;
+import com.example.docshare.metodos.RequestPermissions;
 import com.example.docshare.metodos.UserInfo;
 import com.example.docshare.usuario.FormLogin;
 import com.example.docshare.usuario.TelaUsuario;
@@ -31,7 +32,6 @@ public class SplashScreen extends AppCompatActivity {
                 FirebaseUser usuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
                 Intent intent;
 
-                // Check permissions
                 if(usuarioAtual != null) {
                     intent = new Intent(getApplicationContext(), TelaUsuario.class);
                     InstanciarFirebase();
@@ -39,7 +39,6 @@ public class SplashScreen extends AppCompatActivity {
                 else
                     intent = new Intent(SplashScreen.this, FormLogin.class);
 
-                //checkAppDir();
                 startActivity(intent);
                 finish();
             }

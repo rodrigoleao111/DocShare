@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.docshare.R;
 import com.example.docshare.formularios.FormCadastro;
+import com.example.docshare.metodos.RequestPermissions;
 import com.example.docshare.metodos.UserInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -49,6 +50,10 @@ public class FormLogin extends AppCompatActivity {
 
         getSupportActionBar().hide();   // Esconder barra de ação
         IniciarComponentes();
+
+
+        if(!RequestPermissions.checkPermission(getApplicationContext()))
+            RequestPermissions.requestPermission(FormLogin.this);
 
         bt_entrar.setOnClickListener(new View.OnClickListener() {
             @Override
