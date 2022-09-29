@@ -60,9 +60,9 @@ public class HistoricoAdapter extends RecyclerView.Adapter<HistoricoAdapter.Myvi
     public int getItemCount() {return pdfFiles.size();}
 
     public static class MyviewHolder extends RecyclerView.ViewHolder{
-            TextView txtTitulo;
-            TextView txtdata;
-            ConstraintLayout conteiner;
+        TextView txtTitulo;
+        TextView txtdata;
+        ConstraintLayout conteiner;
 
         public MyviewHolder(@NonNull View itemView) {
             super(itemView);

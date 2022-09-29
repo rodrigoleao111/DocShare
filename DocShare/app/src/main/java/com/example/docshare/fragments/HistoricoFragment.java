@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +33,7 @@ public class HistoricoFragment extends Fragment implements OnPdfFileSelectListen
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_historico, container, false);
-        
+
         permissoes();
         recyclerView = view.findViewById(R.id.recyclerView);
         HistoricoAdapter adapter = new HistoricoAdapter(getContext(), pdfList, this);
@@ -75,8 +74,6 @@ public class HistoricoFragment extends Fragment implements OnPdfFileSelectListen
     private void displayPdf() {
 
         pdfList = new ArrayList<>();
-        pdfList.addAll(findPdf(Environment.getExternalStorageDirectory()));
-
         File diretorio = new File(UserInfo.getUserCredentials().getString("osPath"));
         pdfList.addAll(findPdf(diretorio));
 
